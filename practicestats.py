@@ -1,7 +1,7 @@
 
 from tabulate import tabulate
 import csv
-from homographyEstimation import image_estimation
+#from homographyEstimation import image_estimation
 import cv2
 import time
 
@@ -16,9 +16,11 @@ TO ADD FEATURES:
 #response = True if response.lower() == "y" else False
 response = False
 
+"""
 if response:
-    cap = cv2.VideoCapture("C:/Users/ethan/Downloads/GunnTestingTrim.mp4")
+    cap = cv2.VideoCapture()
     fps = cap.get(cv2.CAP_PROP_FPS)
+"""
 
 def shots(player,shot,made,ast_block=None):
     global roster_stats,team_stats, sfPoints, opPoints, sfPOT, opPOT, previous_turnover, sfML, secondchance, sfSP, opSP
@@ -535,6 +537,7 @@ f2.close()
 
 printTable(True)
 
+"""
 if response:
     fshot = open(filename2,"r")
     L = list(fshot)
@@ -583,4 +586,4 @@ if response:
             ret, frame = cap.read()
             frames_back += 5
         shot_index += 1
-
+"""
