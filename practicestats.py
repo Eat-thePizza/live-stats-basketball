@@ -406,23 +406,17 @@ while True:
     elif chunks[0] == "-p": #Team Offensive Rebounds and Defensive Rebounds
         team_poss = chunks[1].lower()
         if team_poss == "op":
-            if possession == False:
+            if possession == None:
+                possession = True
+            elif possession == False:
                 secondchance = True
-            elif possession == True:
-                possession = False
-                secondchance = False
-                opPOSS += 1
-                #print("Opponent's possession: ", opPOSS)
             
             #f3.write("Possession goes to "+names['op']+"\n")
         else:
-            if possession == True:
+            if possession == None:
+                possession = False
+            elif possession == True:
                 secondchance = True
-            elif possession == False:
-                possession = True
-                secondchance = False
-                sfPOSS += 1
-                #print("Saint Francis possession: ", sfPOSS)
             
             #f3.write("Possession goes to Saint Francis\n")
         
@@ -455,20 +449,18 @@ while True:
     """
 
     if "to" in chunks: #Turnovers
+        if possession == None:
+            possession = not((True if chunks[0].lower() != "op" else False))
+        
         if chunks[0] == "op" and possession == True:
             opPOSS += 1
+            possession = False
             #print("Opponent's possession: ", opPOSS)
         elif chunks[0] != "op" and possession == False:
             sfPOSS += 1
+            possession = True
             #print("Saint Francis Possession: ", sfPOSS)
         
-        possession = True if chunks[0] == "op" else False
-        if possession:
-            sfPOSS += 1
-            #print("Saint Francis Possession: ", sfPOSS)
-        else:
-            opPOSS += 1
-            #print("Opponent's possession: ", opPOSS)
         previous_turnover = True
         secondchance = False
         if len(chunks) == 3:
@@ -478,17 +470,18 @@ while True:
             turnovers(chunks[0])
             #f3.write(names[chunks[0]]+" commits the turnover")
     elif len(chunks) >= 3: #Shots
+        if possession == None:
+            possession = not((True if chunks[0].lower() != "op" else False))
+
         if chunks[0].lower() == "op" and possession == True: #Check if it's the other team shooting
             possession = False
             opPOSS += 1
             #print("Opponent's possession: ", opPOSS)
-            previous_turnover = False
             secondchance = False
         elif chunks[0].lower() != "op" and possession == False: #Check if it's the other team shooting
             possession = True
             sfPOSS += 1
             #print("Saint Francis Possession: ", sfPOSS)
-            previous_turnover = False
             secondchance = False
         
         #print(f"Possession: {possession}; Previous Turnover: {previous_turnover}; Second Chance: {secondchance}")
@@ -516,20 +509,16 @@ while True:
     else: #Rebounds
         rebounds(chunks[0],chunks[1])
         if chunks[1] == "dr":
-            possession = False if chunks[0] == "op" else True
-            if possession == False:
-                opPOSS += 1
-                #print("Opponent's possession: ", opPOSS)
-            else:
-                sfPOSS += 1
-                #print("Saint Francis Possession: ", sfPOSS)
-            
             previous_turnover = False
             secondchance = False
         else:
             secondchance = True
         
         #print(f"Possession: {possession}; Previous Turnover: {previous_turnover}; Second Chance: {secondchance}")
+
+    print(possession)
+    print("SF PPP", (sfPoints/sfPOSS if sfPOSS > 0 else 0.0))
+    print("OP PPP", (opPoints/opPOSS if opPOSS > 0 else 0.0))
     
 f.close()
 f2.close()
