@@ -1,0 +1,8 @@
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.big { flex: 1; min-height: 50px; }
+.endGame {
+  background: #b00020;
+  color: #fff;
+  flex-basis: 100%;
+}
+.endGame:disabled { background: var(--sfhs-gray-300, #ccc); color: var(--sfhs-gray-700, #666); }

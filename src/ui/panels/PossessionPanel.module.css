@@ -1,0 +1,2 @@
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.big { flex: 1; min-height: 60px; font-size: 1rem; }

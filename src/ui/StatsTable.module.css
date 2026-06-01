@@ -1,0 +1,53 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.table th,
+.table td {
+  padding: 0.4rem 0.6rem;
+  text-align: right;
+  border-bottom: 1px solid var(--sfhs-gray-300, #ccc);
+  white-space: nowrap;
+}
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+}
+.table thead th {
+  background: var(--sfhs-gray-100, #f2f2f2);
+  color: var(--sfhs-gray-900, #222);
+  font-weight: 700;
+}
+.teamRow {
+  background: var(--sfhs-maroon, #6b0016);
+  color: var(--sfhs-white, #fff);
+  font-weight: 700;
+}
+.teamRow td {
+  border-bottom: 1px solid var(--sfhs-maroon-dark, #4d0010);
+}
+.onCourtRow {
+  background: #fff7d6;
+  font-weight: 700;
+  border-left: 3px solid var(--sfhs-maroon, #6b0016);
+}
+.onCourtRow td:first-child {
+  position: relative;
+}
+.onCourtRow td:first-child::before {
+  content: "● ";
+  color: var(--sfhs-maroon, #6b0016);
+}
+.otherTable {
+  margin-top: 0.25rem;
+}
+.otherHeading {
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--sfhs-maroon, #6b0016);
+}

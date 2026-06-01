@@ -1,0 +1,86 @@
+.panel {
+  padding: 12px;
+  border: 1px solid var(--sfhs-gray-300);
+  border-radius: 6px;
+  background: var(--sfhs-white);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  color: var(--sfhs-maroon);
+  font-size: 1.1rem;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--sfhs-gray-700);
+  font-size: 0.9rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 6px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.btn {
+  min-height: 44px;
+  min-width: 60px;
+  padding: 6px 10px;
+  border: 1px solid var(--sfhs-gray-300);
+  background: var(--sfhs-gray-100);
+  color: var(--sfhs-gray-900);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.btnSelected {
+  background: var(--sfhs-maroon);
+  color: var(--sfhs-white);
+  border-color: var(--sfhs-maroon-dark);
+}
+
+.submit {
+  min-height: 44px;
+  padding: 8px 14px;
+  background: var(--sfhs-maroon);
+  color: var(--sfhs-white);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.submit:disabled {
+  background: var(--sfhs-gray-300);
+  color: var(--sfhs-gray-700);
+  cursor: not-allowed;
+}
+
+.pendingList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  min-height: 32px;
+  background: var(--sfhs-gray-100);
+  border-radius: 4px;
+}
+
+.pendingItem {
+  padding: 2px 8px;
+  background: var(--sfhs-white);
+  border: 1px solid var(--sfhs-gray-300);
+  border-radius: 3px;
+  font-size: 0.85rem;
+}

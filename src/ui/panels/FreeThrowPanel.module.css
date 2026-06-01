@@ -1,0 +1,2 @@
+.section { display: flex; flex-direction: column; gap: 6px; }
+.resultControls { display: flex; gap: 6px; flex-wrap: wrap; }

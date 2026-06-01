@@ -1,0 +1,131 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.dialog {
+  background: var(--sfhs-white);
+  border-radius: 6px;
+  border-top: 4px solid var(--sfhs-maroon);
+  padding: 1.25rem 1.5rem;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.title {
+  margin: 0 0 0.5rem 0;
+  color: var(--sfhs-maroon);
+  font-size: 1.25rem;
+}
+.body {
+  margin: 0 0 1rem 0;
+  color: var(--sfhs-gray-700);
+  font-size: 0.95rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sfhs-gray-900);
+}
+.input {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--sfhs-gray-300);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--sfhs-maroon);
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+.btn {
+  background: var(--sfhs-maroon);
+  color: var(--sfhs-white);
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.btn:hover { background: var(--sfhs-maroon-dark); }
+.btnSecondary {
+  background: var(--sfhs-gray-100);
+  color: var(--sfhs-gray-900);
+}
+.btnSecondary:hover { background: var(--sfhs-gray-300); }
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.subtitle {
+  margin: 0.75rem 0 0.5rem 0;
+  color: var(--sfhs-gray-900);
+  font-size: 1rem;
+}
+.lineupGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.playerBtn {
+  background: var(--sfhs-gray-100);
+  color: var(--sfhs-gray-900);
+  border: 1px solid var(--sfhs-gray-300);
+  padding: 0.4rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.playerBtn:hover:not(:disabled) {
+  background: var(--sfhs-gray-300);
+}
+.playerBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.playerBtnSelected {
+  background: var(--sfhs-maroon);
+  color: var(--sfhs-white);
+  border-color: var(--sfhs-maroon);
+}
+.playerBtnSelected:hover:not(:disabled) {
+  background: var(--sfhs-maroon-dark);
+}
+.manualRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.manualRow {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+.error {
+  color: #b00020;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0 0;
+}
+.actionsRight {
+  display: flex;
+  gap: 0.5rem;
+}

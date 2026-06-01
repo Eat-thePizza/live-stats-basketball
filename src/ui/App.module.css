@@ -1,0 +1,154 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "panels"
+    "stats"
+    "history";
+  position: relative;
+}
+
+.collapseToggle {
+  display: none;
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 28px;
+  min-height: 220px;
+  padding: 0.6rem 0;
+  border: 1px solid var(--sfhs-gray-300, #ccc);
+  background: var(--sfhs-white, #fff);
+  color: var(--sfhs-maroon, #6b0016);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: 5;
+  border-radius: 0 4px 4px 0;
+  /* Stack the chevron + label vertically */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.05em;
+}
+.collapseToggle:hover {
+  background: var(--sfhs-gray-100, #f2f2f2);
+}
+
+.region { min-width: 0; }
+.regionPanels  { grid-area: panels; }
+.regionStats   { grid-area: stats; }
+.regionHistory { grid-area: history; }
+
+/* Base: tab bar hidden by default; only the phone breakpoint shows it. */
+.tabbar {
+  display: none;
+  position: sticky;
+  bottom: 0;
+  background: var(--sfhs-white);
+  border-top: 1px solid var(--sfhs-gray-300);
+  z-index: 10;
+}
+
+/* Phone: only active tab visible; tab bar shown */
+@media (max-width: 767px) {
+  .region:not(.active) { display: none; }
+  .tabbar { display: flex; }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "panels stats"
+      "panels history";
+  }
+  .region { display: block !important; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr 1.2fr 0.8fr;
+    grid-template-areas: "panels stats history";
+  }
+  .region { display: block !important; }
+  .collapseToggle { display: block; left: 0; }
+
+  /* When expanded, leave room on the left of the panels column for the
+     vertical toggle button so it doesn't overlap panel content. */
+  .main:not(.panelsCollapsed) .regionPanels {
+    padding-left: 36px;
+  }
+
+  /* When the left panel is collapsed on desktop, hide it and let stats expand
+     across the panels + stats columns so the table fits without horizontal scroll. */
+  .main.panelsCollapsed {
+    grid-template-columns: 0 1fr 0.6fr;
+    grid-template-areas: "panels stats history";
+  }
+  .main.panelsCollapsed .regionPanels {
+    display: none !important;
+  }
+}
+
+.panelsHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+.preTipoffNotice {
+  margin: 0 0 0.6rem 0;
+  padding: 0.5rem 0.7rem;
+  border-left: 3px solid var(--sfhs-maroon, #6b0016);
+  background: var(--sfhs-gray-100, #f5f5f5);
+  color: var(--sfhs-gray-900, #2A2A2A);
+  font-size: 0.85rem;
+  border-radius: 0 4px 4px 0;
+}
+.eventFieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.eventFieldset[disabled] {
+  opacity: 0.55;
+}
+.sectionsToggle {
+  background: transparent;
+  border: 1px solid var(--sfhs-gray-300, #ccc);
+  color: var(--sfhs-maroon, #6b0016);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sectionsToggle:hover {
+  background: var(--sfhs-gray-100, #f2f2f2);
+}
+
+.tab,
+.tabActive {
+  flex: 1;
+  padding: 0.75rem 0;
+  background: transparent;
+  border: none;
+  border-top: 3px solid transparent;
+  color: var(--sfhs-gray-700);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tabActive {
+  border-top-color: var(--sfhs-maroon);
+  color: var(--sfhs-maroon);
+}

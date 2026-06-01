@@ -1,0 +1,88 @@
+.root {
+  padding: 1rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.title {
+  color: var(--sfhs-maroon, #6b0016);
+  margin-top: 0;
+}
+.gameId {
+  color: var(--sfhs-gray-700, #555);
+}
+.fieldRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+.label {
+  font-weight: 600;
+}
+.fieldset {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border: 1px solid var(--sfhs-gray-300, #ccc);
+  border-radius: 4px;
+}
+.fieldset label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+.fieldset input[type="number"] {
+  width: 100%;
+  padding: 0.3rem;
+}
+.empty {
+  color: var(--sfhs-gray-700, #555);
+  font-style: italic;
+}
+.error {
+  color: #b00020;
+}
+.summary {
+  font-weight: 600;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+.table th,
+.table td {
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--sfhs-gray-300, #ccc);
+}
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.actions button {
+  background: var(--sfhs-maroon, #6b0016);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.back {
+  color: var(--sfhs-maroon, #6b0016);
+  text-decoration: none;
+}
+.back:hover {
+  text-decoration: underline;
+}

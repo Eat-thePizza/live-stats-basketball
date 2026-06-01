@@ -1,0 +1,47 @@
+{
+  "game_id": "game_test",
+  "source": "web_ui_command_history",
+  "export_type": "stage2_json_game_log",
+  "exported_at": "2026-01-18T00:00:00.000Z",
+  "game_context": {
+    "game_date": "2026-01-18",
+    "opponent": null,
+    "opponent_alias": "op",
+    "home_team_label": "sf"
+  },
+  "commands": [],
+  "events": [
+    {
+      "event_id": "evt_000001",
+      "command_index": 0,
+      "raw_command": "+00:41 alden layup make wes",
+      "clock_text": "+00:41",
+      "elapsed_sec": 41,
+      "video_timestamp_sec": 41,
+      "event_type": "shot",
+      "team": "home",
+      "player": "alden",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "wes",
+      "related_player": null,
+      "warnings": []
+    },
+    {
+      "event_id": "evt_000002",
+      "command_index": 1,
+      "raw_command": "+00:24 op ft make",
+      "clock_text": "+00:24",
+      "elapsed_sec": 24,
+      "video_timestamp_sec": 24,
+      "event_type": "free_throw",
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": []
+    }
+  ]
+}

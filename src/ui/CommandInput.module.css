@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+.input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--sfhs-gray-300, #ccc);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+.input:focus {
+  outline: 2px solid var(--sfhs-maroon, #6b0016);
+  outline-offset: 1px;
+}
+.submit {
+  background: var(--sfhs-maroon, #6b0016);
+  color: var(--sfhs-white, #fff);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

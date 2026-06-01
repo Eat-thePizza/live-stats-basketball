@@ -1,0 +1,25 @@
+{
+  "game_id": "game_test",
+  "source": "web_ui_command_history",
+  "source_video": "fake.mp4",
+  "settings": {
+    "tipoff_time_sec": 10,
+    "clip_before_sec": 4,
+    "clip_after_sec": 3,
+    "include_free_throws": false
+  },
+  "clips": [
+    {
+      "clip_id": "shot_000001",
+      "event_id": "evt_000001",
+      "raw_command": "+00:41 alden layup make wes",
+      "elapsed_time_sec": 41,
+      "video_timestamp": 51,
+      "video_start_sec": 47,
+      "video_end_sec": 54,
+      "duration_sec": 7,
+      "clip_path": "clips/shot_000001.mp4",
+      "status": "skipped"
+    }
+  ]
+}
