@@ -10,7 +10,7 @@ from homographyEstimation import TacticalViewConverter, filter_tracked_objects
 # ── Config ────────────────────────────────────────────────────────────────────
 jsoninfo        = "game_20260519_valley_christian.json"
 film            = "SFHS VCHS Testing.mp4"
-model_path      = "player_detector.pt"
+model_path      = "model 61936.pt"
 court_keypoints = "court_keypoint_detector.pt"
 PRE_ROLL        = 3.0   # max seconds before shot timestamp to search backwards from
 SHOT_OFFSET     = 0.3   # seconds before the timestamp to begin the backwards scan
@@ -85,8 +85,8 @@ def run_yolo(model: YOLO, frame):
       Ball   — keep only the single highest-confidence detection (any conf)
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
-    PLAYER_CONF_THRESHOLD = 0.50
-    MAX_PLAYERS           = 10
+    PLAYER_CONF_THRESHOLD = 0.35
+    MAX_PLAYERS           = 12
 
     results = model(frame, verbose=True)
 
@@ -400,7 +400,9 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
         last_player_points = mapper.map_centers_from_boxes(last_player_boxes, last_H)
         last_ball_points   = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
 
-        tactical_frame = mapper.draw_tactical(last_player_points, last_ball_points, last_good_indices)
+        team_assignments = mapper.assign_teams(frame, last_player_boxes)
+        tactical_frame = mapper.draw_tactical(last_player_points, last_ball_points,
+                                      last_good_indices, team_assignments)
 
         th, tw = tactical_frame.shape[:2]
         annotated_frame[0:th, 0:tw] = tactical_frame

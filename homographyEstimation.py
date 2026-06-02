@@ -75,50 +75,28 @@ class TacticalViewConverter:
         if self.reference_court_image is None:
             raise RuntimeError(f"ERROR: Could not load court image at {court_image_path}")
 
-        self.width = 300
-        self.height = 161
-        self.actual_width_in_meters = 25.6
-        self.actual_height_in_meters = 15.24
-        self.scale_x = self.width / self.actual_width_in_meters
-        self.scale_y = self.height / self.actual_height_in_meters
-
+        self.width = 276
+        self.height = 165
+        
         self.reference_kps = np.array(self._generate_reference_kps(), dtype=np.float32)
         self.reference_court_image = cv2.resize(self.reference_court_image, (self.width, self.height))
 
-    def _generate_reference_kps(self):
-        AW, AH = self.actual_width_in_meters, self.actual_height_in_meters
-        sx, sy = self.scale_x, self.scale_y
-
-        points_m = [
-            # --- LEFT BASELINE (x = 0.0) ---
-            (0.0, AH),          # Top-left corner (50 ft)
-            (0.0, 14.33),       # Top corner 3-point line start (47 ft)
-            (0.0, 9.45),        # Top edge of the 12ft free-throw lane (31 ft)
-            (0.0, 5.79),        # Bottom edge of the 12ft free-throw lane (19 ft)
-            (0.0, 0.91),        # Bottom corner 3-point line start (3 ft)
-            (0.0, 0.0),         # Bottom-left corner (0 ft)
-            
-            # --- LEFT FREE THROW LINE (x = 19 ft / 5.79m) ---
-            (5.79, 9.45),       # Top elbow of the free-throw line
-            (5.79, 5.79),       # Bottom elbow of the free-throw line
-            
-            # --- MIDCOURT LINE (x = AW / 2) ---
-            (AW / 2.0, AH),     # Division line at top sideline
-            (AW / 2.0, 0.0),    # Division line at bottom sideline
-            
-            # --- RIGHT BASELINE (x = AW) ---
-            (AW, AH),           # Top-right corner
-            (AW, 14.33),        # Top corner 3-point line start
-            (AW, 9.45),         # Top edge of free-throw lane
-            (AW, 5.79),         # Bottom edge of free-throw lane
-            (AW, 0.91),         # Bottom corner 3-point line start
-            (AW, 0.0),          # Bottom-right corner
-            
-            # --- RIGHT FREE THROW LINE (x = AW - 19 ft) ---
-            (AW - 5.79, 9.45),  # Top elbow of the right free-throw line
-            (AW - 5.79, 5.79),  # Bottom elbow of the right free-throw line
+        # Team colors for tactical dot drawing
+        self.TEAM_COLORS = [
+            (255, 165, 0),    # Team 0 — blue
+            (250, 250, 250),  # Team 1 — white
         ]
-        return [(int(x * sx), int(self.height - y * sy)) for (x, y) in points_m]
+        self.UNKNOWN_COLOR = (128, 128, 128)
+
+    def _generate_reference_kps(self):
+        points_pixels = [
+            (0, 0), (0, 18), (0, 63), (0, 101), (0, 146), (0, 164),
+            (61, 63), (61, 101),
+            (137, 0), (137, 164),
+            (275, 0), (275, 18), (275, 63), (275, 101), (275, 146), (275, 164),
+            (213, 63), (213, 101),
+        ]
+        return points_pixels
 
     def compute_homography(self, broadcast_results):
         CONF_THRESHOLD = 0.5
@@ -146,13 +124,124 @@ class TacticalViewConverter:
         mapped = cv2.perspectiveTransform(centers.reshape(-1, 1, 2), H).reshape(-1, 2).astype(np.float32)
         return mapped
 
-    def draw_tactical(self, mapped_player_points, mapped_ball_points, good_indices=None):
+    # -------------------------------------------------------
+    # NEW: extracts dominant HSV color from a player's torso region
+    # -------------------------------------------------------
+    def _get_jersey_sat_vote(self, frame, box_xyxy,
+                          grid=(4, 4), crop_size=5,
+                          v_frac=(0.3, 0.5), h_frac=(0.3, 0.7),
+                          sat_threshold=100):
+        """
+        Samples a grid of small crops across the torso region.
+        Returns (mean_hsv_of_all_crops, fraction_of_crops_above_sat_threshold).
+        
+        v_frac: vertical slice of box to sample within (top=0, bottom=1)
+        h_frac: horizontal slice of box to sample within
+        grid:   (rows, cols) of sample points
+        """
+        x1, y1, x2, y2 = int(box_xyxy[0]), int(box_xyxy[1]), int(box_xyxy[2]), int(box_xyxy[3])
+        bh, bw = y2 - y1, x2 - x1
+        if bh <= 0 or bw <= 0:
+            return None, 0.0
+
+        # Define the torso region boundary
+        region_y1 = y1 + int(bh * v_frac[0])
+        region_y2 = y1 + int(bh * v_frac[1])
+        region_x1 = x1 + int(bw * h_frac[0])
+        region_x2 = x1 + int(bw * h_frac[1])
+
+        rows, cols = grid
+        half = crop_size // 2
+
+        all_pixels = []
+        crops_above_threshold = 0
+        crops_sampled = 0
+
+        for r in range(rows):
+            for c in range(cols):
+                # Evenly space sample points across the torso region
+                sy = int(region_y1 + (r + 0.5) * (region_y2 - region_y1) / rows)
+                sx = int(region_x1 + (c + 0.5) * (region_x2 - region_x1) / cols)
+
+                fy1 = max(sy - half, 0)
+                fy2 = min(sy + half + 1, frame.shape[0])
+                fx1 = max(sx - half, 0)
+                fx2 = min(sx + half + 1, frame.shape[1])
+
+                crop = frame[fy1:fy2, fx1:fx2]
+                if crop.size == 0:
+                    continue
+
+                hsv = cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)
+                pixels = hsv.reshape(-1, 3).astype(np.float32)
+                mean_s = pixels[:, 1].mean()
+
+                all_pixels.append(pixels)
+                crops_sampled += 1
+                if mean_s > sat_threshold:
+                    crops_above_threshold += 1
+
+        if crops_sampled == 0 or len(all_pixels) == 0:
+            return None, 0.0
+
+        all_pixels_arr = np.concatenate(all_pixels, axis=0)
+        mean_hsv = all_pixels_arr.mean(axis=0)
+        sat_vote_ratio = crops_above_threshold / crops_sampled  # fraction of crops that look colored
+
+        return mean_hsv, sat_vote_ratio
+
+
+    def assign_teams(self, frame, player_boxes):
+        """
+        Uses grid-sampled torso crops and a majority vote on saturation
+        to assign each player to team 0 (colored) or team 1 (white).
+        
+        SAT_VOTE_THRESHOLD: fraction of crops that must read as saturated
+        to call the player "colored team". 0.5 = majority vote.
+        Raise toward 0.6-0.7 if white jersey numbers cause false colored calls.
+        """
+        SAT_VOTE_THRESHOLD = 0.55
+        DEBUG = True
+
+        n = len(player_boxes)
+        assignments = np.full(n, -1, dtype=np.int32)
+        if n == 0:
+            return assignments
+
+        for i, box in enumerate(player_boxes):
+            mean_hsv, sat_vote_ratio = self._get_jersey_sat_vote(frame, box)
+
+            if DEBUG:
+                team = 0 if sat_vote_ratio >= SAT_VOTE_THRESHOLD else 1
+                print(f"  Player {i}: mean_HSV={np.round(mean_hsv, 1) if mean_hsv is not None else None} | sat_vote={sat_vote_ratio:.2f} -> team {team}")
+
+            if mean_hsv is None or sat_vote_ratio < SAT_VOTE_THRESHOLD:
+                assignments[i] = 1  # white team
+            else:
+                assignments[i] = 0  # colored team
+
+        assignments[assignments == -1] = 1
+        return assignments
+
+    # -------------------------------------------------------
+    # UPDATED: draw_tactical now accepts team_assignments
+    # and colors dots by team. Pass None to get old behavior.
+    # -------------------------------------------------------
+    def draw_tactical(self, mapped_player_points, mapped_ball_points,
+                    good_indices=None, team_assignments=None):
         img = self.reference_court_image.copy()
-        for (x, y) in mapped_player_points:
-            cv2.circle(img, (int(x), int(y)), 4, (0,0,255), -1)
+
+        for i, (x, y) in enumerate(mapped_player_points):
+            if team_assignments is not None and i < len(team_assignments):
+                team = team_assignments[i]
+                color = self.TEAM_COLORS[team] if team in (0, 1) else self.UNKNOWN_COLOR
+            else:
+                color = (0, 0, 255)  # original red fallback
+            cv2.circle(img, (int(x), int(y)), 4, color, -1)
+
         for (x, y) in mapped_ball_points:
-            print("This does exist lol")
-            cv2.circle(img, (int(x), int(y)), 4, (0,255,255), -1)
+            cv2.circle(img, (int(x), int(y)), 4, (0, 255, 255), -1)
+
         if good_indices is not None:
             for i in good_indices:
                 rx, ry = self.reference_kps[i]
@@ -160,7 +249,6 @@ class TacticalViewConverter:
                 cv2.putText(img, str(i), (int(rx) + 5, int(ry) - 5),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
         return img
-
 
 def filter_tracked_objects(results, class_id, max_objects=10):
     if results is None or len(results) == 0 or results[0].boxes is None or len(results[0].boxes) == 0:

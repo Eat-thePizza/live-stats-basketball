@@ -2,6 +2,12 @@
 model_testing.py
 YOLO v26n Basketball Detection — IPEX/XPU Inference
 Draws bounding boxes for: ball (yellow), hoop (blue), player (purple), referee (red)
+
+Detection rules:
+  - Players  : top 10 highest-confidence detections only (min 0.50)
+  - Hoop     : single highest-confidence detection only
+  - Ball     : single highest-confidence detection only
+  - Referee  : all detections above 0.50 confidence
 Skips every other frame for output video.
 """
 
@@ -15,23 +21,31 @@ from pathlib import Path
 #  CONFIG — edit these three before running
 # ─────────────────────────────────────────────
 INPUT_VIDEO    = "C:/Users/ethan/Downloads/GunnTestingTrim.mp4"
-MODEL_LOCATION = "C:/Users/ethan/Desktop/Basketball Stats Program/pmodel 527102.pt"
+MODEL_LOCATION = "pmodel 61515.pt"
 OUTPUT_DIR     = "C:/Users/ethan/Desktop/Basketball Stats Program/"
 # ─────────────────────────────────────────────
 
 # Detection settings
-CONFIDENCE_THRESHOLD = 0.5
-BOX_THICKNESS        = 1
-FONT                 = cv2.FONT_HERSHEY_SIMPLEX
-FONT_SCALE           = 0.5
-FONT_THICKNESS       = 1
+MIN_CONF_PLAYER   = 0.50
+MIN_CONF_REFEREE  = 0.50
+MAX_PLAYERS       = 10       # top-N players by confidence
+BOX_THICKNESS     = 1
+FONT              = cv2.FONT_HERSHEY_SIMPLEX
+FONT_SCALE        = 0.5
+FONT_THICKNESS    = 1
+
+# Class IDs
+CLS_BALL     = 0
+CLS_HOOP     = 1
+CLS_PLAYER   = 2
+CLS_REFEREE  = 3
 
 # Class index → (label, BGR color)
 CLASS_CONFIG = {
-    0: ("ball",     (0,   255, 255)),   # yellow
-    1: ("hoop",     (255, 128,   0)),   # blue
-    2: ("player",   (180,   0, 180)),   # purple
-    3: ("referee",  (0,     0, 255)),   # red
+    CLS_BALL:    ("ball",    (0,   255, 255)),   # yellow
+    CLS_HOOP:    ("hoop",   (255, 128,   0)),    # blue
+    CLS_PLAYER:  ("player", (180,   0, 180)),    # purple
+    CLS_REFEREE: ("referee",(0,     0, 255)),    # red
 }
 
 
@@ -52,7 +66,6 @@ def load_model(model_path: str, device: torch.device) -> YOLO:
     model = YOLO(model_path)
 
     if device.type == "xpu":
-        # Move underlying PyTorch model to XPU and optimise with IPEX
         model.model = model.model.to(device)
         model.model = ipex.optimize(model.model)
         print("[model] IPEX optimisation applied on XPU")
@@ -62,19 +75,59 @@ def load_model(model_path: str, device: torch.device) -> YOLO:
     return model
 
 
-def draw_detections(frame, results) -> None:
-    """Draw bounding boxes + labels on frame in-place."""
+def filter_detections(results):
+    """
+    Apply per-class filtering rules and return a list of
+    (cls_id, conf, xyxy) tuples ready for drawing.
+
+    Rules:
+      - Ball    : highest confidence only (no floor — always show best guess)
+      - Hoop    : highest confidence only (no floor — always show best guess)
+      - Player  : top MAX_PLAYERS by confidence, minimum MIN_CONF_PLAYER
+      - Referee : all detections >= MIN_CONF_REFEREE
+    """
+    # Bucket raw detections by class
+    buckets = {CLS_BALL: [], CLS_HOOP: [], CLS_PLAYER: [], CLS_REFEREE: []}
+
     for box in results[0].boxes:
-        conf = float(box.conf[0])
         cls_id = int(box.cls[0])
-
-        if conf < CONFIDENCE_THRESHOLD and cls_id != 0:
+        if cls_id not in buckets:
             continue
-        if cls_id not in CLASS_CONFIG:
-            continue
+        conf  = float(box.conf[0])
+        xyxy  = box.xyxy[0]
+        buckets[cls_id].append((conf, xyxy))
 
+    kept = []
+
+    # Ball — best single detection
+    if buckets[CLS_BALL]:
+        best = max(buckets[CLS_BALL], key=lambda x: x[0])
+        kept.append((CLS_BALL, best[0], best[1]))
+
+    # Hoop — best single detection
+    if buckets[CLS_HOOP]:
+        best = max(buckets[CLS_HOOP], key=lambda x: x[0])
+        kept.append((CLS_HOOP, best[0], best[1]))
+
+    # Players — top-10 above threshold
+    players = [(c, xy) for c, xy in buckets[CLS_PLAYER] if c >= MIN_CONF_PLAYER]
+    players.sort(key=lambda x: x[0], reverse=True)
+    for conf, xyxy in players[:MAX_PLAYERS]:
+        kept.append((CLS_PLAYER, conf, xyxy))
+
+    # Referees — all above threshold
+    for conf, xyxy in buckets[CLS_REFEREE]:
+        if conf >= MIN_CONF_REFEREE:
+            kept.append((CLS_REFEREE, conf, xyxy))
+
+    return kept
+
+
+def draw_detections(frame, filtered_detections) -> None:
+    """Draw bounding boxes + labels from pre-filtered detection list."""
+    for cls_id, conf, xyxy in filtered_detections:
         label_name, color = CLASS_CONFIG[cls_id]
-        x1, y1, x2, y2   = map(int, box.xyxy[0])
+        x1, y1, x2, y2   = map(int, xyxy)
 
         # Bounding box
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, BOX_THICKNESS)
@@ -96,7 +149,7 @@ def draw_detections(frame, results) -> None:
             cv2.FILLED,
         )
 
-        # Choose black or white text for contrast
+        # Black or white text for contrast
         brightness = 0.299 * color[2] + 0.587 * color[1] + 0.114 * color[0]
         text_color = (0, 0, 0) if brightness > 128 else (255, 255, 255)
 
@@ -124,11 +177,11 @@ def run_inference(model: YOLO, device: torch.device) -> None:
     input_stem  = Path(INPUT_VIDEO).stem
     out_file    = output_path / f"{input_stem}_annotated.mp4"
 
-    # Video writer — preserve original resolution but ~half the frame rate
+    # Video writer — preserve original resolution, half the frame rate
     src_w   = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     src_h   = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     src_fps = cap.get(cv2.CAP_PROP_FPS)
-    out_fps = max(src_fps / 2, 1)          # half speed because we skip every other frame
+    out_fps = max(src_fps / 2, 1)
 
     fourcc  = cv2.VideoWriter_fourcc(*"mp4v")
     writer  = cv2.VideoWriter(str(out_file), fourcc, out_fps, (src_w, src_h))
@@ -150,19 +203,20 @@ def run_inference(model: YOLO, device: torch.device) -> None:
         if frame_count % 2 != 0:
             continue
 
-        # Run YOLO inference
+        # Run YOLO inference (low conf floor so we always get candidates for
+        # ball/hoop best-pick logic; per-class rules applied in filter step)
         results = model(
             frame,
             device=device,
-            verbose=True,
+            conf=0.15,   # low floor — filter_detections applies real thresholds
+            iou=0.45,    # NMS to prevent duplicate/stacked boxes
+            verbose=False,
         )
 
-        draw_detections(frame, results)
+        filtered = filter_detections(results)
+        draw_detections(frame, filtered)
         writer.write(frame)
         written += 1
-
-        #if written % 100 == 0:
-        #    print(f"  … {written} frames written (source frame {frame_count})")
 
     cap.release()
     writer.release()
