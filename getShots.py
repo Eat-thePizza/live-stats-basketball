@@ -10,7 +10,7 @@ from homographyEstimation import TacticalViewConverter, filter_tracked_objects
 # ── Config ────────────────────────────────────────────────────────────────────
 jsoninfo        = "game_20260519_valley_christian.json"
 film            = "SFHS VCHS Testing.mp4"
-model_path      = "model 61936.pt"
+model_path      = "pmodel 621141.pt"
 court_keypoints = "court_keypoint_detector.pt"
 PRE_ROLL        = 3.0   # max seconds before shot timestamp to search backwards from
 SHOT_OFFSET     = 0.3   # seconds before the timestamp to begin the backwards scan
@@ -85,13 +85,14 @@ def run_yolo(model: YOLO, frame):
       Ball   — keep only the single highest-confidence detection (any conf)
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
-    PLAYER_CONF_THRESHOLD = 0.35
+    PLAYER_CONF_THRESHOLD = 0.2
     MAX_PLAYERS           = 12
 
-    results = model(frame, verbose=True)
+    results = model(frame, verbose=False)
 
     ball_candidates   = []   # (conf, xyxy)
     player_boxes      = []   # xyxy, already filtered
+    hoop_boxes        = []
 
     for result in results:
         if result.boxes is None:
@@ -107,25 +108,30 @@ def run_yolo(model: YOLO, frame):
             elif cls == CLASS_PLAYER:
                 if conf >= PLAYER_CONF_THRESHOLD:
                     player_boxes.append((conf, xyxy))
+            
+            elif cls == 1:
+                hoop_boxes.append((conf, xyxy))
 
     # Ball: keep only the single highest-confidence detection
     ball_boxes = []
     if ball_candidates:
         best_ball = max(ball_candidates, key=lambda x: x[0])
         ball_boxes = [best_ball[1]]
-        print(f"    Ball detected — conf={best_ball[0]:.3f}  "
-              f"({len(ball_candidates)} candidate(s) before filter)")
+        #print(f"    Ball detected — conf={best_ball[0]:.3f}  "
+              #f"({len(ball_candidates)} candidate(s) before filter)")
 
     # Players: sort by confidence descending, cap at MAX_PLAYERS
     player_boxes.sort(key=lambda x: x[0], reverse=True)
     player_boxes = [xyxy for _, xyxy in player_boxes[:MAX_PLAYERS]]
-    print(f"    Players kept: {len(player_boxes)}  "
-          f"(conf >= {PLAYER_CONF_THRESHOLD}, cap={MAX_PLAYERS})")
+    #print(f"    Players kept: {len(player_boxes)}  "
+          #f"(conf >= {PLAYER_CONF_THRESHOLD}, cap={MAX_PLAYERS})")
+    
+    hoop_boxes = [xyxy for _, xyxy in hoop_boxes]
 
-    return ball_boxes, player_boxes
+    return ball_boxes, player_boxes, hoop_boxes
 
 
-def annotate_frame(frame, ball_boxes, player_boxes, iou_scores: list, frame_number: int, label: str = ""):
+def annotate_frame(frame, ball_boxes, player_boxes, hoop_boxes, iou_scores: list, frame_number: int, label: str = ""):
     """
     Draw boxes and IoU overlays onto frame in-place. Returns the frame.
     iou_scores is a list of (p_idx, b_idx, score) tuples.
@@ -136,12 +142,20 @@ def annotate_frame(frame, ball_boxes, player_boxes, iou_scores: list, frame_numb
         cv2.putText(frame, "ball", (x1, y1 - 4),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
+    i = 0
     for xyxy in player_boxes:
         x1, y1, x2, y2 = map(int, xyxy)
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 100, 0), 2)
-        cv2.putText(frame, "player", (x1, y1 - 4),
+        cv2.putText(frame, f"player {i}", (x1, y1 - 4),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 100, 0), 1)
-
+        i+=1
+    
+    for xyxy in hoop_boxes:
+        x1, y1, x2, y2 = map(int, xyxy)
+        cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 255), 2)
+        cv2.putText(frame, "HOOP", (x1, y1 - 4),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
+    
     """
     overlay_y = 20
     for p_idx, b_idx, score in iou_scores:
@@ -202,14 +216,15 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
         if not ret:
             break
 
-        ball_boxes, player_boxes = run_yolo(model, frame)
+        ball_boxes, player_boxes, hoop_boxes = run_yolo(model, frame)
 
         iou_scores = []
         for p_idx, p_box in enumerate(player_boxes):
             for b_idx, b_box in enumerate(ball_boxes):
                 score = iou(p_box, b_box)
                 iou_scores.append((p_idx, b_idx, score))
-                print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  IoU = {score:.4f}")
+                if score > 0:
+                    print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  IoU = {score:.4f}")
 
         # None if no ball detected; otherwise the highest IoU in this frame
         max_iou_this_frame = max((s for _, _, s in iou_scores), default=None) if ball_boxes else None
@@ -218,6 +233,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
             "frame":        frame.copy(),
             "ball_boxes":   ball_boxes,
             "player_boxes": player_boxes,
+            "hoop_boxes":   hoop_boxes,
             "iou_scores":   iou_scores,
             "max_iou":      max_iou_this_frame,
         }
@@ -276,6 +292,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
         d["frame"].copy(),
         d["ball_boxes"],
         d["player_boxes"],
+        d["hoop_boxes"], 
         d["iou_scores"],
         target_fn,
         label="" if found_confirmed else f"Fallback (nearest to -{fallback_offset}s)"
@@ -284,7 +301,15 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
     status = "confirmed overlap" if found_confirmed else "fallback"
     print(f"  Returning frame {target_fn} [{status}]  max_iou={d['max_iou']}")
 
-    return annotated, target_fn, found_confirmed, d["frame"]
+    iou_list = frame_data[target_fn]["iou_scores"]
+    ply_idx = 0
+    max_iou = 0
+    for p_idx, b_idx, score in iou_list:
+        if score > max_iou:
+            ply_idx = p_idx
+            max_iou = score
+
+    return annotated, target_fn, found_confirmed, d["frame"], ply_idx
 
 
 def show_frame_and_wait(frame, window_name: str) -> bool:
@@ -300,7 +325,7 @@ def show_frame_and_wait(frame, window_name: str) -> bool:
         if key == ord(" "):
             return True
 
-
+shotChart = cv2.imread("court_board.jpg")
 def getShots(json_path: str, film_path: str, tipoff_seconds: float):
     """
     Main function.
@@ -354,7 +379,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
             print(f"[WARN] Skipping entry — {e}")
             continue
         video_time = tipoff_seconds + offset
-        shots.append((video_time, raw))
+        shots.append((video_time, raw, tokens[3].lower()))
 
     if not shots:
         print("No field-goal shots found in the JSON.")
@@ -371,11 +396,11 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
     window_name = "Shot Clip"
     cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
 
-    for idx, (shot_time, raw) in enumerate(shots, start=1):
+    for idx, (shot_time, raw, make_miss) in enumerate(shots, start=1):
         print(f"\n[{idx}/{len(shots)}]  {raw}  →  searching backwards from {shot_time:.1f}s")
         print("-" * 60)
 
-        annotated_frame, frame_num, found_confirmed, frame = find_best_frame(cap, model, shot_time)
+        annotated_frame, frame_num, found_confirmed, frame, p_idx = find_best_frame(cap, model, shot_time)
 
         if annotated_frame is None:
             print("  Skipping — no ball detected in clip.")
@@ -397,6 +422,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
             ply_results, class_id=CLASS_BALL, max_objects=1
         )
 
+
         last_player_points = mapper.map_centers_from_boxes(last_player_boxes, last_H)
         last_ball_points   = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
 
@@ -407,9 +433,16 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
         th, tw = tactical_frame.shape[:2]
         annotated_frame[0:th, 0:tw] = tactical_frame
 
+        shot_coordinates = last_player_points[p_idx]
+        if "mis" in make_miss:
+            cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),4,(25,25,255),-1)
+        else:
+            cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),4,(25,255,25),-1)
+
         keep_going = show_frame_and_wait(annotated_frame, window_name)
         if not keep_going:
             print("Quit by user.")
+            cv2.imwrite("shotChartTesting.jpg",shotChart)
             break
 
     cap.release()

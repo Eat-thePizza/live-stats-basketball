@@ -201,7 +201,7 @@ class TacticalViewConverter:
         Raise toward 0.6-0.7 if white jersey numbers cause false colored calls.
         """
         SAT_VOTE_THRESHOLD = 0.55
-        DEBUG = True
+        DEBUG = False
 
         n = len(player_boxes)
         assignments = np.full(n, -1, dtype=np.int32)
