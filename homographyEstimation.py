@@ -120,7 +120,7 @@ class TacticalViewConverter:
             return np.empty((0, 2), dtype=np.float32)
 
         x1, y1, x2, y2 = boxes_xyxy[:, 0], boxes_xyxy[:, 1], boxes_xyxy[:, 2], boxes_xyxy[:, 3]
-        centers = np.stack(((x1 + x2) / 2.0, y2), axis=1).astype(np.float32)
+        centers = np.stack(((x1 + x2) / 2.0, y2 + 0.08*(y1-y2)), axis=1).astype(np.float32)
         mapped = cv2.perspectiveTransform(centers.reshape(-1, 1, 2), H).reshape(-1, 2).astype(np.float32)
         return mapped
 
@@ -239,8 +239,8 @@ class TacticalViewConverter:
                 color = (0, 0, 255)  # original red fallback
             cv2.circle(img, (int(x), int(y)), 4, color, -1)
 
-        for (x, y) in mapped_ball_points:
-            cv2.circle(img, (int(x), int(y)), 4, (0, 255, 255), -1)
+        #for (x, y) in mapped_ball_points:
+        #    cv2.circle(img, (int(x), int(y)), 4, (0, 255, 255), -1)
 
         if good_indices is not None:
             for i in good_indices:
