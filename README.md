@@ -1,411 +1,232 @@
-Here’s a clean **GitHub-style `README.md`** based on your documentation. I reorganized it so people can quickly understand the project, install it, and use the commands.
+# 🏀 Basketball Analytics Suite
+
+A multi-part basketball analytics system combining **real-time stat tracking**, **computer vision shot charting**, and a **web dashboard** — built to support live game analysis and post-game review.
 
 ---
 
-# Basketball Stats Tracker (Terminal Program)
+## Project Overview
 
-A **Python terminal-based basketball stat tracking program** designed for live game input. The program records play-by-play events and automatically calculates detailed team and player statistics.
-
-It is optimized for **fast keyboard input during games**, allowing a single person to track an entire game in real time.
-
----
-
-# Features
-
-The program tracks statistics for **both teams**, including:
-
-### Shooting
-
-* 2 Pointers Made / Attempted (2PM / 2PA)
-* 3 Pointers Made / Attempted (3PM / 3PA)
-* Free Throws Made / Attempted (FTM / FTA)
-
-### Rebounding
-
-* Offensive Rebounds (OR)
-* Defensive Rebounds (DR)
-
-### Possession
-
-* Turnovers (TO)
-* Steals (STL)
-
-### Defense & Playmaking
-
-* Assists (AST)
-* Blocks (BLK)
-
-### Advanced Game Stats
-
-* Plus/Minus (+/-)
-* Points
-* Points Off Turnovers
-* Second Chance Points
-* Missed Layups
-
-Note:
-The keyword **`op`** refers to the **opponent**. Individual opponent players are not tracked—only the opponent team as a whole.
+| Component | Description |
+|-----------|-------------|
+| [Terminal Stat Tracker](#terminal-stat-tracker) | Live play-by-play stat input via typed commands |
+| [CV Shot Chart Generator](#cv-shot-chart-generator) | YOLO-based automatic shot chart from game film |
+| [Web Dashboard](#web-dashboard) | Online stats viewer at [ethanliu.ccwu.cc](https://ethanliu.ccwu.cc/) |
 
 ---
 
-# Requirements
+## Terminal Stat Tracker
 
-You must have the following installed:
+A Python terminal program for tracking live basketball stats through fast keyboard input. One person can track an entire game in real time, play by play.
 
-### Python
+### Features
 
-Download the latest version of Python:
+Tracks stats for both your team and the opponent:
 
-[https://www.python.org/downloads/](https://www.python.org/downloads/)
+- **Shooting** — 2PM/2PA, 3PM/3PA, FTM/FTA
+- **Rebounding** — Offensive (OR) and Defensive (DR)
+- **Possession** — Turnovers (TO), Steals (STL)
+- **Playmaking / Defense** — Assists (AST), Blocks (BLK)
+- **Advanced** — Plus/Minus (+/−), Points Off Turnovers, Second Chance Points, Missed Layups
 
-### Python Library
+> **Note:** `op` refers to the opponent team. Opponent players are not tracked individually.
 
-Install the `tabulate` library:
+### Requirements
+
+- Python — [python.org/downloads](https://www.python.org/downloads/)
+- `tabulate` library:
 
 ```bash
-py -m pip install tabulate
+pip install tabulate
 ```
 
----
-
-# Installation
-
-1. Download the program file.
-
-2. Move it to your **Downloads folder** (or note where it is saved).
-
-3. Open **Terminal** (Mac/Linux) or **Command Prompt** (Windows).
-
-4. Navigate to the Downloads folder:
+### Installation & Setup
 
 ```bash
-cd downloads
+git clone <repo-url>
+cd <repo-folder>
+pip install tabulate
 ```
 
----
-
-# Running the Program
-
-Run the script using:
+### Running
 
 ```bash
-py practicestats.py
+python practicestats.py
 ```
 
-You will then begin entering **game events as text commands**.
+Type commands during the game. When done, type `exit` to end the session.
+
+On exit, the program will:
+- Print a full stats table in the terminal
+- Save a `.txt` play-by-play log
+- Optionally export a `.csv` stats file (type `y` when prompted)
 
 ---
 
-# Ending the Program
+### Command Reference
 
-To finish the session:
-
-```
-exit
-```
-
-When the program exits it will:
-
-* Print a **table of all stats**
-* Save a **.txt file with the full play-by-play input**
-* Ask if you want to create a **CSV file** of the stats
-
-Type:
+#### Shots
 
 ```
-y
+[player] [shot_type] [make/miss] [optional: assister or blocker]
 ```
 
-if you want the CSV exported.
+| Example | Meaning |
+|---------|---------|
+| `jackson two make ayaan` | Jackson makes a 2, assisted by Ayaan |
+| `devin three make` | Devin makes a 3, no assist |
+| `op three miss jackson` | Opponent misses a 3, Jackson blocks |
+| `jackson layup miss` | Jackson misses a layup (tracked separately) |
 
----
+> Only `three` counts as a 3-point attempt. All other shot types count as 2s. `layup` enables missed-layup tracking.
 
-# Game Input System
-
-All commands are **typed in lowercase**.
-
-Player names must match the **`roster_stats` dictionary** exactly or the line will be ignored.
-
----
-
-# Shot Tracking
-
-Format:
+#### Free Throws
 
 ```
-[PLAYER] [SHOT_TYPE] [make/miss] [assist/block]
+[player] ft [make/miss ...]
 ```
 
-Examples:
+| Example | Meaning |
+|---------|---------|
+| `jackson ft make make` | Jackson hits both free throws |
+| `op ft make miss` | Opponent makes first, misses second |
 
-```
-jackson two make ayaan
-```
-
-Jackson makes a two-point shot assisted by Ayaan.
-
-```
-op three miss jackson
-```
-
-Opponent misses a three-pointer and Jackson gets the block.
-
-```
-devin three make
-```
-
-Devin makes a three with no assist.
-
-### Notes
-
-* Only the word **`three`** counts as a three-point attempt.
-* Any other shot type counts as a **two pointer**.
-* Using **`layup`** allows the program to track **missed layups**.
-
-Example:
-
-```
-jackson layup miss
-```
-
-Miss detection is flexible.
-Typing something like `omiss` will still count as a miss.
-
----
-
-# Free Throws
-
-Format:
-
-```
-[PLAYER] ft [make/miss...]
-```
-
-Examples:
-
-```
-op ft make miss
-```
-
-Opponent makes the first free throw and misses the second.
-
-```
-jackson ft make make make
-```
-
-Jackson makes all three free throws.
-
-```
-jackson ft make
-```
-
-Jackson makes a single free throw.
-
-Notes:
-
-* The middle keyword must be **`ft`**
-* Free throws can be separated by substitutions if needed.
-
-Example:
-
+Free throws can be split across substitutions:
 ```
 jackson ft make
 -s devin max
 jackson ft make
 ```
 
----
-
-# Turnovers and Steals
-
-Format:
+#### Turnovers & Steals
 
 ```
-[PLAYER] to [STEAL_PLAYER]
+[player] to [optional: stealing player]
 ```
 
-Examples:
+| Example | Meaning |
+|---------|---------|
+| `op to jackson` | Opponent turnover, Jackson steal |
+| `op to` | Opponent turnover, no steal credited |
+
+#### Rebounds
 
 ```
-op to jackson
+[player] or    ← offensive rebound
+[player] dr    ← defensive rebound
 ```
 
-Opponent turnover, Jackson steal.
+#### Team Possession (no individual rebounder)
 
 ```
-op to
+-p sf     ← possession to your team
+-p op     ← possession to opponent
 ```
 
-Opponent turnover with **no steal credited**.
-
-Turnovers include:
-
-* Bad passes
-* Bad dribbles
-* Offensive fouls
-* Jump balls where possession is lost
-
----
-
-# Rebounds
-
-Format:
-
-```
-[PLAYER] or
-```
-
-or
-
-```
-[PLAYER] dr
-```
-
-Examples:
-
-```
-jackson or
-```
-
-Offensive rebound.
-
-```
-jackson dr
-```
-
-Defensive rebound.
-
-Notes:
-
-* Defensive rebounds from missed final free throws count.
-* Tip-ins count as both a **rebound and a shot attempt**.
-
-Example sequence:
-
-```
-jackson two miss
-devin or
-devin two make
-```
-
----
-
-# Team Rebounds (No Player)
-
-Sometimes nobody clearly grabs the rebound.
-
-Format:
-
-```
--p sf
-```
-
-or
-
-```
--p op
-```
-
-Meaning the possession goes to **Saint Francis** or the **Opponent**.
-
----
-
-# Lineups
-
-Used to track **plus/minus**.
-
-Format:
+#### Lineups (for Plus/Minus)
 
 ```
 -l player1 player2 player3 player4 player5
 ```
 
-Example:
+Set at the start of each quarter and after timeouts.
 
-```
--l west devin james jackson ayaan
-```
-
-This sets the **current lineup on the court**.
-
-Typically done:
-
-* At the start of quarters
-* After timeouts
-
----
-
-# Substitutions
-
-Format:
+#### Substitutions
 
 ```
 -s player_in player_out
 ```
 
-Example:
+#### Other
 
-```
--s john james
-```
-
-John substitutes in for James.
-
-Substitutions usually happen during:
-
-* Free throws
-* Sideline out-of-bounds
-* Baseline out-of-bounds
+| Command | Action |
+|---------|--------|
+| `-t` | Timeout (reminder to re-enter lineup) |
+| `---` | Quarter break marker in the log |
+| `exit` | End session and export stats |
 
 ---
 
-# Timeouts
+## CV Shot Chart Generator
 
-Simply type:
+> ⚠️ **Prototype** — actively in development. Detection is functional but not fully reliable.
 
+An automated shot chart generator that uses computer vision to locate where each shot was taken on the court, using game film and the play-by-play JSON log produced by the stat tracker.
+
+### How It Works
+
+1. Reads field-goal entries from the stat tracker's JSON output (timestamps + make/miss)
+2. For each shot, scans backwards in the game film to find the frame where the shooter last held the ball (using YOLO ball-player IoU overlap detection)
+3. Applies homography estimation to map the shooter's court position from the camera view onto a 2D court diagram
+4. Plots makes (green) and misses (red) on the shot chart image
+
+### Models Used
+
+- `pmodel 621141.pt` — custom YOLO model for ball, player, and hoop detection
+- `court_keypoint_detector.pt` — YOLO model for court keypoint detection used in homography estimation
+
+### Dependencies
+
+```bash
+pip install ultralytics opencv-python torch intel_extension_for_pytorch
 ```
--t
+
+> Intel IPEX is used to accelerate inference on Intel XPU hardware. If you're on a different setup, remove the IPEX lines and adjust the device target in `load_model()`.
+
+### Usage
+
+```bash
+python getShots.py [tipoff_seconds]
 ```
 
-This is mainly used as a **reminder to check or re-enter the lineup after a timeout**.
+- `tipoff_seconds` — the position in the video file (in seconds) where the game tip-off occurs
+- Configure `jsoninfo`, `film`, `model_path`, and `court_keypoints` at the top of the file before running
+
+### Output
+
+- An annotated video frame for each shot (navigate with `SPACE`, quit with `Q`)
+- `shotChartTesting.jpg` — the completed shot chart saved on quit
+
+### Current Limitations
+
+- Shot location is estimated from the frame with the highest ball-player IoU overlap, which can misidentify the shooter
+- Homography accuracy depends on visible court keypoints — poor camera angles or occlusion reduce reliability
+- Intel XPU dependency limits out-of-the-box compatibility
 
 ---
 
-# Quarter Breaks
+## Web Dashboard
 
-At the end of a quarter type:
+A web interface for viewing game stats online.
+
+🔗 [ethanliu.ccwu.cc](https://ethanliu.ccwu.cc/)
+
+---
+
+## Roadmap
+
+- [ ] Improve shot chart shooter identification accuracy
+- [ ] Add multi-game stat aggregation
+- [ ] Web dashboard stat upload from CSV
+- [ ] Expand opponent player tracking
+- [ ] Cross-platform YOLO device support (CUDA, MPS, CPU fallback)
+
+---
+
+## Project Structure
 
 ```
----
+.
+├── practicestats.py          # Terminal stat tracker
+├── getShots.py               # CV shot chart generator
+├── homographyEstimation.py   # Court homography + team assignment utilities
+├── court_board.jpg           # 2D court diagram for shot chart output
+├── pmodel 621141.pt          # YOLO detection model
+├── court_keypoint_detector.pt
+└── README.md
 ```
 
-This marks the quarter break in the log file.
-
 ---
 
-# Output Files
+## Author
 
-After the game the program produces:
-
-### Stats Table
-
-Displayed directly in the terminal.
-
-### Game Log (.txt)
-
-Contains **every command entered** during the game.
-
-### CSV File (Optional)
-
-A spreadsheet-friendly version of the final statistics.
-
----
-
-If you'd like, I can also help you add sections that make this look **much more professional on GitHub**, like:
-
-* **Example full game input**
-* **Screenshot of output table**
-* **Future improvements**
-* **Contribution guide**
-
-Those make projects look way stronger when people visit the repo.
+Ethan Liu — [ethanliu.ccwu.cc](https://ethanliu.ccwu.cc/)
