@@ -18,9 +18,9 @@ court_image     = "2D_HS_Court.jpg"
 shot_chart_name = "shotChartTesting.jpg"
 
 #Timing Information Adjustments
-PRE_ROLL        = [2.6,3.0,3.4]   # max seconds before shot timestamp to search backwards from
-SHOT_OFFSET     = [0.4,0.7,1.0]   # seconds before the timestamp to begin the backwards scan
-FALLBACK_OFFSET = [1.5,2.0,2.5]   # seconds before shot timestamp to use as fallback frame
+PRE_ROLL        = [2.8,3.1,3.4]   # max seconds before shot timestamp to search backwards from
+SHOT_OFFSET     = [0.2,0.5,1.2]   # seconds before the timestamp to begin the backwards scan
+FALLBACK_OFFSET = [1.6,2.0,2.5]   # seconds before shot timestamp to use as fallback frame
 
 # YOLO class indices
 CLASS_BALL   = 0
@@ -253,7 +253,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
             temp = annotate_frame(frame.copy(),ball_boxes,player_boxes_conf,hoop_boxes, iou_scores,fn)
             cv2.namedWindow("Frame Testing", cv2.WINDOW_NORMAL)
             cv2.resizeWindow("Frame Testing", 960, 540)
-            show_frame_and_wait(temp,"Frame Testing",delay=15)
+            show_frame_and_wait(temp,"Frame Testing",delay=10)
         
 
         frame_data[fn] = {
@@ -477,7 +477,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
         )
 
         last_player_points = mapper.map_centers_from_boxes(last_player_boxes, last_H)
-        #last_ball_points   = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
+        #last_ball_points  = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
 
         if show_frames:
             team_assignments = mapper.assign_teams(frame, last_player_boxes)
@@ -493,6 +493,9 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
         shot_coordinates[0] = min(shot_coordinates[0],812)
         shot_coordinates[1] = max(shot_coordinates[1],19)
         shot_coordinates[1] = min(shot_coordinates[1],481)
+
+        side, shot_type, dist = getShotInfo(shot_coordinates)
+        print(side, shot_type, dist)
 
         if "mis" in make_miss:
             cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),7,(75,75,250),2)
@@ -516,6 +519,54 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
     cap.release()
     cv2.destroyAllWindows()
     print("Shot Chart Created!")
+
+def getShotInfo(shot_coordinates): # Output: Shot Location Text; Distance From Hoop; 
+    x,y = shot_coordinates
+    if x <= 417: #Left Side
+        side = "Left"
+        distance = ( (x-53)**2 + (y-245) ** 2 ) ** 0.5
+        distance = round(distance * (1/11), 1) #dist in ft
+        if 11 <= y < 182: #Right Corner OR Right Wing
+            if 11 <= x <= 104:
+                shot_type = "Right Corner"
+            elif 104 < x <= 417:
+                shot_type = "Right Wing"
+        elif 182 <= y <= 314: #Rim Shots, Paint, or Top
+            if 11 <= x <= 104:
+                shot_type = "Rim"
+            elif 104 < x <= 147:
+                shot_type = "Paint"
+            elif 147 < x <= 417:
+                shot_type = "Top"
+        elif 314 < y <= 489: #Left Corner or Left Wing
+            if 11 <= x <= 104:
+                shot_type = "Left Corner"
+            elif 104 < x <= 417:
+                shot_type = "Left Wing"
+
+    else: #Right Side
+        side = "Right"
+        distance = ( (x-786)**2 + (y-245) ** 2 ) ** 0.5
+        distance = round(distance * (1/11), 1) #dist in ft
+        if 11 <= y < 182: #Left Corner or Wing
+            if 731 <= x <= 824: #93
+                shot_type = "Left Corner"
+            elif 417 <= x < 731:
+                shot_type = "Left Wing"
+        elif 182 <= y <= 314: #Rim Shots, Paint, or Top
+            if 731 <= x <= 824: 
+                shot_type = "Rim"
+            elif 688 <= x < 731:
+                shot_type = "Paint"
+            elif 417 <= x < 688:
+                shot_type = "Top"
+        elif 314 < y <= 489: #Right Corner or Right Wing
+            if 731 <= x <= 824:
+                shot_type = "Right Corner"
+            elif 417 <= x < 731:
+                shot_type = "Right Wing"
+    
+    return (side,shot_type,distance)
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
