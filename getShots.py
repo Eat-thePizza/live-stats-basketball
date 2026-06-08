@@ -4,21 +4,34 @@ import sys
 import torch
 import intel_extension_for_pytorch as ipex
 from ultralytics import YOLO
+import time
 
 from homographyEstimation import TacticalViewConverter, filter_tracked_objects
 
 # ── Config ────────────────────────────────────────────────────────────────────
+# Directories
 jsoninfo        = "game_20260519_valley_christian.json"
 film            = "SFHS VCHS Testing.mp4"
-model_path      = "pmodel 621141.pt"
+model_path      = "pmodel 63-1138a.pt"
 court_keypoints = "court_keypoint_detector.pt"
-PRE_ROLL        = [1.8,2.4,2.8]   # max seconds before shot timestamp to search backwards from
+court_image     = "2D_HS_Court.jpg"
+shot_chart_name = "shotChartTesting.jpg"
+
+#Timing Information Adjustments
+PRE_ROLL        = [2.6,3.0,3.4]   # max seconds before shot timestamp to search backwards from
 SHOT_OFFSET     = [0.4,0.7,1.0]   # seconds before the timestamp to begin the backwards scan
-FALLBACK_OFFSET = [1.3,1.8,2.2]   # seconds before shot timestamp to use as fallback frame
+FALLBACK_OFFSET = [1.5,2.0,2.5]   # seconds before shot timestamp to use as fallback frame
 
 # YOLO class indices
 CLASS_BALL   = 0
+CLASS_HOOP   = 1
 CLASS_PLAYER = 2
+CLASS_REF    = 3
+
+# Time Data
+frame_time = []
+homography_time = []
+total_time = []
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -89,13 +102,15 @@ def run_yolo(model: YOLO, frame):
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
     PLAYER_CONF_THRESHOLD = 0.2
-    MAX_PLAYERS           = 12
+    MAX_PLAYERS           = 15
 
     results = model(frame, verbose=False)
 
     ball_candidates   = []   # (conf, xyxy)
     player_boxes      = []   # xyxy, already filtered
     hoop_boxes        = []
+
+    player_conf = []
 
     for result in results:
         if result.boxes is None:
@@ -112,7 +127,7 @@ def run_yolo(model: YOLO, frame):
                 if conf >= PLAYER_CONF_THRESHOLD:
                     player_boxes.append((conf, xyxy))
             
-            elif cls == 1:
+            elif cls == CLASS_HOOP:
                 hoop_boxes.append((conf, xyxy))
 
     # Ball: keep only the single highest-confidence detection
@@ -125,7 +140,6 @@ def run_yolo(model: YOLO, frame):
 
     # Players: sort by confidence descending, cap at MAX_PLAYERS
     player_boxes.sort(key=lambda x: x[0], reverse=True)
-    player_boxes = [xyxy for _, xyxy in player_boxes[:MAX_PLAYERS]]
     #print(f"    Players kept: {len(player_boxes)}  "
           #f"(conf >= {PLAYER_CONF_THRESHOLD}, cap={MAX_PLAYERS})")
     
@@ -148,12 +162,12 @@ def annotate_frame(frame, ball_boxes, player_boxes, hoop_boxes, iou_scores: list
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
     i = 0
-    for xyxy in player_boxes:
+    for player_conf,xyxy in player_boxes:
         x1, y1, x2, y2 = map(int, xyxy)
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 100, 0), 2)
         #cv2.putText(frame, f"{i}", (int((x1+x2)/2), y1 - 5),
         #    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-        cv2.putText(frame, f"{i}", (int((x1+x2)/2) - 5, y1 - 5),
+        cv2.putText(frame, f"{i} C {round(player_conf,2)}", (int((x1+x2)/2) - 15, y1 - 5),
             cv2.FONT_HERSHEY_SIMPLEX, 1, (250, 250, 250), 2)
         i+=1
     
@@ -182,7 +196,8 @@ def annotate_frame(frame, ball_boxes, player_boxes, hoop_boxes, iou_scores: list
 def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
                     pre_roll: float = PRE_ROLL[2],
                     shot_offset: float = SHOT_OFFSET[0],
-                    fallback_offset: float = FALLBACK_OFFSET[1]):
+                    fallback_offset: float = FALLBACK_OFFSET[1],
+                    verbose=False):
     """
     Scan backwards from (shot_sec - shot_offset) to find the last moment
     the ball was clearly overlapping a player (i.e. being held before release).
@@ -200,8 +215,8 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
 
     Returns (annotated_frame, frame_number, found_confirmed, raw_frame)
     """
-    CONTAINMENT_MIN = 0.20
-    CONTAINMENT_MAX = 0.70
+    CONTAINMENT_MIN = 0.25
+    CONTAINMENT_MAX = 0.85
     MIN_NEEDED = 1
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
@@ -223,27 +238,37 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
         if not ret:
             break
 
-        ball_boxes, player_boxes, hoop_boxes = run_yolo(model, frame)
+        ball_boxes, player_boxes_conf, hoop_boxes = run_yolo(model, frame)
+        player_boxes = [xyxy for _, xyxy in player_boxes_conf]
 
         iou_scores = []
         for p_idx, p_box in enumerate(player_boxes):
             for b_idx, b_box in enumerate(ball_boxes):
                 score = intersection(p_box, b_box)
                 iou_scores.append((p_idx, b_idx, score))
-                if score > 0:
-                    print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  IoU = {score:.4f}")
+                if score > 0 and verbose:
+                    print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  Overlap = {score:.4f}")
+        
+        if verbose:
+            temp = annotate_frame(frame.copy(),ball_boxes,player_boxes_conf,hoop_boxes, iou_scores,fn)
+            cv2.namedWindow("Frame Testing", cv2.WINDOW_NORMAL)
+            cv2.resizeWindow("Frame Testing", 960, 540)
+            show_frame_and_wait(temp,"Frame Testing",delay=15)
+        
 
         frame_data[fn] = {
             "frame":        frame.copy(),
             "ball_boxes":   ball_boxes,
-            "player_boxes": player_boxes,
+            "player_boxes": player_boxes_conf,
             "hoop_boxes":   hoop_boxes,
             "containment_scores":   iou_scores,
         }
 
     if not frame_data:
-        print("  No frames read.")
+        if verbose:
+            print("  No frames read.")
         return None, start_frame, False, None
+    #cv2.destroyWindow("Frame Testing")
 
     all_frames = sorted(frame_data.keys())  # ascending
 
@@ -265,9 +290,9 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
                 num_frames += 1
                 frame_nums.append(fn)
     
-    print(frame_nums)
+    #print(frame_nums)
     if len(frame_nums) >= MIN_NEEDED:
-        confirmed_window_start = frame_nums[len(frame_nums)//3]
+        confirmed_window_start = frame_nums[len(frame_nums)//4]
 
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:
@@ -276,9 +301,10 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
     else:
         # Fallback: frame nearest to (shot_sec - fallback_offset) with any ball detection
         fallback_target = int((shot_sec - fallback_offset) * fps)
-        print(f"  ⚠ No confirmed window found. "
-              f"Falling back to frame nearest {shot_sec - fallback_offset:.1f}s "
-              f"(shot - {fallback_offset}s) with ball detection.")
+        if verbose:
+            print(f"  ⚠ No confirmed window found. "
+                f"Falling back to frame nearest {shot_sec - fallback_offset:.1f}s "
+                f"(shot - {fallback_offset}s) with ball detection.")
         target_fn = fallback_target
         found_confirmed = False
 
@@ -293,8 +319,9 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
         label="" if found_confirmed else f"Fallback (nearest to -{fallback_offset}s)"
     )
 
-    status = "confirmed overlap" if found_confirmed else "fallback"
-    print(f"  Returning frame {target_fn} [{status}]")
+    if verbose:
+        status = "confirmed overlap" if found_confirmed else "fallback"
+        print(f"  Returning frame {target_fn} [{status}]")
 
     iou_list = frame_data[target_fn]["containment_scores"]
     ply_idx = 0
@@ -303,26 +330,32 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float,
         if score > max_iou and score < CONTAINMENT_MAX:
             ply_idx = p_idx
             max_iou = score
-    print(f"Locking shot to player index {ply_idx} who has a containment of {max_iou}")
+    if verbose:
+        print(f"Locking shot to player index {ply_idx} who has a containment of {max_iou}")
 
     return annotated, target_fn, found_confirmed, d["frame"], ply_idx
 
 
-def show_frame_and_wait(frame, window_name: str) -> bool:
+def show_frame_and_wait(frame, window_name: str, delay=0) -> bool:
     """
     Display a single frozen frame. SPACE advances, Q quits.
     Returns False if user pressed Q.
     """
     cv2.imshow(window_name, frame)
-    while True:
-        key = cv2.waitKey(0) & 0xFF
-        if key == ord("q") or key == ord("Q"):
-            return False
-        if key == ord(" "):
-            return True
+    if delay != 0:
+        cv2.waitKey(delay)
+    else:
+        while True:
+            key = cv2.waitKey(0) & 0xFF
+            if key == ord("q") or key == ord("Q"):
+                return False
+            if key == ord(" "):
+                return True
 
-shotChart = cv2.imread("court_board.jpg")
-def getShots(json_path: str, film_path: str, tipoff_seconds: float):
+shotChart = cv2.imread(court_image)
+num_shots_frame = 0
+def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames: bool):
+    global num_shots_frame
     """
     Main function.
 
@@ -332,6 +365,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
     film_path       : path to the video file
     tipoff_seconds  : position in the video (in seconds) of the very first tipoff
     """
+    
     # ── Load YOLO models ──────────────────────────────────────────────────────
     print("Loading YOLO models...")
     model  = load_model(model_path)
@@ -382,17 +416,26 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
         return
 
     print(f"Found {len(shots)} field-goal shot(s).  SPACE = next shot  |  Q = quit\n")
+    num_shots_frame = len(shots)
 
     # ── Open video ────────────────────────────────────────────────────────────
     cap = cv2.VideoCapture(film_path)
     if not cap.isOpened():
         print(f"[ERROR] Could not open video: {film_path}")
         return
+    
+    if show_frames:
+        window_name = "Shot Clip"
+        cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
 
-    window_name = "Shot Clip"
-    cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+    TESTING_FRAME_SET = []
 
     for idx, (shot_time, shot_type, make_miss) in enumerate(shots, start=1):
+        total_start_time = time.perf_counter()
+
+        if TESTING_FRAME_SET != [] and idx not in TESTING_FRAME_SET:
+            continue
+        
         print(f"\n[{idx}/{len(shots)}]  {raw}  →  searching backwards from {shot_time:.1f}s")
         print("-" * 60)
 
@@ -402,62 +445,103 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float):
             shot_idx = 2
         else:
             shot_idx = 1
+
+        frame_start_time = time.perf_counter()
         annotated_frame, frame_num, found_confirmed, frame, p_idx = find_best_frame(cap, model, shot_time,
                                                                                     pre_roll=PRE_ROLL[shot_idx],
                                                                                     shot_offset=SHOT_OFFSET[shot_idx],
-                                                                                    fallback_offset=FALLBACK_OFFSET[shot_idx])
+                                                                                    fallback_offset=FALLBACK_OFFSET[shot_idx],
+                                                                                    verbose=show_frames)
+        frame_end_time = time.perf_counter()
+        frame_time.append(round(frame_end_time-frame_start_time,3))
 
         if annotated_frame is None:
-            print("  Skipping — no ball detected in clip.")
             continue
+        
+        if show_frames:
+            status = "confirmed overlap" if found_confirmed else f"fallback (nearest -{FALLBACK_OFFSET}s)"
+            print(f"  Displaying frame {frame_num} [{status}]  — SPACE to continue, Q to quit")
 
-        status = "confirmed overlap" if found_confirmed else f"fallback (nearest -{FALLBACK_OFFSET}s)"
-        print(f"  Displaying frame {frame_num} [{status}]  — SPACE to continue, Q to quit")
-
-        mapper      = TacticalViewConverter("court_board.jpg")
+        homography_start_time = time.perf_counter()
+        mapper      = TacticalViewConverter(court_image)
         kps_results = model2(frame, verbose=True)
         ply_results = model(frame, verbose=True)
 
         last_H, last_good_indices, last_keypoint_list = mapper.compute_homography(kps_results)
 
         last_player_boxes, last_player_confs, last_player_ids = filter_tracked_objects(
-            ply_results, class_id=CLASS_PLAYER, max_objects=10
+            ply_results, class_id=CLASS_PLAYER, max_objects=15
         )
         last_ball_boxes, last_ball_confs, last_ball_ids = filter_tracked_objects(
             ply_results, class_id=CLASS_BALL, max_objects=1
         )
 
-
         last_player_points = mapper.map_centers_from_boxes(last_player_boxes, last_H)
-        last_ball_points   = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
+        #last_ball_points   = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
 
-        team_assignments = mapper.assign_teams(frame, last_player_boxes)
-        tactical_frame = mapper.draw_tactical(last_player_points, last_ball_points,
-                                      last_good_indices, team_assignments)
-
-        th, tw = tactical_frame.shape[:2]
-        annotated_frame[0:th, 0:tw] = tactical_frame
+        if show_frames:
+            team_assignments = mapper.assign_teams(frame, last_player_boxes)
+            tactical_frame = mapper.draw_tactical(last_player_points, [],
+                                        last_good_indices, team_assignments)
+            
+            tactical_frame = cv2.resize(tactical_frame, (501,300))
+            th, tw = tactical_frame.shape[:2]
+            annotated_frame[0:th, 0:tw] = tactical_frame
 
         shot_coordinates = last_player_points[p_idx]
-        if "mis" in make_miss:
-            cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),4,(25,25,255),-1)
-        else:
-            cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),4,(25,255,25),-1)
+        shot_coordinates[0] = max(shot_coordinates[0],23)
+        shot_coordinates[0] = min(shot_coordinates[0],812)
+        shot_coordinates[1] = max(shot_coordinates[1],19)
+        shot_coordinates[1] = min(shot_coordinates[1],481)
 
-        """
-        keep_going = show_frame_and_wait(annotated_frame, window_name)
-        if not keep_going:
-            print("Quit by user.")
-            cv2.imwrite("shotChartTesting.jpg",shotChart)
-            break
-        """
+        if "mis" in make_miss:
+            cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),7,(75,75,250),2)
+        else:
+            cv2.circle(shotChart,(int(shot_coordinates[0]),int(shot_coordinates[1])),7,(75,250,75),-1)
+
+        homography_end_time = time.perf_counter()
+        homography_time.append(round(homography_end_time-homography_start_time,3))
+
+        if show_frames:
+            keep_going = show_frame_and_wait(annotated_frame, window_name)
+            if not keep_going:
+                print("Quit by user.")
+                break
+        
+        total_end_time = time.perf_counter()
+        total_time.append(round(total_end_time-total_start_time,3))
+
+    cv2.imwrite(shot_chart_name,shotChart)
 
     cap.release()
     cv2.destroyAllWindows()
-    print("\nDone.")
+    print("Shot Chart Created!")
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     tipoff = float(sys.argv[1]) if len(sys.argv) > 1 else 0.0
-    getShots(jsoninfo, film, tipoff)
+    show_frames = True if (len(sys.argv) > 2 and int(sys.argv[2]) == 1) else False
+    getShots(jsoninfo, film, tipoff, show_frames)
+
+    #Timing Results
+
+    sum_total_time = sum(total_time)
+    print("TESTING RESULTS TIME")
+    print(f"Total execution time: {round(sum_total_time,3)} seconds")
+    print()
+    print("-"*60)
+    for i in range(len(total_time)):
+        print(f"Shot {i}: Frame Find {frame_time[i]}; Homography {homography_time[i]}; Total {total_time[i]}")
+    print("-"*60)
+    print()
+
+    avg_time = sum_total_time/num_shots_frame
+    print(f"Average time per shot: {round(avg_time,3)} seconds")
+
+    minutes = int((avg_time * 95) // 60)
+    seconds = (avg_time * 95) - minutes * 60
+    print(f"Time per 95 shots: {minutes}:{round(seconds)}")
+    print(f"Average Frame Find Time: {round(sum(frame_time)/num_shots_frame,3)}")
+    print(f"Average Homography Time: {round(sum(homography_time)/num_shots_frame,3)}")
+    

@@ -5,78 +5,14 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
-# -------------------------------------------------------
-# CHANGE 1: import filterpy for Kalman filtering
-# pip install filterpy   (run this once if you haven't)
-# -------------------------------------------------------
-from filterpy.kalman import KalmanFilter
-
-
-# -------------------------------------------------------
-# CHANGE 2: Kalman filter factory function
-# Call this once before the video loop to create a fresh filter.
-#
-# The filter tracks 4 values internally (dim_x=4):
-#   state[0] = x position
-#   state[1] = y position
-#   state[2] = x velocity (pixels per frame)
-#   state[3] = y velocity (pixels per frame)
-#
-# But your YOLO detector only gives you x and y (dim_z=2).
-# The filter infers velocity from how position changes over time.
-# -------------------------------------------------------
-def create_ball_kalman():
-    kf = KalmanFilter(dim_x=4, dim_z=2)
-
-    # State transition matrix F:
-    # Predicts next state from current state assuming constant velocity.
-    # next_x  = x  + vx  (position moves by velocity)
-    # next_y  = y  + vy
-    # next_vx = vx        (velocity stays the same until corrected)
-    # next_vy = vy
-    kf.F = np.array([
-        [1, 0, 1, 0],
-        [0, 1, 0, 1],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1]
-    ], dtype=np.float32)
-
-    # Measurement matrix H:
-    # We only observe x and y from YOLO, not velocity.
-    kf.H = np.array([
-        [1, 0, 0, 0],
-        [0, 1, 0, 0]
-    ], dtype=np.float32)
-
-    # Measurement noise R:
-    # How much we trust the YOLO detector.
-    # Higher = trust detector less, smoother path but slower to react.
-    # Lower  = trust detector more, jerkier but more responsive.
-    # Start with 10. If the ball lags real movement, lower it.
-    kf.R = np.eye(2, dtype=np.float32) * 10
-
-    # Process noise Q:
-    # How much we expect the ball's motion to change unpredictably.
-    # Higher = allows faster direction changes.
-    # Lower  = assumes steadier movement.
-    kf.Q = np.eye(4, dtype=np.float32) * 0.1
-
-    # Initial uncertainty P:
-    # High at the start because we don't know where the ball is yet.
-    # The filter will tighten this as it gets detections.
-    kf.P = np.eye(4, dtype=np.float32) * 100
-
-    return kf
-
-
 class TacticalViewConverter:
     def __init__(self, court_image_path):
         self.reference_court_image = cv2.imread(court_image_path)
         if self.reference_court_image is None:
             raise RuntimeError(f"ERROR: Could not load court image at {court_image_path}")
 
-        self.width = 276
-        self.height = 165
+        self.width = 835
+        self.height = 500
         
         self.reference_kps = np.array(self._generate_reference_kps(), dtype=np.float32)
         self.reference_court_image = cv2.resize(self.reference_court_image, (self.width, self.height))
@@ -84,17 +20,17 @@ class TacticalViewConverter:
         # Team colors for tactical dot drawing
         self.TEAM_COLORS = [
             (255, 165, 0),    # Team 0 — blue
-            (250, 250, 250),  # Team 1 — white
+            (75, 75, 255),  # Team 1 — white
         ]
         self.UNKNOWN_COLOR = (128, 128, 128)
 
     def _generate_reference_kps(self):
         points_pixels = [
-            (0, 0), (0, 18), (0, 63), (0, 101), (0, 146), (0, 164),
-            (61, 63), (61, 101),
-            (137, 0), (137, 164),
-            (275, 0), (275, 18), (275, 63), (275, 101), (275, 146), (275, 164),
-            (213, 63), (213, 101),
+            (17, 13)  , (17, 51)  , (17, 183) , (17, 309) , (17, 441) , (17, 483) ,
+            (198, 185), (198, 311),
+            (417, 11) , (417, 489),
+            (817, 13) , (817, 51) , (817, 183), (817, 309), (817, 441), (817, 483),
+            (635, 185), (635, 311),
         ]
         return points_pixels
 
@@ -120,8 +56,9 @@ class TacticalViewConverter:
             return np.empty((0, 2), dtype=np.float32)
 
         x1, y1, x2, y2 = boxes_xyxy[:, 0], boxes_xyxy[:, 1], boxes_xyxy[:, 2], boxes_xyxy[:, 3]
-        centers = np.stack(((x1 + x2) / 2.0, y2 + 0.08*(y1-y2)), axis=1).astype(np.float32)
+        centers = np.stack(((x1 + x2) / 2.0, y2 + (0.000003*((y2-y1)**2)) * (y1-y2)), axis=1).astype(np.float32)
         mapped = cv2.perspectiveTransform(centers.reshape(-1, 1, 2), H).reshape(-1, 2).astype(np.float32)
+
         return mapped
 
     # -------------------------------------------------------
@@ -237,7 +174,7 @@ class TacticalViewConverter:
                 color = self.TEAM_COLORS[team] if team in (0, 1) else self.UNKNOWN_COLOR
             else:
                 color = (0, 0, 255)  # original red fallback
-            cv2.circle(img, (int(x), int(y)), 4, color, -1)
+            cv2.circle(img, (int(x), int(y)), 9, color, -1)
 
         #for (x, y) in mapped_ball_points:
         #    cv2.circle(img, (int(x), int(y)), 4, (0, 255, 255), -1)
@@ -245,9 +182,9 @@ class TacticalViewConverter:
         if good_indices is not None:
             for i in good_indices:
                 rx, ry = self.reference_kps[i]
-                cv2.circle(img, (int(rx), int(ry)), 5, (0, 255, 0), -1)
+                cv2.circle(img, (int(rx), int(ry)), 6, (0, 255, 0), -1)
                 cv2.putText(img, str(i), (int(rx) + 5, int(ry) - 5),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                            cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1)
         return img
 
 def filter_tracked_objects(results, class_id, max_objects=10):
