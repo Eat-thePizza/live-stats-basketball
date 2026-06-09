@@ -171,12 +171,13 @@ def annotate_frame(frame, ball_boxes, player_boxes, hoop_boxes, iou_scores: list
             cv2.FONT_HERSHEY_SIMPLEX, 1, (250, 250, 250), 2)
         i+=1
     
+    """
     for xyxy in hoop_boxes:
         x1, y1, x2, y2 = map(int, xyxy)
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 255), 2)
         cv2.putText(frame, "HOOP", (x1, y1 - 4),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
-    
+    """
     """
     overlay_y = 20
     for p_idx, b_idx, score in iou_scores:
@@ -583,7 +584,7 @@ if __name__ == "__main__":
     print()
     print("-"*60)
     for i in range(len(total_time)):
-        print(f"Shot {i}: Frame Find {frame_time[i]}; Homography {homography_time[i]}; Total {total_time[i]}")
+        print(f"Shot {i+1}: Frame Find {frame_time[i]}; Homography {homography_time[i]}; Total {total_time[i]}")
     print("-"*60)
     print()
 

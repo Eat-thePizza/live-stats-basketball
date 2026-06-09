@@ -8,7 +8,7 @@ Categories:
     this is usually due to minor homography estimation errors or slightly inaccurate bounding boxes;
     if a human were to create a shot chart, their circle and this circle will be a few pixels off from intersecting
 
-- Algorithmic Marginal Error (ABE): the distance of the shot placement is slightly off from the actual point of the shot;
+- Algorithmic Marginal Error (AME): the distance of the shot placement is slightly off from the actual point of the shot;
     however, now this is generated from an inaccurate frame of the shot release;
     if a human were to create a shot chart, their circle will be in a similar region
 
