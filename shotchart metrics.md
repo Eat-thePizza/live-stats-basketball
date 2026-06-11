@@ -31,11 +31,11 @@ LATEST METRICS
 - Updated 6/8
 - 24 Total Shots from "SFHS VCHS Testing.mp4" (Q1 of Valley Christian @ Saint Francis 2026)
 
-AP : 14
-DME:  3
+AP : 12
+DME:  2
 AME:  5
-CE :  2
+CE :  5
 
-RA : 0.9167
-SFA: 0.7083
-SPA: 0.5833
+RA : 0.7917
+SFA: 0.5833
+SPA: 0.5000
