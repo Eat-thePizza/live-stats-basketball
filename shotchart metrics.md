@@ -20,6 +20,12 @@ Categories:
     if a human were to create a shot chart, their circle wouldn't even be close
     Practically, this tells you the wrong story
 
+Benchmarking Categories
+- Absolute Perfection (AP): Shot prediction circle and Actual circle must be overlapping/intersecting or only a few pixels away from intersecting
+- Distance Marginal Error (DME): Shot prediction circle and Actual circle are not overlapping but in the same region + frame of shot release is correct
+- Algorithmic Marginal Error (AME): Shot prediction circle and Actual circle are not overlapping but in the same region + frame of shot release is incorrect
+- Complete Error (CE): Shot prediction circle is not even close to Actual circle due to either the complete wrong frame or bad player box assigning
+
 Key Metrics (# indicates number of)
 - Region Accuracy (RA): how many of the shot placements are in the general region
     #Shots In Region / #Total Shots
@@ -36,14 +42,10 @@ Key Metrics (# indicates number of)
     Practically, this is a dude seeking perfection; that's it
 
 LATEST METRICS
-- Updated 6/15
+- Updated 6/17
 - 24 Total Shots from "SFHS VCHS Testing.mp4" (Q1 of Valley Christian @ Saint Francis 2026)
 
-AP : 8
-DME: 7
-AME: 5
-CE : 4
-
-RA : 0.8333
-SFA: 0.6250
-SPA: 0.3333
+Region Accuracy: 0.8750 		            Absolute Perfection: 10
+Shot Finder Accuracy: 0.6250		        Distance Marginal Error: 5
+Shot Perfection Accuracy: 0.4167			Algorithmic Marginal Error: 6
+                                            Complete Error: 3

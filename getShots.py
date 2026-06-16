@@ -184,14 +184,12 @@ def annotate_frame(frame, ball_boxes, player_boxes, hoop_boxes, iou_scores: list
             cv2.FONT_HERSHEY_SIMPLEX, 1, (250, 250, 250), 2)
         i+=1
     
-    """
     for xyxy in hoop_boxes:
         x1, y1, x2, y2 = map(int, xyxy)
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 255), 2)
         cv2.putText(frame, "HOOP", (x1, y1 - 4),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
-    """
-    """
+
     overlay_y = 20
     for p_idx, b_idx, score in iou_scores:
         text = f"P{p_idx}<->B{b_idx} IoU:{score:.3f}"
@@ -202,7 +200,7 @@ def annotate_frame(frame, ball_boxes, player_boxes, hoop_boxes, iou_scores: list
     if label:
         cv2.putText(frame, label, (10, overlay_y + 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    """
+
 
     return frame
 
@@ -212,8 +210,8 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                     shot_offset: float = SHOT_OFFSET[0],
                     fallback_offset: float = FALLBACK_OFFSET[1],
                     verbose=False):
-    CONTAINMENT_MIN = 0.25
-    CONTAINMENT_MAX = (0.90,0.80,0.75)[shot_type]
+    CONTAINMENT_MIN = 0.30
+    CONTAINMENT_MAX = (0.8,0.75,0.7)[shot_type]
     MIN_NEEDED = 1
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
@@ -258,13 +256,12 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                 if score > 0 and verbose:
                     print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  Overlap = {score:.4f}")
 
-        """
         if verbose:
             temp = annotate_frame(raw_frames[fn].copy(), ball_boxes, player_boxes_conf, hoop_boxes, iou_scores, fn)
             cv2.namedWindow("Frame Testing", cv2.WINDOW_NORMAL)
             cv2.resizeWindow("Frame Testing", 960, 540)
-            show_frame_and_wait(temp, "Frame Testing", delay=50)
-        """
+            show_frame_and_wait(temp, "Frame Testing", delay=700)
+
 
         frame_data[fn] = {
             "frame":              raw_frames[fn],
@@ -290,7 +287,8 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                 num_frames += 1
                 frame_nums.append(fn)
                 if verbose:
-                    temp = frame_data[fn]["frame"]
+                    d = frame_data[fn]
+                    temp = annotate_frame(d["frame"].copy(),d["ball_boxes"],d["player_boxes"],d["hoop_boxes"],d["containment_scores"],fn)
                     cv2.namedWindow("Testing", cv2.WINDOW_NORMAL)
                     cv2.resizeWindow("Testing", 960, 540)
                     show_frame_and_wait(temp,"Testing")
@@ -633,4 +631,3 @@ if __name__ == "__main__":
     print(f"Time per 95 shots: {minutes}:{round(seconds)}")
     print(f"Average Frame Find Time: {round(sum(frame_time)/num_shots_frame,3)}")
     print(f"Average Homography Time: {round(sum(homography_time)/num_shots_frame,3)}")
-    

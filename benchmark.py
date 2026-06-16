@@ -20,6 +20,7 @@ if __name__ == "__main__":
     dme = 0
     ame = 0
     ce = 0
+    results = []
 
         # ── Load JSON ─────────────────────────────────────────────────────────────
     with open(stats_file, "r") as f:
@@ -90,21 +91,22 @@ if __name__ == "__main__":
             cv2.imshow(f"Shot #{idx}",frame)
             # Monitor keyboard events
             key = cv2.waitKey(1) & 0xFF
-                    
-            if key == ord('q') or key == 32:
-                break
                 
             if key == ord("1"):
                 ap += 1
+                results.append("ap")
                 break
             if key == ord("2"):
                 dme += 1
+                results.append("dme")
                 break
             if key == ord("3"):
                 ame += 1
+                results.append("ame")
                 break
             if key == ord("4"):
                 ce += 1
+                results.append("ce")
                 break
     
         cv2.destroyWindow(f"Shot #{idx}")
@@ -121,6 +123,10 @@ if __name__ == "__main__":
     print(f"Region Accuracy: {round((ap+dme+ame)/total,4)}")
     print(f"Shot Finder Accuracy: {round((ap+dme)/total,4)}")
     print(f"Shot Perfection Accuracy: {round((ap)/total,4)}")
+    print("--------------")
+    for idx, res in enumerate(results,start=1):
+        print(f"Shot {idx}: {res.upper()}")
+
 
         
                     
