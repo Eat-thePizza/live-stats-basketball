@@ -49,3 +49,28 @@ Region Accuracy: 0.8750 		            Absolute Perfection: 10
 Shot Finder Accuracy: 0.6250		        Distance Marginal Error: 5
 Shot Perfection Accuracy: 0.4167			Algorithmic Marginal Error: 6
                                             Complete Error: 3
+
+Shot 1: DME
+Shot 2: DME
+Shot 3: DME
+Shot 4: AP
+Shot 5: AP
+Shot 6: DME
+Shot 7: AME
+Shot 8: CE
+Shot 9: CE
+Shot 10: AP
+Shot 11: AME
+Shot 12: DME
+Shot 13: AP
+Shot 14: CE
+Shot 15: AP
+Shot 16: AP
+Shot 17: AP
+Shot 18: AME
+Shot 19: AP
+Shot 20: AME
+Shot 21: AP
+Shot 22: AME
+Shot 23: AP
+Shot 24: AME
