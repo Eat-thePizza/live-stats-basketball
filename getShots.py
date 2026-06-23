@@ -19,9 +19,9 @@ court_image     = "2D_HS_Court.jpg"
 shot_chart_name = "shotChartTesting.jpg"
 
 #Timing Information Adjustments
-PRE_ROLL        = (3.5,3.6,4.0)   # max seconds before shot timestamp to search backwards from
-SHOT_OFFSET     = (0.3,0.6,1.2)   # seconds before the timestamp to begin the backwards scan
-FALLBACK_OFFSET = (1.6,2.0,2.5)   # seconds before shot timestamp to use as fallback frame
+PRE_ROLL        = (3.0,3.0,3.5)   # max seconds before shot timestamp to search backwards from
+SHOT_OFFSET     = (0.4,0.5,1.5)   # seconds before the timestamp to begin the backwards scan
+FALLBACK_OFFSET = (1.3,1.6,1.8)   # seconds before shot timestamp to use as fallback frame
 
 # YOLO class indices
 CLASS_BALL   = 0
@@ -104,7 +104,7 @@ def run_yolo(model: YOLO, frames_window):
       Ball   — keep only the single highest-confidence detection (any conf)
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
-    PLAYER_CONF_THRESHOLD = 0.60
+    PLAYER_CONF_THRESHOLD = 0.55
     MAX_PLAYERS           = 10
     BATCH_SIZE = 30
 
@@ -211,7 +211,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                     fallback_offset: float = FALLBACK_OFFSET[1],
                     verbose=False):
     CONTAINMENT_MIN = 0.30
-    CONTAINMENT_MAX = (0.8,0.75,0.7)[shot_type]
+    CONTAINMENT_MAX = (0.85,0.75,0.65)[shot_type]
     MIN_NEEDED = 1
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
@@ -299,9 +299,9 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
 
     if len(frame_nums) >= MIN_NEEDED:
         if shot_type == 0 or shot_type == 1:
-            confirmed_window_start = frame_nums[len(frame_nums)//6]
+            confirmed_window_start = frame_nums[len(frame_nums)//7]
         else:
-            confirmed_window_start = frame_nums[len(frame_nums)//4]
+            confirmed_window_start = frame_nums[len(frame_nums)//5]
 
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:

@@ -21,36 +21,57 @@ FRAME FIND CATEGORIES
 - Complete Error Frame (CEF): This frame is not within the shooting motion
     Classified as Marginal Error or Complete Error because of the wrong frame
 
-Metric Results: 
+METRICS
+- Region Accuracy (RA): Shots that fell into the correct region
+    = (AP + ME)/(Total)
+    Practically, this is very usable for coaches to tell the story already
+- Shot Finder Accuracy (SFA): Shots where the program found the correct frame
+    = (ASF + HEF + PEF)/(Total)
+    Practically, the program found the correct frame of the shot
+- Player Identification Accuracy (PIA): Shots where the program correctly assigned the ball to the right player
+    = (ASF + HEf)/(Total)
+    Practically, the program found the correct player and frame for the shot, signaling a successful algorithm run
+- Perfection Accuracy (PA): Shots that are absolutely picture perfect
+    = (AP)/(Total)
+    Practically, this is just a flex
+
+Metric Results: (6/23)
+Region Accuracy:                0.8333
+Shot Finder Accuracy:           0.7500
+Player Identification Accuracy: 0.6667
+Perfection Accuracy:            0.3750
+
+
+
 Absolute Perfection: 9
-Marginal Error: 10
-Complete Error: 5
+Marginal Error: 11
+Complete Error: 4
 ------------
 Acceptable Shot Frame: 10
-Homography Error Frame: 4
-Player Error Frame: 4
+Homography Error Frame: 6
+Player Error Frame: 2
 Complete Error Frame: 6
 Shot 1: ap, asf
-Shot 2: me, pef
+Shot 2: ap, asf
 Shot 3: me, hef
 Shot 4: ap, asf
-Shot 5: ap, asf
-Shot 6: me, hef
+Shot 5: me, hef
+Shot 6: ap, asf
 Shot 7: ce, cef
-Shot 8: ce, pef
+Shot 8: me, hef
 Shot 9: ce, cef
 Shot 10: ap, asf
-Shot 11: me, cef
+Shot 11: ce, cef
 Shot 12: me, hef
 Shot 13: ap, asf
-Shot 14: ce, cef
+Shot 14: me, cef
 Shot 15: ap, asf
-Shot 16: me, asf
+Shot 16: ap, asf
 Shot 17: ap, asf
 Shot 18: me, cef
-Shot 19: ap, asf
+Shot 19: me, asf
 Shot 20: me, pef
-Shot 21: ap, asf
-Shot 22: ce, pef
+Shot 21: me, pef
+Shot 22: ce, cef
 Shot 23: me, hef
-Shot 24: me, cef
+Shot 24: me, hef
