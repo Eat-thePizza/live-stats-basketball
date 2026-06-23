@@ -56,7 +56,7 @@ class TacticalViewConverter:
             return np.empty((0, 2), dtype=np.float32)
 
         x1, y1, x2, y2 = boxes_xyxy[:, 0], boxes_xyxy[:, 1], boxes_xyxy[:, 2], boxes_xyxy[:, 3]
-        centers = np.stack(((x1 + x2) / 2.0, y2 + (0.000003*((y2-y1)**2)) * (y1-y2)), axis=1).astype(np.float32)
+        centers = np.stack(((x1 + x2) / 2.0, y2 + (0.0000015*((y2-y1)**2)) * (y1-y2)), axis=1).astype(np.float32)
         mapped = cv2.perspectiveTransform(centers.reshape(-1, 1, 2), H).reshape(-1, 2).astype(np.float32)
 
         return mapped

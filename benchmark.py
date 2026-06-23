@@ -3,7 +3,7 @@ import json
 import sys
 import numpy as np
 
-from getShots import is_field_goal, show_frame_and_wait, parse_timestamp, find_best_frame, getShots
+from getShots import is_field_goal, show_frame_and_wait, parse_timestamp, find_best_frame, getShots, getShotInfo
 
 #Config
 video_file = "SFHS VCHS Testing.mp4"
@@ -11,16 +11,29 @@ stats_file = "game_20260519_valley_christian.json"
 board_file = "2D_HS_Court.jpg"
 answer_name= "valley_sfhs_first_points"
 
+def findDistance(xy1,xy2):
+    x1,y1 = xy1
+    x2,y2 = xy2
+
+    dist1 = (x1-x2)**2
+    dist2 = (y1-y2)**2
+    return round((dist1+dist2)**0.5, 3)
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     tipoff_seconds = float(sys.argv[1]) if len(sys.argv) > 1 else 0.0
     f_shot = open(answer_name+".txt","r")
 
     ap = 0
-    dme = 0
-    ame = 0
+    me = 0
     ce = 0
-    results = []
+    results1 = []
+
+    asf = 0
+    hef = 0
+    pef = 0
+    cef = 0
+    results2 = []
 
         # ── Load JSON ─────────────────────────────────────────────────────────────
     with open(stats_file, "r") as f:
@@ -85,7 +98,28 @@ if __name__ == "__main__":
 
         temp = court_img.copy()
         cv2.circle(temp,(ax,ay),7,(75,250,75),-1)
+        cv2.circle(temp,(ax,ay),13,(75,200,120),2)
+        cv2.circle(temp,(ax,ay),43,(75,75,200),2)
         cv2.circle(temp,(px,py),7,(250,75,75),-1)
+
+        distance = findDistance((ax,ay),(px,py))
+        side1, shot_type1, dist1 = getShotInfo((ax,ay))
+        side2, shot_type2, dist2 = getShotInfo((px,py))
+        if distance <= 20:
+            ap += 1
+            results1.append("ap")
+            showed = "AP"
+        elif distance <= 50 or (shot_type1 == shot_type2):
+            me += 1
+            results1.append("me")
+            showed = "ME"
+        else:
+            ce += 1
+            results1.append("ce")
+            showed = "CE"
+        
+        cv2.putText(temp,showed,(400,250),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1.5,color=(255,0,0),thickness=2,lineType=cv2.LINE_AA)
+
         while True:
             cv2.imshow("Board Marking",temp)
             cv2.imshow(f"Shot #{idx}",frame)
@@ -93,45 +127,39 @@ if __name__ == "__main__":
             key = cv2.waitKey(1) & 0xFF
                 
             if key == ord("1"):
-                ap += 1
-                results.append("ap")
+                asf += 1
+                results2.append("asf")
                 break
             if key == ord("2"):
-                dme += 1
-                results.append("dme")
+                hef += 1
+                results2.append("hef")
                 break
             if key == ord("3"):
-                ame += 1
-                results.append("ame")
+                pef += 1
+                results2.append("pef")
                 break
             if key == ord("4"):
-                ce += 1
-                results.append("ce")
+                cef += 1
+                results2.append("cef")
                 break
     
         cv2.destroyWindow(f"Shot #{idx}")
     
     cv2.destroyAllWindows()
-    total = ap+dme+ame+ce
+    total = ap+me+ce
 
     print("Metric Results: ")
     print(f"Absolute Perfection: {ap}")
-    print(f"Distance Marginal Error: {dme}")
-    print(f"Algorithmic Marginal Error: {ame}")
+    print(f"Marginal Error: {me}")
     print(f"Complete Error: {ce}")
     print("------------")
-    print(f"Region Accuracy: {round((ap+dme+ame)/total,4)}")
-    print(f"Shot Finder Accuracy: {round((ap+dme)/total,4)}")
-    print(f"Shot Perfection Accuracy: {round((ap)/total,4)}")
-    print("--------------")
-    for idx, res in enumerate(results,start=1):
-        print(f"Shot {idx}: {res.upper()}")
+    print(f"Acceptable Shot Frame: {asf}")
+    print(f"Homography Error Frame: {hef}")
+    print(f"Player Error Frame: {pef}")
+    print(f"Complete Error Frame: {cef}")
+    for i in range(len(results1)):
+        print(f"Shot {i+1}: {results1[i]}, {results2[i]}")
 
-
-        
-                    
-        
-        
 
 
     
