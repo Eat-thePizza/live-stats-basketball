@@ -13,15 +13,15 @@ from homographyEstimation import TacticalViewConverter, filter_tracked_objects
 # Directories
 jsoninfo        = "game_20260519_valley_christian.json"
 film            = "SFHS VCHS Testing.mp4"
-model_path      = "pmodel 63-1138a.pt"
+model_path      = "best (39).pt"
 court_keypoints = "court_keypoint_detector.pt"
 court_image     = "2D_HS_Court.jpg"
 shot_chart_name = "shotChartTesting.jpg"
 
 #Timing Information Adjustments
-PRE_ROLL        = (3.0,3.0,3.5)   # max seconds before shot timestamp to search backwards from
-SHOT_OFFSET     = (0.4,0.5,1.5)   # seconds before the timestamp to begin the backwards scan
-FALLBACK_OFFSET = (1.3,1.6,1.8)   # seconds before shot timestamp to use as fallback frame
+PRE_ROLL        = (3.0,3.0,3.3)   # max seconds before shot timestamp to search backwards from
+SHOT_OFFSET     = (0.4,0.4,1.0)   # seconds before the timestamp to begin the backwards scan
+FALLBACK_OFFSET = (1.1,1.2,1.4)   # seconds before shot timestamp to use as fallback frame
 
 # YOLO class indices
 CLASS_BALL   = 0
@@ -104,14 +104,14 @@ def run_yolo(model: YOLO, frames_window):
       Ball   — keep only the single highest-confidence detection (any conf)
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
-    PLAYER_CONF_THRESHOLD = 0.55
+    PLAYER_CONF_THRESHOLD = 0.60
     MAX_PLAYERS           = 10
     BATCH_SIZE = 30
 
     results = []
     for i in range(0, len(frames_window), BATCH_SIZE):
         chunk = frames_window[i:i+BATCH_SIZE]
-        results.extend(model(chunk, conf=0.35, iou=0.65, verbose=False))
+        results.extend(model(chunk, conf=0.20, iou=0.65, verbose=False))
 
     window_outputs = []
 
@@ -210,8 +210,8 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                     shot_offset: float = SHOT_OFFSET[0],
                     fallback_offset: float = FALLBACK_OFFSET[1],
                     verbose=False):
-    CONTAINMENT_MIN = 0.30
-    CONTAINMENT_MAX = (0.85,0.75,0.65)[shot_type]
+    CONTAINMENT_MIN = (0.50,0.40,0.30)[shot_type]
+    CONTAINMENT_MAX = (0.90,0.75,0.70)[shot_type]
     MIN_NEEDED = 1
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
@@ -260,7 +260,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
             temp = annotate_frame(raw_frames[fn].copy(), ball_boxes, player_boxes_conf, hoop_boxes, iou_scores, fn)
             cv2.namedWindow("Frame Testing", cv2.WINDOW_NORMAL)
             cv2.resizeWindow("Frame Testing", 960, 540)
-            show_frame_and_wait(temp, "Frame Testing", delay=700)
+            show_frame_and_wait(temp, "Frame Testing", delay=50)
 
 
         frame_data[fn] = {
@@ -299,9 +299,9 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
 
     if len(frame_nums) >= MIN_NEEDED:
         if shot_type == 0 or shot_type == 1:
-            confirmed_window_start = frame_nums[len(frame_nums)//7]
+            confirmed_window_start = frame_nums[len(frame_nums)//4]
         else:
-            confirmed_window_start = frame_nums[len(frame_nums)//5]
+            confirmed_window_start = frame_nums[len(frame_nums)//3]
 
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:

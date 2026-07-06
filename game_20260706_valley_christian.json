@@ -1,0 +1,4680 @@
+{
+  "game_id": "game_20260706_valley_christian",
+  "source": "web_ui_command_history",
+  "export_type": "stage2_json_game_log",
+  "exported_at": "2026-07-06T22:21:24.902Z",
+  "game_context": {
+    "game_date": "2026-07-06",
+    "opponent": "Valley Christian",
+    "opponent_alias": "op",
+    "home_team_label": "sf"
+  },
+  "commands": [
+    {
+      "command_index": 0,
+      "raw_command": "+00:00 tip"
+    },
+    {
+      "command_index": 1,
+      "raw_command": "+00:33 op three miss"
+    },
+    {
+      "command_index": 2,
+      "raw_command": "+00:44 -p sf"
+    },
+    {
+      "command_index": 3,
+      "raw_command": "+01:05 wes two miss"
+    },
+    {
+      "command_index": 4,
+      "raw_command": "+01:08 -p op"
+    },
+    {
+      "command_index": 5,
+      "raw_command": "+01:52 op layup miss"
+    },
+    {
+      "command_index": 6,
+      "raw_command": "+01:55 op or"
+    },
+    {
+      "command_index": 7,
+      "raw_command": "+02:07 op layup make"
+    },
+    {
+      "command_index": 8,
+      "raw_command": "+02:19 ayaan to"
+    },
+    {
+      "command_index": 9,
+      "raw_command": "+02:44 op three make op"
+    },
+    {
+      "command_index": 10,
+      "raw_command": "+02:57 jackson layup miss"
+    },
+    {
+      "command_index": 11,
+      "raw_command": "+03:00 -p op"
+    },
+    {
+      "command_index": 12,
+      "raw_command": "+03:22 op layup make"
+    },
+    {
+      "command_index": 13,
+      "raw_command": "+03:28 -t sf"
+    },
+    {
+      "command_index": 14,
+      "raw_command": "+04:32 ayaan three make wes"
+    },
+    {
+      "command_index": 15,
+      "raw_command": "+04:47 op three make op"
+    },
+    {
+      "command_index": 16,
+      "raw_command": "+05:03 kingston to"
+    },
+    {
+      "command_index": 17,
+      "raw_command": "+05:34 op three make op"
+    },
+    {
+      "command_index": 18,
+      "raw_command": "+05:50 devin three miss"
+    },
+    {
+      "command_index": 19,
+      "raw_command": "+05:52 op dr"
+    },
+    {
+      "command_index": 20,
+      "raw_command": "+06:45 op ft miss"
+    },
+    {
+      "command_index": 21,
+      "raw_command": "+06:59 op ft make"
+    },
+    {
+      "command_index": 22,
+      "raw_command": "+07:18 jackson three miss"
+    },
+    {
+      "command_index": 23,
+      "raw_command": "+07:27 op three make op"
+    },
+    {
+      "command_index": 24,
+      "raw_command": "+07:36 wes to op"
+    },
+    {
+      "command_index": 25,
+      "raw_command": "+07:39 op layup miss"
+    },
+    {
+      "command_index": 26,
+      "raw_command": "+07:42 -p sf"
+    },
+    {
+      "command_index": 27,
+      "raw_command": "+07:52 -s gianni ayaan"
+    },
+    {
+      "command_index": 28,
+      "raw_command": "+08:24 kingston to"
+    },
+    {
+      "command_index": 29,
+      "raw_command": "+09:14 op two miss"
+    },
+    {
+      "command_index": 30,
+      "raw_command": "+09:17 jackson dr"
+    },
+    {
+      "command_index": 31,
+      "raw_command": "+09:59 devin ft make"
+    },
+    {
+      "command_index": 32,
+      "raw_command": "+10:05 -l wes max devin gianni jackson"
+    },
+    {
+      "command_index": 33,
+      "raw_command": "+10:17 devin ft make"
+    },
+    {
+      "command_index": 34,
+      "raw_command": "+10:45 op two make op"
+    },
+    {
+      "command_index": 35,
+      "raw_command": "+11:00 wes layup make"
+    },
+    {
+      "command_index": 36,
+      "raw_command": "+11:20 op layup miss"
+    },
+    {
+      "command_index": 37,
+      "raw_command": "+11:23 -p op"
+    },
+    {
+      "command_index": 38,
+      "raw_command": "+11:43 op three miss"
+    },
+    {
+      "command_index": 39,
+      "raw_command": "+11:47 op or"
+    },
+    {
+      "command_index": 40,
+      "raw_command": "+11:48 op layup make"
+    },
+    {
+      "command_index": 41,
+      "raw_command": "+12:04 wes three miss"
+    },
+    {
+      "command_index": 42,
+      "raw_command": "+12:07 op dr"
+    },
+    {
+      "command_index": 43,
+      "raw_command": "+12:15 op layup miss"
+    },
+    {
+      "command_index": 44,
+      "raw_command": "+12:17 drew dr"
+    },
+    {
+      "command_index": 45,
+      "raw_command": "+12:23 -l max dre gianni wes devin"
+    },
+    {
+      "command_index": 46,
+      "raw_command": "+12:31 drew two miss"
+    },
+    {
+      "command_index": 47,
+      "raw_command": "+12:33 op dr"
+    },
+    {
+      "command_index": 48,
+      "raw_command": "+12:34 -l max drew gianni wes devin"
+    },
+    {
+      "command_index": 49,
+      "raw_command": "+13:25 op layup make"
+    },
+    {
+      "command_index": 50,
+      "raw_command": "+13:30 ---"
+    },
+    {
+      "command_index": 51,
+      "raw_command": "+15:05 -l wes max ayaan devin gianni"
+    },
+    {
+      "command_index": 52,
+      "raw_command": "+15:28 op layup make op"
+    },
+    {
+      "command_index": 53,
+      "raw_command": "+16:15 ayaan three miss"
+    },
+    {
+      "command_index": 54,
+      "raw_command": "+16:18 op dr"
+    },
+    {
+      "command_index": 55,
+      "raw_command": "+16:31 op layup make op"
+    },
+    {
+      "command_index": 56,
+      "raw_command": "+16:56 -s kingston wes"
+    },
+    {
+      "command_index": 57,
+      "raw_command": "+17:15 max two miss"
+    },
+    {
+      "command_index": 58,
+      "raw_command": "+17:17 op dr"
+    },
+    {
+      "command_index": 59,
+      "raw_command": "+17:24 op layup make op"
+    },
+    {
+      "command_index": 60,
+      "raw_command": "+17:38 op three miss"
+    },
+    {
+      "command_index": 61,
+      "raw_command": "+17:40 gianni dr"
+    },
+    {
+      "command_index": 62,
+      "raw_command": "+17:48 devin to op"
+    },
+    {
+      "command_index": 63,
+      "raw_command": "+18:04 -l drew jackson john kingston max"
+    },
+    {
+      "command_index": 64,
+      "raw_command": "+18:31 op to drew"
+    },
+    {
+      "command_index": 65,
+      "raw_command": "+18:35 drew layup make"
+    },
+    {
+      "command_index": 66,
+      "raw_command": "+18:54 op two make"
+    },
+    {
+      "command_index": 67,
+      "raw_command": "+18:58 -t op"
+    },
+    {
+      "command_index": 68,
+      "raw_command": "+19:57 max three make jackson"
+    },
+    {
+      "command_index": 69,
+      "raw_command": "+20:14 op layup miss"
+    },
+    {
+      "command_index": 70,
+      "raw_command": "+20:16 kingston dr"
+    },
+    {
+      "command_index": 71,
+      "raw_command": "+20:21 drew layup miss"
+    },
+    {
+      "command_index": 72,
+      "raw_command": "+20:23 op dr"
+    },
+    {
+      "command_index": 73,
+      "raw_command": "+21:00 op ft miss"
+    },
+    {
+      "command_index": 74,
+      "raw_command": "+21:15 op ft make"
+    },
+    {
+      "command_index": 75,
+      "raw_command": "+22:04 john three make max"
+    },
+    {
+      "command_index": 76,
+      "raw_command": "+22:26 op three miss"
+    },
+    {
+      "command_index": 77,
+      "raw_command": "+22:27 kingston dr"
+    },
+    {
+      "command_index": 78,
+      "raw_command": "+22:48 drew three miss"
+    },
+    {
+      "command_index": 79,
+      "raw_command": "+22:50 op dr"
+    },
+    {
+      "command_index": 80,
+      "raw_command": "+23:35 op ft miss"
+    },
+    {
+      "command_index": 81,
+      "raw_command": "+23:50 -l kingston devin wes ayaan drew"
+    },
+    {
+      "command_index": 82,
+      "raw_command": "+23:56 op ft make"
+    },
+    {
+      "command_index": 83,
+      "raw_command": "+24:53 kingston three make wes"
+    },
+    {
+      "command_index": 84,
+      "raw_command": "+25:29 op ft miss"
+    },
+    {
+      "command_index": 85,
+      "raw_command": "+26:03 op ft miss"
+    },
+    {
+      "command_index": 86,
+      "raw_command": "+26:04 gianni dr"
+    },
+    {
+      "command_index": 87,
+      "raw_command": "+26:22 wes two make gianni"
+    },
+    {
+      "command_index": 88,
+      "raw_command": "+26:52 op layup miss"
+    },
+    {
+      "command_index": 89,
+      "raw_command": "+26:54 drew dr"
+    },
+    {
+      "command_index": 90,
+      "raw_command": "+27:13 devin three miss"
+    },
+    {
+      "command_index": 91,
+      "raw_command": "+27:14 op dr"
+    },
+    {
+      "command_index": 92,
+      "raw_command": "+27:54 op ft make"
+    },
+    {
+      "command_index": 93,
+      "raw_command": "+28:05 op ft miss"
+    },
+    {
+      "command_index": 94,
+      "raw_command": "+28:07 devin dr"
+    },
+    {
+      "command_index": 95,
+      "raw_command": "+28:18 kingston layup make devin"
+    },
+    {
+      "command_index": 96,
+      "raw_command": "+28:45 op layup make op"
+    },
+    {
+      "command_index": 97,
+      "raw_command": "+29:37 devin three make wes"
+    },
+    {
+      "command_index": 98,
+      "raw_command": "+29:40 ---"
+    },
+    {
+      "command_index": 99,
+      "raw_command": "+40:24 -l kingston ayaan devin wes jackson"
+    },
+    {
+      "command_index": 100,
+      "raw_command": "+40:53 jackson ft miss"
+    },
+    {
+      "command_index": 101,
+      "raw_command": "+41:14 jackson ft make"
+    },
+    {
+      "command_index": 102,
+      "raw_command": "+41:41 op layup make op"
+    },
+    {
+      "command_index": 103,
+      "raw_command": "+41:54 wes three miss"
+    },
+    {
+      "command_index": 104,
+      "raw_command": "+41:55 jackson or"
+    },
+    {
+      "command_index": 105,
+      "raw_command": "+42:01 devin three miss"
+    },
+    {
+      "command_index": 106,
+      "raw_command": "+42:03 op dr"
+    },
+    {
+      "command_index": 107,
+      "raw_command": "+42:14 op three miss"
+    },
+    {
+      "command_index": 108,
+      "raw_command": "+42:15 jackson dr"
+    },
+    {
+      "command_index": 109,
+      "raw_command": "+42:36 ayaan to"
+    },
+    {
+      "command_index": 110,
+      "raw_command": "+43:09 op to devin"
+    },
+    {
+      "command_index": 111,
+      "raw_command": "+43:21 jackson to"
+    },
+    {
+      "command_index": 112,
+      "raw_command": "+43:46 op to wes"
+    },
+    {
+      "command_index": 113,
+      "raw_command": "+43:52 devin two miss"
+    },
+    {
+      "command_index": 114,
+      "raw_command": "+43:54 op dr"
+    },
+    {
+      "command_index": 115,
+      "raw_command": "+44:23 op ft make"
+    },
+    {
+      "command_index": 116,
+      "raw_command": "+44:39 op ft miss"
+    },
+    {
+      "command_index": 117,
+      "raw_command": "+44:40 wes dr"
+    },
+    {
+      "command_index": 118,
+      "raw_command": "+44:48 wes three miss"
+    },
+    {
+      "command_index": 119,
+      "raw_command": "+44:51 jackson or"
+    },
+    {
+      "command_index": 120,
+      "raw_command": "+45:03 wes three miss"
+    },
+    {
+      "command_index": 121,
+      "raw_command": "+45:04 op dr"
+    },
+    {
+      "command_index": 122,
+      "raw_command": "+45:17 -t op"
+    },
+    {
+      "command_index": 123,
+      "raw_command": "+46:39 -l kingston gianni jackson wes devin"
+    },
+    {
+      "command_index": 124,
+      "raw_command": "+47:14 op ft make"
+    },
+    {
+      "command_index": 125,
+      "raw_command": "+47:29 op ft miss"
+    },
+    {
+      "command_index": 126,
+      "raw_command": "+47:36 -p sf"
+    },
+    {
+      "command_index": 127,
+      "raw_command": "+48:11 jackson layup miss"
+    },
+    {
+      "command_index": 128,
+      "raw_command": "+48:13 op dr"
+    },
+    {
+      "command_index": 129,
+      "raw_command": "+48:29 op layup make"
+    },
+    {
+      "command_index": 130,
+      "raw_command": "+48:45 kingston three make jackson"
+    },
+    {
+      "command_index": 131,
+      "raw_command": "+49:24 op ft make"
+    },
+    {
+      "command_index": 132,
+      "raw_command": "+49:29 -s drew jackson"
+    },
+    {
+      "command_index": 133,
+      "raw_command": "+49:41 op ft make"
+    },
+    {
+      "command_index": 134,
+      "raw_command": "+50:02 gianni two miss"
+    },
+    {
+      "command_index": 135,
+      "raw_command": "+50:04 op dr"
+    },
+    {
+      "command_index": 136,
+      "raw_command": "+50:09 op layup miss"
+    },
+    {
+      "command_index": 137,
+      "raw_command": "+50:11 op or"
+    },
+    {
+      "command_index": 138,
+      "raw_command": "+50:12 op layup miss"
+    },
+    {
+      "command_index": 139,
+      "raw_command": "+50:14 op or"
+    },
+    {
+      "command_index": 140,
+      "raw_command": "+50:15 op layup make"
+    },
+    {
+      "command_index": 141,
+      "raw_command": "+50:35 devin layup make"
+    },
+    {
+      "command_index": 142,
+      "raw_command": "+50:43 op layup make"
+    },
+    {
+      "command_index": 143,
+      "raw_command": "+50:51 devin two miss"
+    },
+    {
+      "command_index": 144,
+      "raw_command": "+50:53 op dr"
+    },
+    {
+      "command_index": 145,
+      "raw_command": "+51:13 op to kingston"
+    },
+    {
+      "command_index": 146,
+      "raw_command": "+51:21 kingston to"
+    },
+    {
+      "command_index": 147,
+      "raw_command": "+51:35 -l drew derek wes max devin"
+    },
+    {
+      "command_index": 148,
+      "raw_command": "+52:00 op three miss"
+    },
+    {
+      "command_index": 149,
+      "raw_command": "+52:03 op or"
+    },
+    {
+      "command_index": 150,
+      "raw_command": "+52:08 op to"
+    },
+    {
+      "command_index": 151,
+      "raw_command": "+52:34 devin layup miss"
+    },
+    {
+      "command_index": 152,
+      "raw_command": "+52:37 max or"
+    },
+    {
+      "command_index": 153,
+      "raw_command": "+52:39 wes three miss"
+    },
+    {
+      "command_index": 154,
+      "raw_command": "+52:41 drew or"
+    },
+    {
+      "command_index": 155,
+      "raw_command": "+52:42 drew layup make"
+    },
+    {
+      "command_index": 156,
+      "raw_command": "+53:28 op layup make"
+    },
+    {
+      "command_index": 157,
+      "raw_command": "+54:14 derek two miss"
+    },
+    {
+      "command_index": 158,
+      "raw_command": "+54:16 drew or"
+    },
+    {
+      "command_index": 159,
+      "raw_command": "+54:17 drew layup miss"
+    },
+    {
+      "command_index": 160,
+      "raw_command": "+54:21 derek or"
+    },
+    {
+      "command_index": 161,
+      "raw_command": "+54:29 -p sf"
+    },
+    {
+      "command_index": 162,
+      "raw_command": "+55:35 derek three miss"
+    },
+    {
+      "command_index": 163,
+      "raw_command": "+55:37 ---"
+    },
+    {
+      "command_index": 164,
+      "raw_command": "+57:02 -l wes max devin jackson drew"
+    },
+    {
+      "command_index": 165,
+      "raw_command": "+57:13 op layup miss"
+    },
+    {
+      "command_index": 166,
+      "raw_command": "+57:15 drew dr"
+    },
+    {
+      "command_index": 167,
+      "raw_command": "+57:49 jackson layup miss"
+    },
+    {
+      "command_index": 168,
+      "raw_command": "+57:51 op dr"
+    },
+    {
+      "command_index": 169,
+      "raw_command": "+58:07 op to max"
+    },
+    {
+      "command_index": 170,
+      "raw_command": "+59:01 devin three miss"
+    },
+    {
+      "command_index": 171,
+      "raw_command": "+59:02 op dr"
+    },
+    {
+      "command_index": 172,
+      "raw_command": "+59:06 op layup miss"
+    },
+    {
+      "command_index": 173,
+      "raw_command": "+59:08 max dr"
+    },
+    {
+      "command_index": 174,
+      "raw_command": "+59:17 drew three miss"
+    },
+    {
+      "command_index": 175,
+      "raw_command": "+59:18 op dr"
+    },
+    {
+      "command_index": 176,
+      "raw_command": "+59:24 op three make op"
+    },
+    {
+      "command_index": 177,
+      "raw_command": "+60:19 -p sf"
+    },
+    {
+      "command_index": 178,
+      "raw_command": "+60:49 kingston to"
+    },
+    {
+      "command_index": 179,
+      "raw_command": "+60:54 -l kingston drew max jackson john"
+    },
+    {
+      "command_index": 180,
+      "raw_command": "+61:01 -s ayaan jackson"
+    },
+    {
+      "command_index": 181,
+      "raw_command": "+61:32 op three miss"
+    },
+    {
+      "command_index": 182,
+      "raw_command": "+61:35 op or"
+    },
+    {
+      "command_index": 183,
+      "raw_command": "+61:55 op layup make op"
+    },
+    {
+      "command_index": 184,
+      "raw_command": "+62:03 max three miss"
+    },
+    {
+      "command_index": 185,
+      "raw_command": "+62:05 ayaan or"
+    },
+    {
+      "command_index": 186,
+      "raw_command": "+62:06 ayaan layup make"
+    },
+    {
+      "command_index": 187,
+      "raw_command": "+62:14 -t sf"
+    },
+    {
+      "command_index": 188,
+      "raw_command": "+63:17 op to"
+    },
+    {
+      "command_index": 189,
+      "raw_command": "+63:28 max three miss"
+    },
+    {
+      "command_index": 190,
+      "raw_command": "+63:32 -p op"
+    },
+    {
+      "command_index": 191,
+      "raw_command": "+64:26 op layup miss"
+    },
+    {
+      "command_index": 192,
+      "raw_command": "+64:31 -p op"
+    },
+    {
+      "command_index": 193,
+      "raw_command": "+64:59 op three miss"
+    },
+    {
+      "command_index": 194,
+      "raw_command": "+65:00 op or"
+    },
+    {
+      "command_index": 195,
+      "raw_command": "+65:09 op three miss"
+    },
+    {
+      "command_index": 196,
+      "raw_command": "+65:11 op or"
+    },
+    {
+      "command_index": 197,
+      "raw_command": "+65:15 op three make op"
+    },
+    {
+      "command_index": 198,
+      "raw_command": "+65:27 john two miss"
+    },
+    {
+      "command_index": 199,
+      "raw_command": "+65:28 op dr"
+    },
+    {
+      "command_index": 200,
+      "raw_command": "+65:52 op three miss"
+    },
+    {
+      "command_index": 201,
+      "raw_command": "+65:55 -p op"
+    },
+    {
+      "command_index": 202,
+      "raw_command": "+66:14 -l wes devin drew james ayaan"
+    },
+    {
+      "command_index": 203,
+      "raw_command": "+66:35 op layup miss"
+    },
+    {
+      "command_index": 204,
+      "raw_command": "+66:37 ayaan dr"
+    },
+    {
+      "command_index": 205,
+      "raw_command": "+66:41 devin three make ayaan"
+    },
+    {
+      "command_index": 206,
+      "raw_command": "+67:13 -t op"
+    },
+    {
+      "command_index": 207,
+      "raw_command": "+68:05 -l wes ayaan derek james devin"
+    },
+    {
+      "command_index": 208,
+      "raw_command": "+68:42 -s zane wes"
+    },
+    {
+      "command_index": 209,
+      "raw_command": "+68:45 -s zayden devin"
+    },
+    {
+      "command_index": 210,
+      "raw_command": "+68:49 op to"
+    },
+    {
+      "command_index": 211,
+      "raw_command": "+69:13 -p op"
+    },
+    {
+      "command_index": 212,
+      "raw_command": "+69:51 op to zane"
+    },
+    {
+      "command_index": 213,
+      "raw_command": "+69:56 zayden layup miss"
+    },
+    {
+      "command_index": 214,
+      "raw_command": "+69:59 james or"
+    },
+    {
+      "command_index": 215,
+      "raw_command": "+70:00 james layup miss"
+    },
+    {
+      "command_index": 216,
+      "raw_command": "+70:02 -p op"
+    },
+    {
+      "command_index": 217,
+      "raw_command": "+70:22 op layup make"
+    },
+    {
+      "command_index": 218,
+      "raw_command": "+70:32 zane two make"
+    },
+    {
+      "command_index": 219,
+      "raw_command": "+70:50 op two miss"
+    },
+    {
+      "command_index": 220,
+      "raw_command": "+70:52 zayden dr"
+    },
+    {
+      "command_index": 221,
+      "raw_command": "+71:03 ayaan to op"
+    },
+    {
+      "command_index": 222,
+      "raw_command": "+71:39 op to"
+    },
+    {
+      "command_index": 223,
+      "raw_command": "+72:01 ayaan two miss"
+    },
+    {
+      "command_index": 224,
+      "raw_command": "+72:02 derek or"
+    },
+    {
+      "command_index": 225,
+      "raw_command": "+72:29 derek ft miss"
+    },
+    {
+      "command_index": 226,
+      "raw_command": "+72:41 derek ft miss"
+    },
+    {
+      "command_index": 227,
+      "raw_command": "+72:44 -p op"
+    },
+    {
+      "command_index": 228,
+      "raw_command": "+73:12 ---"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "evt_000001",
+      "command_index": 0,
+      "raw_command": "+00:00 tip",
+      "clock_text": "+00:00",
+      "elapsed_sec": 0,
+      "video_timestamp_sec": 0,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "tip"
+    },
+    {
+      "event_id": "evt_000002",
+      "command_index": 1,
+      "raw_command": "+00:33 op three miss",
+      "clock_text": "+00:33",
+      "elapsed_sec": 33,
+      "video_timestamp_sec": 33,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000003",
+      "command_index": 2,
+      "raw_command": "+00:44 -p sf",
+      "clock_text": "+00:44",
+      "elapsed_sec": 44,
+      "video_timestamp_sec": 44,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000004",
+      "command_index": 3,
+      "raw_command": "+01:05 wes two miss",
+      "clock_text": "+01:05",
+      "elapsed_sec": 65,
+      "video_timestamp_sec": 65,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000005",
+      "command_index": 4,
+      "raw_command": "+01:08 -p op",
+      "clock_text": "+01:08",
+      "elapsed_sec": 68,
+      "video_timestamp_sec": 68,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000006",
+      "command_index": 5,
+      "raw_command": "+01:52 op layup miss",
+      "clock_text": "+01:52",
+      "elapsed_sec": 112,
+      "video_timestamp_sec": 112,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000007",
+      "command_index": 6,
+      "raw_command": "+01:55 op or",
+      "clock_text": "+01:55",
+      "elapsed_sec": 115,
+      "video_timestamp_sec": 115,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000008",
+      "command_index": 7,
+      "raw_command": "+02:07 op layup make",
+      "clock_text": "+02:07",
+      "elapsed_sec": 127,
+      "video_timestamp_sec": 127,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000009",
+      "command_index": 8,
+      "raw_command": "+02:19 ayaan to",
+      "clock_text": "+02:19",
+      "elapsed_sec": 139,
+      "video_timestamp_sec": 139,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000010",
+      "command_index": 9,
+      "raw_command": "+02:44 op three make op",
+      "clock_text": "+02:44",
+      "elapsed_sec": 164,
+      "video_timestamp_sec": 164,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000011",
+      "command_index": 10,
+      "raw_command": "+02:57 jackson layup miss",
+      "clock_text": "+02:57",
+      "elapsed_sec": 177,
+      "video_timestamp_sec": 177,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000012",
+      "command_index": 11,
+      "raw_command": "+03:00 -p op",
+      "clock_text": "+03:00",
+      "elapsed_sec": 180,
+      "video_timestamp_sec": 180,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000013",
+      "command_index": 12,
+      "raw_command": "+03:22 op layup make",
+      "clock_text": "+03:22",
+      "elapsed_sec": 202,
+      "video_timestamp_sec": 202,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000014",
+      "command_index": 13,
+      "raw_command": "+03:28 -t sf",
+      "clock_text": "+03:28",
+      "elapsed_sec": 208,
+      "video_timestamp_sec": 208,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000015",
+      "command_index": 14,
+      "raw_command": "+04:32 ayaan three make wes",
+      "clock_text": "+04:32",
+      "elapsed_sec": 272,
+      "video_timestamp_sec": 272,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "wes",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000016",
+      "command_index": 15,
+      "raw_command": "+04:47 op three make op",
+      "clock_text": "+04:47",
+      "elapsed_sec": 287,
+      "video_timestamp_sec": 287,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000017",
+      "command_index": 16,
+      "raw_command": "+05:03 kingston to",
+      "clock_text": "+05:03",
+      "elapsed_sec": 303,
+      "video_timestamp_sec": 303,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000018",
+      "command_index": 17,
+      "raw_command": "+05:34 op three make op",
+      "clock_text": "+05:34",
+      "elapsed_sec": 334,
+      "video_timestamp_sec": 334,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000019",
+      "command_index": 18,
+      "raw_command": "+05:50 devin three miss",
+      "clock_text": "+05:50",
+      "elapsed_sec": 350,
+      "video_timestamp_sec": 350,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000020",
+      "command_index": 19,
+      "raw_command": "+05:52 op dr",
+      "clock_text": "+05:52",
+      "elapsed_sec": 352,
+      "video_timestamp_sec": 352,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000021",
+      "command_index": 20,
+      "raw_command": "+06:45 op ft miss",
+      "clock_text": "+06:45",
+      "elapsed_sec": 405,
+      "video_timestamp_sec": 405,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000022",
+      "command_index": 21,
+      "raw_command": "+06:59 op ft make",
+      "clock_text": "+06:59",
+      "elapsed_sec": 419,
+      "video_timestamp_sec": 419,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000023",
+      "command_index": 22,
+      "raw_command": "+07:18 jackson three miss",
+      "clock_text": "+07:18",
+      "elapsed_sec": 438,
+      "video_timestamp_sec": 438,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000024",
+      "command_index": 23,
+      "raw_command": "+07:27 op three make op",
+      "clock_text": "+07:27",
+      "elapsed_sec": 447,
+      "video_timestamp_sec": 447,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000025",
+      "command_index": 24,
+      "raw_command": "+07:36 wes to op",
+      "clock_text": "+07:36",
+      "elapsed_sec": 456,
+      "video_timestamp_sec": 456,
+      "team": "home",
+      "player": "wes",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "op",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000026",
+      "command_index": 25,
+      "raw_command": "+07:39 op layup miss",
+      "clock_text": "+07:39",
+      "elapsed_sec": 459,
+      "video_timestamp_sec": 459,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000027",
+      "command_index": 26,
+      "raw_command": "+07:42 -p sf",
+      "clock_text": "+07:42",
+      "elapsed_sec": 462,
+      "video_timestamp_sec": 462,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000028",
+      "command_index": 27,
+      "raw_command": "+07:52 -s gianni ayaan",
+      "clock_text": "+07:52",
+      "elapsed_sec": 472,
+      "video_timestamp_sec": 472,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000029",
+      "command_index": 28,
+      "raw_command": "+08:24 kingston to",
+      "clock_text": "+08:24",
+      "elapsed_sec": 504,
+      "video_timestamp_sec": 504,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000030",
+      "command_index": 29,
+      "raw_command": "+09:14 op two miss",
+      "clock_text": "+09:14",
+      "elapsed_sec": 554,
+      "video_timestamp_sec": 554,
+      "team": "op",
+      "player": null,
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000031",
+      "command_index": 30,
+      "raw_command": "+09:17 jackson dr",
+      "clock_text": "+09:17",
+      "elapsed_sec": 557,
+      "video_timestamp_sec": 557,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000032",
+      "command_index": 31,
+      "raw_command": "+09:59 devin ft make",
+      "clock_text": "+09:59",
+      "elapsed_sec": 599,
+      "video_timestamp_sec": 599,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000033",
+      "command_index": 32,
+      "raw_command": "+10:05 -l wes max devin gianni jackson",
+      "clock_text": "+10:05",
+      "elapsed_sec": 605,
+      "video_timestamp_sec": 605,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000034",
+      "command_index": 33,
+      "raw_command": "+10:17 devin ft make",
+      "clock_text": "+10:17",
+      "elapsed_sec": 617,
+      "video_timestamp_sec": 617,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000035",
+      "command_index": 34,
+      "raw_command": "+10:45 op two make op",
+      "clock_text": "+10:45",
+      "elapsed_sec": 645,
+      "video_timestamp_sec": 645,
+      "team": "op",
+      "player": null,
+      "shot_type": "two",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000036",
+      "command_index": 35,
+      "raw_command": "+11:00 wes layup make",
+      "clock_text": "+11:00",
+      "elapsed_sec": 660,
+      "video_timestamp_sec": 660,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000037",
+      "command_index": 36,
+      "raw_command": "+11:20 op layup miss",
+      "clock_text": "+11:20",
+      "elapsed_sec": 680,
+      "video_timestamp_sec": 680,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000038",
+      "command_index": 37,
+      "raw_command": "+11:23 -p op",
+      "clock_text": "+11:23",
+      "elapsed_sec": 683,
+      "video_timestamp_sec": 683,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000039",
+      "command_index": 38,
+      "raw_command": "+11:43 op three miss",
+      "clock_text": "+11:43",
+      "elapsed_sec": 703,
+      "video_timestamp_sec": 703,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000040",
+      "command_index": 39,
+      "raw_command": "+11:47 op or",
+      "clock_text": "+11:47",
+      "elapsed_sec": 707,
+      "video_timestamp_sec": 707,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000041",
+      "command_index": 40,
+      "raw_command": "+11:48 op layup make",
+      "clock_text": "+11:48",
+      "elapsed_sec": 708,
+      "video_timestamp_sec": 708,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000042",
+      "command_index": 41,
+      "raw_command": "+12:04 wes three miss",
+      "clock_text": "+12:04",
+      "elapsed_sec": 724,
+      "video_timestamp_sec": 724,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000043",
+      "command_index": 42,
+      "raw_command": "+12:07 op dr",
+      "clock_text": "+12:07",
+      "elapsed_sec": 727,
+      "video_timestamp_sec": 727,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000044",
+      "command_index": 43,
+      "raw_command": "+12:15 op layup miss",
+      "clock_text": "+12:15",
+      "elapsed_sec": 735,
+      "video_timestamp_sec": 735,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000045",
+      "command_index": 44,
+      "raw_command": "+12:17 drew dr",
+      "clock_text": "+12:17",
+      "elapsed_sec": 737,
+      "video_timestamp_sec": 737,
+      "team": "home",
+      "player": "drew",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000046",
+      "command_index": 45,
+      "raw_command": "+12:23 -l max dre gianni wes devin",
+      "clock_text": "+12:23",
+      "elapsed_sec": 743,
+      "video_timestamp_sec": 743,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000047",
+      "command_index": 46,
+      "raw_command": "+12:31 drew two miss",
+      "clock_text": "+12:31",
+      "elapsed_sec": 751,
+      "video_timestamp_sec": 751,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000048",
+      "command_index": 47,
+      "raw_command": "+12:33 op dr",
+      "clock_text": "+12:33",
+      "elapsed_sec": 753,
+      "video_timestamp_sec": 753,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000049",
+      "command_index": 48,
+      "raw_command": "+12:34 -l max drew gianni wes devin",
+      "clock_text": "+12:34",
+      "elapsed_sec": 754,
+      "video_timestamp_sec": 754,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000050",
+      "command_index": 49,
+      "raw_command": "+13:25 op layup make",
+      "clock_text": "+13:25",
+      "elapsed_sec": 805,
+      "video_timestamp_sec": 805,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000051",
+      "command_index": 50,
+      "raw_command": "+13:30 ---",
+      "clock_text": "+13:30",
+      "elapsed_sec": 810,
+      "video_timestamp_sec": 810,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000052",
+      "command_index": 51,
+      "raw_command": "+15:05 -l wes max ayaan devin gianni",
+      "clock_text": "+15:05",
+      "elapsed_sec": 905,
+      "video_timestamp_sec": 905,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000053",
+      "command_index": 52,
+      "raw_command": "+15:28 op layup make op",
+      "clock_text": "+15:28",
+      "elapsed_sec": 928,
+      "video_timestamp_sec": 928,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000054",
+      "command_index": 53,
+      "raw_command": "+16:15 ayaan three miss",
+      "clock_text": "+16:15",
+      "elapsed_sec": 975,
+      "video_timestamp_sec": 975,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000055",
+      "command_index": 54,
+      "raw_command": "+16:18 op dr",
+      "clock_text": "+16:18",
+      "elapsed_sec": 978,
+      "video_timestamp_sec": 978,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000056",
+      "command_index": 55,
+      "raw_command": "+16:31 op layup make op",
+      "clock_text": "+16:31",
+      "elapsed_sec": 991,
+      "video_timestamp_sec": 991,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000057",
+      "command_index": 56,
+      "raw_command": "+16:56 -s kingston wes",
+      "clock_text": "+16:56",
+      "elapsed_sec": 1016,
+      "video_timestamp_sec": 1016,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000058",
+      "command_index": 57,
+      "raw_command": "+17:15 max two miss",
+      "clock_text": "+17:15",
+      "elapsed_sec": 1035,
+      "video_timestamp_sec": 1035,
+      "team": "home",
+      "player": "max",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000059",
+      "command_index": 58,
+      "raw_command": "+17:17 op dr",
+      "clock_text": "+17:17",
+      "elapsed_sec": 1037,
+      "video_timestamp_sec": 1037,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000060",
+      "command_index": 59,
+      "raw_command": "+17:24 op layup make op",
+      "clock_text": "+17:24",
+      "elapsed_sec": 1044,
+      "video_timestamp_sec": 1044,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000061",
+      "command_index": 60,
+      "raw_command": "+17:38 op three miss",
+      "clock_text": "+17:38",
+      "elapsed_sec": 1058,
+      "video_timestamp_sec": 1058,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000062",
+      "command_index": 61,
+      "raw_command": "+17:40 gianni dr",
+      "clock_text": "+17:40",
+      "elapsed_sec": 1060,
+      "video_timestamp_sec": 1060,
+      "team": "home",
+      "player": "gianni",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000063",
+      "command_index": 62,
+      "raw_command": "+17:48 devin to op",
+      "clock_text": "+17:48",
+      "elapsed_sec": 1068,
+      "video_timestamp_sec": 1068,
+      "team": "home",
+      "player": "devin",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "op",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000064",
+      "command_index": 63,
+      "raw_command": "+18:04 -l drew jackson john kingston max",
+      "clock_text": "+18:04",
+      "elapsed_sec": 1084,
+      "video_timestamp_sec": 1084,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000065",
+      "command_index": 64,
+      "raw_command": "+18:31 op to drew",
+      "clock_text": "+18:31",
+      "elapsed_sec": 1111,
+      "video_timestamp_sec": 1111,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "drew",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000066",
+      "command_index": 65,
+      "raw_command": "+18:35 drew layup make",
+      "clock_text": "+18:35",
+      "elapsed_sec": 1115,
+      "video_timestamp_sec": 1115,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000067",
+      "command_index": 66,
+      "raw_command": "+18:54 op two make",
+      "clock_text": "+18:54",
+      "elapsed_sec": 1134,
+      "video_timestamp_sec": 1134,
+      "team": "op",
+      "player": null,
+      "shot_type": "two",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000068",
+      "command_index": 67,
+      "raw_command": "+18:58 -t op",
+      "clock_text": "+18:58",
+      "elapsed_sec": 1138,
+      "video_timestamp_sec": 1138,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000069",
+      "command_index": 68,
+      "raw_command": "+19:57 max three make jackson",
+      "clock_text": "+19:57",
+      "elapsed_sec": 1197,
+      "video_timestamp_sec": 1197,
+      "team": "home",
+      "player": "max",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "jackson",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000070",
+      "command_index": 69,
+      "raw_command": "+20:14 op layup miss",
+      "clock_text": "+20:14",
+      "elapsed_sec": 1214,
+      "video_timestamp_sec": 1214,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000071",
+      "command_index": 70,
+      "raw_command": "+20:16 kingston dr",
+      "clock_text": "+20:16",
+      "elapsed_sec": 1216,
+      "video_timestamp_sec": 1216,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000072",
+      "command_index": 71,
+      "raw_command": "+20:21 drew layup miss",
+      "clock_text": "+20:21",
+      "elapsed_sec": 1221,
+      "video_timestamp_sec": 1221,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000073",
+      "command_index": 72,
+      "raw_command": "+20:23 op dr",
+      "clock_text": "+20:23",
+      "elapsed_sec": 1223,
+      "video_timestamp_sec": 1223,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000074",
+      "command_index": 73,
+      "raw_command": "+21:00 op ft miss",
+      "clock_text": "+21:00",
+      "elapsed_sec": 1260,
+      "video_timestamp_sec": 1260,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000075",
+      "command_index": 74,
+      "raw_command": "+21:15 op ft make",
+      "clock_text": "+21:15",
+      "elapsed_sec": 1275,
+      "video_timestamp_sec": 1275,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000076",
+      "command_index": 75,
+      "raw_command": "+22:04 john three make max",
+      "clock_text": "+22:04",
+      "elapsed_sec": 1324,
+      "video_timestamp_sec": 1324,
+      "team": "home",
+      "player": "john",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "max",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000077",
+      "command_index": 76,
+      "raw_command": "+22:26 op three miss",
+      "clock_text": "+22:26",
+      "elapsed_sec": 1346,
+      "video_timestamp_sec": 1346,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000078",
+      "command_index": 77,
+      "raw_command": "+22:27 kingston dr",
+      "clock_text": "+22:27",
+      "elapsed_sec": 1347,
+      "video_timestamp_sec": 1347,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000079",
+      "command_index": 78,
+      "raw_command": "+22:48 drew three miss",
+      "clock_text": "+22:48",
+      "elapsed_sec": 1368,
+      "video_timestamp_sec": 1368,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000080",
+      "command_index": 79,
+      "raw_command": "+22:50 op dr",
+      "clock_text": "+22:50",
+      "elapsed_sec": 1370,
+      "video_timestamp_sec": 1370,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000081",
+      "command_index": 80,
+      "raw_command": "+23:35 op ft miss",
+      "clock_text": "+23:35",
+      "elapsed_sec": 1415,
+      "video_timestamp_sec": 1415,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000082",
+      "command_index": 81,
+      "raw_command": "+23:50 -l kingston devin wes ayaan drew",
+      "clock_text": "+23:50",
+      "elapsed_sec": 1430,
+      "video_timestamp_sec": 1430,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000083",
+      "command_index": 82,
+      "raw_command": "+23:56 op ft make",
+      "clock_text": "+23:56",
+      "elapsed_sec": 1436,
+      "video_timestamp_sec": 1436,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000084",
+      "command_index": 83,
+      "raw_command": "+24:53 kingston three make wes",
+      "clock_text": "+24:53",
+      "elapsed_sec": 1493,
+      "video_timestamp_sec": 1493,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "wes",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000085",
+      "command_index": 84,
+      "raw_command": "+25:29 op ft miss",
+      "clock_text": "+25:29",
+      "elapsed_sec": 1529,
+      "video_timestamp_sec": 1529,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000086",
+      "command_index": 85,
+      "raw_command": "+26:03 op ft miss",
+      "clock_text": "+26:03",
+      "elapsed_sec": 1563,
+      "video_timestamp_sec": 1563,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000087",
+      "command_index": 86,
+      "raw_command": "+26:04 gianni dr",
+      "clock_text": "+26:04",
+      "elapsed_sec": 1564,
+      "video_timestamp_sec": 1564,
+      "team": "home",
+      "player": "gianni",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000088",
+      "command_index": 87,
+      "raw_command": "+26:22 wes two make gianni",
+      "clock_text": "+26:22",
+      "elapsed_sec": 1582,
+      "video_timestamp_sec": 1582,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "two",
+      "result": "make",
+      "assist_player": "gianni",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000089",
+      "command_index": 88,
+      "raw_command": "+26:52 op layup miss",
+      "clock_text": "+26:52",
+      "elapsed_sec": 1612,
+      "video_timestamp_sec": 1612,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000090",
+      "command_index": 89,
+      "raw_command": "+26:54 drew dr",
+      "clock_text": "+26:54",
+      "elapsed_sec": 1614,
+      "video_timestamp_sec": 1614,
+      "team": "home",
+      "player": "drew",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000091",
+      "command_index": 90,
+      "raw_command": "+27:13 devin three miss",
+      "clock_text": "+27:13",
+      "elapsed_sec": 1633,
+      "video_timestamp_sec": 1633,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000092",
+      "command_index": 91,
+      "raw_command": "+27:14 op dr",
+      "clock_text": "+27:14",
+      "elapsed_sec": 1634,
+      "video_timestamp_sec": 1634,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000093",
+      "command_index": 92,
+      "raw_command": "+27:54 op ft make",
+      "clock_text": "+27:54",
+      "elapsed_sec": 1674,
+      "video_timestamp_sec": 1674,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000094",
+      "command_index": 93,
+      "raw_command": "+28:05 op ft miss",
+      "clock_text": "+28:05",
+      "elapsed_sec": 1685,
+      "video_timestamp_sec": 1685,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000095",
+      "command_index": 94,
+      "raw_command": "+28:07 devin dr",
+      "clock_text": "+28:07",
+      "elapsed_sec": 1687,
+      "video_timestamp_sec": 1687,
+      "team": "home",
+      "player": "devin",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000096",
+      "command_index": 95,
+      "raw_command": "+28:18 kingston layup make devin",
+      "clock_text": "+28:18",
+      "elapsed_sec": 1698,
+      "video_timestamp_sec": 1698,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "devin",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000097",
+      "command_index": 96,
+      "raw_command": "+28:45 op layup make op",
+      "clock_text": "+28:45",
+      "elapsed_sec": 1725,
+      "video_timestamp_sec": 1725,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000098",
+      "command_index": 97,
+      "raw_command": "+29:37 devin three make wes",
+      "clock_text": "+29:37",
+      "elapsed_sec": 1777,
+      "video_timestamp_sec": 1777,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "wes",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000099",
+      "command_index": 98,
+      "raw_command": "+29:40 ---",
+      "clock_text": "+29:40",
+      "elapsed_sec": 1780,
+      "video_timestamp_sec": 1780,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000100",
+      "command_index": 99,
+      "raw_command": "+40:24 -l kingston ayaan devin wes jackson",
+      "clock_text": "+40:24",
+      "elapsed_sec": 2424,
+      "video_timestamp_sec": 2424,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000101",
+      "command_index": 100,
+      "raw_command": "+40:53 jackson ft miss",
+      "clock_text": "+40:53",
+      "elapsed_sec": 2453,
+      "video_timestamp_sec": 2453,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000102",
+      "command_index": 101,
+      "raw_command": "+41:14 jackson ft make",
+      "clock_text": "+41:14",
+      "elapsed_sec": 2474,
+      "video_timestamp_sec": 2474,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000103",
+      "command_index": 102,
+      "raw_command": "+41:41 op layup make op",
+      "clock_text": "+41:41",
+      "elapsed_sec": 2501,
+      "video_timestamp_sec": 2501,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000104",
+      "command_index": 103,
+      "raw_command": "+41:54 wes three miss",
+      "clock_text": "+41:54",
+      "elapsed_sec": 2514,
+      "video_timestamp_sec": 2514,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000105",
+      "command_index": 104,
+      "raw_command": "+41:55 jackson or",
+      "clock_text": "+41:55",
+      "elapsed_sec": 2515,
+      "video_timestamp_sec": 2515,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000106",
+      "command_index": 105,
+      "raw_command": "+42:01 devin three miss",
+      "clock_text": "+42:01",
+      "elapsed_sec": 2521,
+      "video_timestamp_sec": 2521,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000107",
+      "command_index": 106,
+      "raw_command": "+42:03 op dr",
+      "clock_text": "+42:03",
+      "elapsed_sec": 2523,
+      "video_timestamp_sec": 2523,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000108",
+      "command_index": 107,
+      "raw_command": "+42:14 op three miss",
+      "clock_text": "+42:14",
+      "elapsed_sec": 2534,
+      "video_timestamp_sec": 2534,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000109",
+      "command_index": 108,
+      "raw_command": "+42:15 jackson dr",
+      "clock_text": "+42:15",
+      "elapsed_sec": 2535,
+      "video_timestamp_sec": 2535,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000110",
+      "command_index": 109,
+      "raw_command": "+42:36 ayaan to",
+      "clock_text": "+42:36",
+      "elapsed_sec": 2556,
+      "video_timestamp_sec": 2556,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000111",
+      "command_index": 110,
+      "raw_command": "+43:09 op to devin",
+      "clock_text": "+43:09",
+      "elapsed_sec": 2589,
+      "video_timestamp_sec": 2589,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "devin",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000112",
+      "command_index": 111,
+      "raw_command": "+43:21 jackson to",
+      "clock_text": "+43:21",
+      "elapsed_sec": 2601,
+      "video_timestamp_sec": 2601,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000113",
+      "command_index": 112,
+      "raw_command": "+43:46 op to wes",
+      "clock_text": "+43:46",
+      "elapsed_sec": 2626,
+      "video_timestamp_sec": 2626,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "wes",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000114",
+      "command_index": 113,
+      "raw_command": "+43:52 devin two miss",
+      "clock_text": "+43:52",
+      "elapsed_sec": 2632,
+      "video_timestamp_sec": 2632,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000115",
+      "command_index": 114,
+      "raw_command": "+43:54 op dr",
+      "clock_text": "+43:54",
+      "elapsed_sec": 2634,
+      "video_timestamp_sec": 2634,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000116",
+      "command_index": 115,
+      "raw_command": "+44:23 op ft make",
+      "clock_text": "+44:23",
+      "elapsed_sec": 2663,
+      "video_timestamp_sec": 2663,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000117",
+      "command_index": 116,
+      "raw_command": "+44:39 op ft miss",
+      "clock_text": "+44:39",
+      "elapsed_sec": 2679,
+      "video_timestamp_sec": 2679,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000118",
+      "command_index": 117,
+      "raw_command": "+44:40 wes dr",
+      "clock_text": "+44:40",
+      "elapsed_sec": 2680,
+      "video_timestamp_sec": 2680,
+      "team": "home",
+      "player": "wes",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000119",
+      "command_index": 118,
+      "raw_command": "+44:48 wes three miss",
+      "clock_text": "+44:48",
+      "elapsed_sec": 2688,
+      "video_timestamp_sec": 2688,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000120",
+      "command_index": 119,
+      "raw_command": "+44:51 jackson or",
+      "clock_text": "+44:51",
+      "elapsed_sec": 2691,
+      "video_timestamp_sec": 2691,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000121",
+      "command_index": 120,
+      "raw_command": "+45:03 wes three miss",
+      "clock_text": "+45:03",
+      "elapsed_sec": 2703,
+      "video_timestamp_sec": 2703,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000122",
+      "command_index": 121,
+      "raw_command": "+45:04 op dr",
+      "clock_text": "+45:04",
+      "elapsed_sec": 2704,
+      "video_timestamp_sec": 2704,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000123",
+      "command_index": 122,
+      "raw_command": "+45:17 -t op",
+      "clock_text": "+45:17",
+      "elapsed_sec": 2717,
+      "video_timestamp_sec": 2717,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000124",
+      "command_index": 123,
+      "raw_command": "+46:39 -l kingston gianni jackson wes devin",
+      "clock_text": "+46:39",
+      "elapsed_sec": 2799,
+      "video_timestamp_sec": 2799,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000125",
+      "command_index": 124,
+      "raw_command": "+47:14 op ft make",
+      "clock_text": "+47:14",
+      "elapsed_sec": 2834,
+      "video_timestamp_sec": 2834,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000126",
+      "command_index": 125,
+      "raw_command": "+47:29 op ft miss",
+      "clock_text": "+47:29",
+      "elapsed_sec": 2849,
+      "video_timestamp_sec": 2849,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000127",
+      "command_index": 126,
+      "raw_command": "+47:36 -p sf",
+      "clock_text": "+47:36",
+      "elapsed_sec": 2856,
+      "video_timestamp_sec": 2856,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000128",
+      "command_index": 127,
+      "raw_command": "+48:11 jackson layup miss",
+      "clock_text": "+48:11",
+      "elapsed_sec": 2891,
+      "video_timestamp_sec": 2891,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000129",
+      "command_index": 128,
+      "raw_command": "+48:13 op dr",
+      "clock_text": "+48:13",
+      "elapsed_sec": 2893,
+      "video_timestamp_sec": 2893,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000130",
+      "command_index": 129,
+      "raw_command": "+48:29 op layup make",
+      "clock_text": "+48:29",
+      "elapsed_sec": 2909,
+      "video_timestamp_sec": 2909,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000131",
+      "command_index": 130,
+      "raw_command": "+48:45 kingston three make jackson",
+      "clock_text": "+48:45",
+      "elapsed_sec": 2925,
+      "video_timestamp_sec": 2925,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "jackson",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000132",
+      "command_index": 131,
+      "raw_command": "+49:24 op ft make",
+      "clock_text": "+49:24",
+      "elapsed_sec": 2964,
+      "video_timestamp_sec": 2964,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000133",
+      "command_index": 132,
+      "raw_command": "+49:29 -s drew jackson",
+      "clock_text": "+49:29",
+      "elapsed_sec": 2969,
+      "video_timestamp_sec": 2969,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000134",
+      "command_index": 133,
+      "raw_command": "+49:41 op ft make",
+      "clock_text": "+49:41",
+      "elapsed_sec": 2981,
+      "video_timestamp_sec": 2981,
+      "team": "op",
+      "player": null,
+      "shot_type": "free_throw",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000135",
+      "command_index": 134,
+      "raw_command": "+50:02 gianni two miss",
+      "clock_text": "+50:02",
+      "elapsed_sec": 3002,
+      "video_timestamp_sec": 3002,
+      "team": "home",
+      "player": "gianni",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000136",
+      "command_index": 135,
+      "raw_command": "+50:04 op dr",
+      "clock_text": "+50:04",
+      "elapsed_sec": 3004,
+      "video_timestamp_sec": 3004,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000137",
+      "command_index": 136,
+      "raw_command": "+50:09 op layup miss",
+      "clock_text": "+50:09",
+      "elapsed_sec": 3009,
+      "video_timestamp_sec": 3009,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000138",
+      "command_index": 137,
+      "raw_command": "+50:11 op or",
+      "clock_text": "+50:11",
+      "elapsed_sec": 3011,
+      "video_timestamp_sec": 3011,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000139",
+      "command_index": 138,
+      "raw_command": "+50:12 op layup miss",
+      "clock_text": "+50:12",
+      "elapsed_sec": 3012,
+      "video_timestamp_sec": 3012,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000140",
+      "command_index": 139,
+      "raw_command": "+50:14 op or",
+      "clock_text": "+50:14",
+      "elapsed_sec": 3014,
+      "video_timestamp_sec": 3014,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000141",
+      "command_index": 140,
+      "raw_command": "+50:15 op layup make",
+      "clock_text": "+50:15",
+      "elapsed_sec": 3015,
+      "video_timestamp_sec": 3015,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000142",
+      "command_index": 141,
+      "raw_command": "+50:35 devin layup make",
+      "clock_text": "+50:35",
+      "elapsed_sec": 3035,
+      "video_timestamp_sec": 3035,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000143",
+      "command_index": 142,
+      "raw_command": "+50:43 op layup make",
+      "clock_text": "+50:43",
+      "elapsed_sec": 3043,
+      "video_timestamp_sec": 3043,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000144",
+      "command_index": 143,
+      "raw_command": "+50:51 devin two miss",
+      "clock_text": "+50:51",
+      "elapsed_sec": 3051,
+      "video_timestamp_sec": 3051,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000145",
+      "command_index": 144,
+      "raw_command": "+50:53 op dr",
+      "clock_text": "+50:53",
+      "elapsed_sec": 3053,
+      "video_timestamp_sec": 3053,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000146",
+      "command_index": 145,
+      "raw_command": "+51:13 op to kingston",
+      "clock_text": "+51:13",
+      "elapsed_sec": 3073,
+      "video_timestamp_sec": 3073,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "kingston",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000147",
+      "command_index": 146,
+      "raw_command": "+51:21 kingston to",
+      "clock_text": "+51:21",
+      "elapsed_sec": 3081,
+      "video_timestamp_sec": 3081,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000148",
+      "command_index": 147,
+      "raw_command": "+51:35 -l drew derek wes max devin",
+      "clock_text": "+51:35",
+      "elapsed_sec": 3095,
+      "video_timestamp_sec": 3095,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000149",
+      "command_index": 148,
+      "raw_command": "+52:00 op three miss",
+      "clock_text": "+52:00",
+      "elapsed_sec": 3120,
+      "video_timestamp_sec": 3120,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000150",
+      "command_index": 149,
+      "raw_command": "+52:03 op or",
+      "clock_text": "+52:03",
+      "elapsed_sec": 3123,
+      "video_timestamp_sec": 3123,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000151",
+      "command_index": 150,
+      "raw_command": "+52:08 op to",
+      "clock_text": "+52:08",
+      "elapsed_sec": 3128,
+      "video_timestamp_sec": 3128,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000152",
+      "command_index": 151,
+      "raw_command": "+52:34 devin layup miss",
+      "clock_text": "+52:34",
+      "elapsed_sec": 3154,
+      "video_timestamp_sec": 3154,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000153",
+      "command_index": 152,
+      "raw_command": "+52:37 max or",
+      "clock_text": "+52:37",
+      "elapsed_sec": 3157,
+      "video_timestamp_sec": 3157,
+      "team": "home",
+      "player": "max",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000154",
+      "command_index": 153,
+      "raw_command": "+52:39 wes three miss",
+      "clock_text": "+52:39",
+      "elapsed_sec": 3159,
+      "video_timestamp_sec": 3159,
+      "team": "home",
+      "player": "wes",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000155",
+      "command_index": 154,
+      "raw_command": "+52:41 drew or",
+      "clock_text": "+52:41",
+      "elapsed_sec": 3161,
+      "video_timestamp_sec": 3161,
+      "team": "home",
+      "player": "drew",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000156",
+      "command_index": 155,
+      "raw_command": "+52:42 drew layup make",
+      "clock_text": "+52:42",
+      "elapsed_sec": 3162,
+      "video_timestamp_sec": 3162,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000157",
+      "command_index": 156,
+      "raw_command": "+53:28 op layup make",
+      "clock_text": "+53:28",
+      "elapsed_sec": 3208,
+      "video_timestamp_sec": 3208,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000158",
+      "command_index": 157,
+      "raw_command": "+54:14 derek two miss",
+      "clock_text": "+54:14",
+      "elapsed_sec": 3254,
+      "video_timestamp_sec": 3254,
+      "team": "home",
+      "player": "derek",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000159",
+      "command_index": 158,
+      "raw_command": "+54:16 drew or",
+      "clock_text": "+54:16",
+      "elapsed_sec": 3256,
+      "video_timestamp_sec": 3256,
+      "team": "home",
+      "player": "drew",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000160",
+      "command_index": 159,
+      "raw_command": "+54:17 drew layup miss",
+      "clock_text": "+54:17",
+      "elapsed_sec": 3257,
+      "video_timestamp_sec": 3257,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000161",
+      "command_index": 160,
+      "raw_command": "+54:21 derek or",
+      "clock_text": "+54:21",
+      "elapsed_sec": 3261,
+      "video_timestamp_sec": 3261,
+      "team": "home",
+      "player": "derek",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000162",
+      "command_index": 161,
+      "raw_command": "+54:29 -p sf",
+      "clock_text": "+54:29",
+      "elapsed_sec": 3269,
+      "video_timestamp_sec": 3269,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000163",
+      "command_index": 162,
+      "raw_command": "+55:35 derek three miss",
+      "clock_text": "+55:35",
+      "elapsed_sec": 3335,
+      "video_timestamp_sec": 3335,
+      "team": "home",
+      "player": "derek",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000164",
+      "command_index": 163,
+      "raw_command": "+55:37 ---",
+      "clock_text": "+55:37",
+      "elapsed_sec": 3337,
+      "video_timestamp_sec": 3337,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000165",
+      "command_index": 164,
+      "raw_command": "+57:02 -l wes max devin jackson drew",
+      "clock_text": "+57:02",
+      "elapsed_sec": 3422,
+      "video_timestamp_sec": 3422,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000166",
+      "command_index": 165,
+      "raw_command": "+57:13 op layup miss",
+      "clock_text": "+57:13",
+      "elapsed_sec": 3433,
+      "video_timestamp_sec": 3433,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000167",
+      "command_index": 166,
+      "raw_command": "+57:15 drew dr",
+      "clock_text": "+57:15",
+      "elapsed_sec": 3435,
+      "video_timestamp_sec": 3435,
+      "team": "home",
+      "player": "drew",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000168",
+      "command_index": 167,
+      "raw_command": "+57:49 jackson layup miss",
+      "clock_text": "+57:49",
+      "elapsed_sec": 3469,
+      "video_timestamp_sec": 3469,
+      "team": "home",
+      "player": "jackson",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000169",
+      "command_index": 168,
+      "raw_command": "+57:51 op dr",
+      "clock_text": "+57:51",
+      "elapsed_sec": 3471,
+      "video_timestamp_sec": 3471,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000170",
+      "command_index": 169,
+      "raw_command": "+58:07 op to max",
+      "clock_text": "+58:07",
+      "elapsed_sec": 3487,
+      "video_timestamp_sec": 3487,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "max",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000171",
+      "command_index": 170,
+      "raw_command": "+59:01 devin three miss",
+      "clock_text": "+59:01",
+      "elapsed_sec": 3541,
+      "video_timestamp_sec": 3541,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000172",
+      "command_index": 171,
+      "raw_command": "+59:02 op dr",
+      "clock_text": "+59:02",
+      "elapsed_sec": 3542,
+      "video_timestamp_sec": 3542,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000173",
+      "command_index": 172,
+      "raw_command": "+59:06 op layup miss",
+      "clock_text": "+59:06",
+      "elapsed_sec": 3546,
+      "video_timestamp_sec": 3546,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000174",
+      "command_index": 173,
+      "raw_command": "+59:08 max dr",
+      "clock_text": "+59:08",
+      "elapsed_sec": 3548,
+      "video_timestamp_sec": 3548,
+      "team": "home",
+      "player": "max",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000175",
+      "command_index": 174,
+      "raw_command": "+59:17 drew three miss",
+      "clock_text": "+59:17",
+      "elapsed_sec": 3557,
+      "video_timestamp_sec": 3557,
+      "team": "home",
+      "player": "drew",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000176",
+      "command_index": 175,
+      "raw_command": "+59:18 op dr",
+      "clock_text": "+59:18",
+      "elapsed_sec": 3558,
+      "video_timestamp_sec": 3558,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000177",
+      "command_index": 176,
+      "raw_command": "+59:24 op three make op",
+      "clock_text": "+59:24",
+      "elapsed_sec": 3564,
+      "video_timestamp_sec": 3564,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000178",
+      "command_index": 177,
+      "raw_command": "+60:19 -p sf",
+      "clock_text": "+60:19",
+      "elapsed_sec": 3619,
+      "video_timestamp_sec": 3619,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000179",
+      "command_index": 178,
+      "raw_command": "+60:49 kingston to",
+      "clock_text": "+60:49",
+      "elapsed_sec": 3649,
+      "video_timestamp_sec": 3649,
+      "team": "home",
+      "player": "kingston",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000180",
+      "command_index": 179,
+      "raw_command": "+60:54 -l kingston drew max jackson john",
+      "clock_text": "+60:54",
+      "elapsed_sec": 3654,
+      "video_timestamp_sec": 3654,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000181",
+      "command_index": 180,
+      "raw_command": "+61:01 -s ayaan jackson",
+      "clock_text": "+61:01",
+      "elapsed_sec": 3661,
+      "video_timestamp_sec": 3661,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000182",
+      "command_index": 181,
+      "raw_command": "+61:32 op three miss",
+      "clock_text": "+61:32",
+      "elapsed_sec": 3692,
+      "video_timestamp_sec": 3692,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000183",
+      "command_index": 182,
+      "raw_command": "+61:35 op or",
+      "clock_text": "+61:35",
+      "elapsed_sec": 3695,
+      "video_timestamp_sec": 3695,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000184",
+      "command_index": 183,
+      "raw_command": "+61:55 op layup make op",
+      "clock_text": "+61:55",
+      "elapsed_sec": 3715,
+      "video_timestamp_sec": 3715,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000185",
+      "command_index": 184,
+      "raw_command": "+62:03 max three miss",
+      "clock_text": "+62:03",
+      "elapsed_sec": 3723,
+      "video_timestamp_sec": 3723,
+      "team": "home",
+      "player": "max",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000186",
+      "command_index": 185,
+      "raw_command": "+62:05 ayaan or",
+      "clock_text": "+62:05",
+      "elapsed_sec": 3725,
+      "video_timestamp_sec": 3725,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000187",
+      "command_index": 186,
+      "raw_command": "+62:06 ayaan layup make",
+      "clock_text": "+62:06",
+      "elapsed_sec": 3726,
+      "video_timestamp_sec": 3726,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000188",
+      "command_index": 187,
+      "raw_command": "+62:14 -t sf",
+      "clock_text": "+62:14",
+      "elapsed_sec": 3734,
+      "video_timestamp_sec": 3734,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000189",
+      "command_index": 188,
+      "raw_command": "+63:17 op to",
+      "clock_text": "+63:17",
+      "elapsed_sec": 3797,
+      "video_timestamp_sec": 3797,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000190",
+      "command_index": 189,
+      "raw_command": "+63:28 max three miss",
+      "clock_text": "+63:28",
+      "elapsed_sec": 3808,
+      "video_timestamp_sec": 3808,
+      "team": "home",
+      "player": "max",
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000191",
+      "command_index": 190,
+      "raw_command": "+63:32 -p op",
+      "clock_text": "+63:32",
+      "elapsed_sec": 3812,
+      "video_timestamp_sec": 3812,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000192",
+      "command_index": 191,
+      "raw_command": "+64:26 op layup miss",
+      "clock_text": "+64:26",
+      "elapsed_sec": 3866,
+      "video_timestamp_sec": 3866,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000193",
+      "command_index": 192,
+      "raw_command": "+64:31 -p op",
+      "clock_text": "+64:31",
+      "elapsed_sec": 3871,
+      "video_timestamp_sec": 3871,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000194",
+      "command_index": 193,
+      "raw_command": "+64:59 op three miss",
+      "clock_text": "+64:59",
+      "elapsed_sec": 3899,
+      "video_timestamp_sec": 3899,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000195",
+      "command_index": 194,
+      "raw_command": "+65:00 op or",
+      "clock_text": "+65:00",
+      "elapsed_sec": 3900,
+      "video_timestamp_sec": 3900,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000196",
+      "command_index": 195,
+      "raw_command": "+65:09 op three miss",
+      "clock_text": "+65:09",
+      "elapsed_sec": 3909,
+      "video_timestamp_sec": 3909,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000197",
+      "command_index": 196,
+      "raw_command": "+65:11 op or",
+      "clock_text": "+65:11",
+      "elapsed_sec": 3911,
+      "video_timestamp_sec": 3911,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000198",
+      "command_index": 197,
+      "raw_command": "+65:15 op three make op",
+      "clock_text": "+65:15",
+      "elapsed_sec": 3915,
+      "video_timestamp_sec": 3915,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "op",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000199",
+      "command_index": 198,
+      "raw_command": "+65:27 john two miss",
+      "clock_text": "+65:27",
+      "elapsed_sec": 3927,
+      "video_timestamp_sec": 3927,
+      "team": "home",
+      "player": "john",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000200",
+      "command_index": 199,
+      "raw_command": "+65:28 op dr",
+      "clock_text": "+65:28",
+      "elapsed_sec": 3928,
+      "video_timestamp_sec": 3928,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000201",
+      "command_index": 200,
+      "raw_command": "+65:52 op three miss",
+      "clock_text": "+65:52",
+      "elapsed_sec": 3952,
+      "video_timestamp_sec": 3952,
+      "team": "op",
+      "player": null,
+      "shot_type": "three",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000202",
+      "command_index": 201,
+      "raw_command": "+65:55 -p op",
+      "clock_text": "+65:55",
+      "elapsed_sec": 3955,
+      "video_timestamp_sec": 3955,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000203",
+      "command_index": 202,
+      "raw_command": "+66:14 -l wes devin drew james ayaan",
+      "clock_text": "+66:14",
+      "elapsed_sec": 3974,
+      "video_timestamp_sec": 3974,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000204",
+      "command_index": 203,
+      "raw_command": "+66:35 op layup miss",
+      "clock_text": "+66:35",
+      "elapsed_sec": 3995,
+      "video_timestamp_sec": 3995,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000205",
+      "command_index": 204,
+      "raw_command": "+66:37 ayaan dr",
+      "clock_text": "+66:37",
+      "elapsed_sec": 3997,
+      "video_timestamp_sec": 3997,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000206",
+      "command_index": 205,
+      "raw_command": "+66:41 devin three make ayaan",
+      "clock_text": "+66:41",
+      "elapsed_sec": 4001,
+      "video_timestamp_sec": 4001,
+      "team": "home",
+      "player": "devin",
+      "shot_type": "three",
+      "result": "make",
+      "assist_player": "ayaan",
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000207",
+      "command_index": 206,
+      "raw_command": "+67:13 -t op",
+      "clock_text": "+67:13",
+      "elapsed_sec": 4033,
+      "video_timestamp_sec": 4033,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000208",
+      "command_index": 207,
+      "raw_command": "+68:05 -l wes ayaan derek james devin",
+      "clock_text": "+68:05",
+      "elapsed_sec": 4085,
+      "video_timestamp_sec": 4085,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000209",
+      "command_index": 208,
+      "raw_command": "+68:42 -s zane wes",
+      "clock_text": "+68:42",
+      "elapsed_sec": 4122,
+      "video_timestamp_sec": 4122,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000210",
+      "command_index": 209,
+      "raw_command": "+68:45 -s zayden devin",
+      "clock_text": "+68:45",
+      "elapsed_sec": 4125,
+      "video_timestamp_sec": 4125,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000211",
+      "command_index": 210,
+      "raw_command": "+68:49 op to",
+      "clock_text": "+68:49",
+      "elapsed_sec": 4129,
+      "video_timestamp_sec": 4129,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000212",
+      "command_index": 211,
+      "raw_command": "+69:13 -p op",
+      "clock_text": "+69:13",
+      "elapsed_sec": 4153,
+      "video_timestamp_sec": 4153,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000213",
+      "command_index": 212,
+      "raw_command": "+69:51 op to zane",
+      "clock_text": "+69:51",
+      "elapsed_sec": 4191,
+      "video_timestamp_sec": 4191,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "zane",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000214",
+      "command_index": 213,
+      "raw_command": "+69:56 zayden layup miss",
+      "clock_text": "+69:56",
+      "elapsed_sec": 4196,
+      "video_timestamp_sec": 4196,
+      "team": "home",
+      "player": "zayden",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000215",
+      "command_index": 214,
+      "raw_command": "+69:59 james or",
+      "clock_text": "+69:59",
+      "elapsed_sec": 4199,
+      "video_timestamp_sec": 4199,
+      "team": "home",
+      "player": "james",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000216",
+      "command_index": 215,
+      "raw_command": "+70:00 james layup miss",
+      "clock_text": "+70:00",
+      "elapsed_sec": 4200,
+      "video_timestamp_sec": 4200,
+      "team": "home",
+      "player": "james",
+      "shot_type": "layup",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000217",
+      "command_index": 216,
+      "raw_command": "+70:02 -p op",
+      "clock_text": "+70:02",
+      "elapsed_sec": 4202,
+      "video_timestamp_sec": 4202,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000218",
+      "command_index": 217,
+      "raw_command": "+70:22 op layup make",
+      "clock_text": "+70:22",
+      "elapsed_sec": 4222,
+      "video_timestamp_sec": 4222,
+      "team": "op",
+      "player": null,
+      "shot_type": "layup",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000219",
+      "command_index": 218,
+      "raw_command": "+70:32 zane two make",
+      "clock_text": "+70:32",
+      "elapsed_sec": 4232,
+      "video_timestamp_sec": 4232,
+      "team": "home",
+      "player": "zane",
+      "shot_type": "two",
+      "result": "make",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000220",
+      "command_index": 219,
+      "raw_command": "+70:50 op two miss",
+      "clock_text": "+70:50",
+      "elapsed_sec": 4250,
+      "video_timestamp_sec": 4250,
+      "team": "op",
+      "player": null,
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000221",
+      "command_index": 220,
+      "raw_command": "+70:52 zayden dr",
+      "clock_text": "+70:52",
+      "elapsed_sec": 4252,
+      "video_timestamp_sec": 4252,
+      "team": "home",
+      "player": "zayden",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "defensive_rebound"
+    },
+    {
+      "event_id": "evt_000222",
+      "command_index": 221,
+      "raw_command": "+71:03 ayaan to op",
+      "clock_text": "+71:03",
+      "elapsed_sec": 4263,
+      "video_timestamp_sec": 4263,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": "op",
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000223",
+      "command_index": 222,
+      "raw_command": "+71:39 op to",
+      "clock_text": "+71:39",
+      "elapsed_sec": 4299,
+      "video_timestamp_sec": 4299,
+      "team": "op",
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "turnover"
+    },
+    {
+      "event_id": "evt_000224",
+      "command_index": 223,
+      "raw_command": "+72:01 ayaan two miss",
+      "clock_text": "+72:01",
+      "elapsed_sec": 4321,
+      "video_timestamp_sec": 4321,
+      "team": "home",
+      "player": "ayaan",
+      "shot_type": "two",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "shot"
+    },
+    {
+      "event_id": "evt_000225",
+      "command_index": 224,
+      "raw_command": "+72:02 derek or",
+      "clock_text": "+72:02",
+      "elapsed_sec": 4322,
+      "video_timestamp_sec": 4322,
+      "team": "home",
+      "player": "derek",
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "offensive_rebound"
+    },
+    {
+      "event_id": "evt_000226",
+      "command_index": 225,
+      "raw_command": "+72:29 derek ft miss",
+      "clock_text": "+72:29",
+      "elapsed_sec": 4349,
+      "video_timestamp_sec": 4349,
+      "team": "home",
+      "player": "derek",
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000227",
+      "command_index": 226,
+      "raw_command": "+72:41 derek ft miss",
+      "clock_text": "+72:41",
+      "elapsed_sec": 4361,
+      "video_timestamp_sec": 4361,
+      "team": "home",
+      "player": "derek",
+      "shot_type": "free_throw",
+      "result": "miss",
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [],
+      "event_type": "free_throw"
+    },
+    {
+      "event_id": "evt_000228",
+      "command_index": 227,
+      "raw_command": "+72:44 -p op",
+      "clock_text": "+72:44",
+      "elapsed_sec": 4364,
+      "video_timestamp_sec": 4364,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    },
+    {
+      "event_id": "evt_000229",
+      "command_index": 228,
+      "raw_command": "+73:12 ---",
+      "clock_text": "+73:12",
+      "elapsed_sec": 4392,
+      "video_timestamp_sec": 4392,
+      "team": null,
+      "player": null,
+      "shot_type": null,
+      "result": null,
+      "assist_player": null,
+      "related_player": null,
+      "warnings": [
+        "Preserved current UI control command without Stage 2 semantic interpretation"
+      ],
+      "event_type": "control_or_unknown"
+    }
+  ]
+}
