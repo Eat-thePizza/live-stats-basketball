@@ -11,17 +11,17 @@ from homographyEstimation import TacticalViewConverter, filter_tracked_objects
 
 # ── Config ────────────────────────────────────────────────────────────────────
 # Directories
-jsoninfo        = "game_20260519_valley_christian.json"
+jsoninfo        = "game_20260706_valley_christian.json"
 film            = "SFHS VCHS Testing.mp4"
-model_path      = "best (39).pt"
-court_keypoints = "court_keypoint_detector.pt"
+model_path      = "pmodel 0710-1205p_openvino_model"
+court_keypoints = "court_keypoint_detector_openvino_model"
 court_image     = "2D_HS_Court.jpg"
 shot_chart_name = "shotChartTesting.jpg"
 
 #Timing Information Adjustments
-PRE_ROLL        = (3.0,3.0,3.3)   # max seconds before shot timestamp to search backwards from
-SHOT_OFFSET     = (0.4,0.4,1.0)   # seconds before the timestamp to begin the backwards scan
-FALLBACK_OFFSET = (1.1,1.2,1.4)   # seconds before shot timestamp to use as fallback frame
+PRE_ROLL        = (2.7,2.8,3.0)   # max seconds before shot timestamp to search backwards from
+SHOT_OFFSET     = (0.2,0.3,0.6)   # seconds before the timestamp to begin the backwards scan
+FALLBACK_OFFSET = (0.6,0.8,1.0)   # seconds before shot timestamp to use as fallback frame
 
 # YOLO class indices
 CLASS_BALL   = 0
@@ -38,11 +38,8 @@ torch.xpu.empty_cache()
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def load_model(path: str):
-    model = YOLO(path)
-    model.to("xpu")  # tell Ultralytics directly
-    model.model = ipex.optimize(model.model.to(torch.device("xpu")), dtype=torch.float32)
-    model.model.eval()
+def load_model(path: str, job):
+    model = YOLO(path, task=job)
     return model
 
 
@@ -104,14 +101,14 @@ def run_yolo(model: YOLO, frames_window):
       Ball   — keep only the single highest-confidence detection (any conf)
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
-    PLAYER_CONF_THRESHOLD = 0.60
+    PLAYER_CONF_THRESHOLD = 0.55
     MAX_PLAYERS           = 10
-    BATCH_SIZE = 30
+    BATCH_SIZE = 8
 
     results = []
     for i in range(0, len(frames_window), BATCH_SIZE):
         chunk = frames_window[i:i+BATCH_SIZE]
-        results.extend(model(chunk, conf=0.20, iou=0.65, verbose=False))
+        results.extend(model(chunk, batch=len(chunk), device="intel:gpu", conf=0.20, iou=0.75, imgsz=1280, verbose=False))
 
     window_outputs = []
 
@@ -210,8 +207,8 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                     shot_offset: float = SHOT_OFFSET[0],
                     fallback_offset: float = FALLBACK_OFFSET[1],
                     verbose=False):
-    CONTAINMENT_MIN = (0.50,0.40,0.30)[shot_type]
-    CONTAINMENT_MAX = (0.90,0.75,0.70)[shot_type]
+    CONTAINMENT_MIN = (0.45,0.35,0.30)[shot_type]
+    CONTAINMENT_MAX = (0.95,0.85,0.80)[shot_type]
     MIN_NEEDED = 1
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
@@ -299,9 +296,9 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
 
     if len(frame_nums) >= MIN_NEEDED:
         if shot_type == 0 or shot_type == 1:
-            confirmed_window_start = frame_nums[len(frame_nums)//4]
+            confirmed_window_start = frame_nums[len(frame_nums)//5]
         else:
-            confirmed_window_start = frame_nums[len(frame_nums)//3]
+            confirmed_window_start = frame_nums[len(frame_nums)//4]
 
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:
@@ -381,18 +378,9 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
     total_shot_coordinates = []
     # ── Load YOLO models ──────────────────────────────────────────────────────
     print("Loading YOLO models...")
-    model  = load_model(model_path)
-    model2 = load_model(court_keypoints)
+    model  = load_model(model_path,"detect")
+    model2 = load_model(court_keypoints,"pose")
     print("Models loaded.\n")
-
-    #XPU Warmup
-    print("Warming up XPU...")
-    dummy = [np.zeros((544, 960, 3), dtype=np.uint8)]
-    model(dummy, verbose=False)
-    model2(dummy, verbose=False)
-    model(dummy, verbose=False)
-    model2(dummy, verbose=False)
-    print("Warmup done.\n")
 
     # ── Load JSON ─────────────────────────────────────────────────────────────
     with open(json_path, "r") as f:
@@ -489,7 +477,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
             print(f"  Displaying frame {frame_num} [{status}]  — SPACE to continue, Q to quit")
 
         homography_start_time = time.perf_counter()
-        kps_results = model2(frame, verbose=True)
+        kps_results = model2(frame, batch=1, device="intel:gpu", verbose=True)
         #ply_results = model(frame, verbose=True)
 
         last_H, last_good_indices, last_keypoint_list = mapper.compute_homography(kps_results)
