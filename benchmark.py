@@ -7,9 +7,9 @@ from getShots import is_field_goal, show_frame_and_wait, parse_timestamp, find_b
 
 #Config
 video_file = "SFHS VCHS Testing.mp4"
-stats_file = "game_20260519_valley_christian.json"
+stats_file = "game_20260706_valley_christian.json"
 board_file = "2D_HS_Court.jpg"
-answer_name= "valley_sfhs_first_points"
+answer_name= "valley_sfhs_points_full"
 
 def findDistance(xy1,xy2):
     x1,y1 = xy1
@@ -56,6 +56,7 @@ if __name__ == "__main__":
 
     # ── Collect field-goal shots ──────────────────────────────────────────────
     shots = []
+    idx = 1
     for entry in commands:
         raw = entry.get("raw_command", "")
         tokens = raw.split()
@@ -73,6 +74,8 @@ if __name__ == "__main__":
             continue
         video_time = tipoff_seconds + offset
         shots.append((video_time, tokens[2].lower(), tokens[3].lower()))
+        #print(f"{tokens[2].lower()},",end="")
+        idx += 1
 
     print(f"Found {len(shots)} field-goal shot(s).  SPACE = next shot  |  Q = quit\n")
 

@@ -101,9 +101,11 @@ def run_yolo(model: YOLO, frames_window):
       Ball   — keep only the single highest-confidence detection (any conf)
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
-    PLAYER_CONF_THRESHOLD = 0.55
+    PLAYER_CONF_THRESHOLD = 0.20
     MAX_PLAYERS           = 10
     BATCH_SIZE = 8
+    MAX_CHANGE = 100
+    MAX_HOLD = 4
 
     results = []
     for i in range(0, len(frames_window), BATCH_SIZE):
@@ -115,6 +117,8 @@ def run_yolo(model: YOLO, frames_window):
     # -----------------------------------------------------------------
     # CHANGE 2: Loop through the batch results (one result per frame)
     # -----------------------------------------------------------------
+    last_ball = -1
+    held_frames = 0
     for result in results:
         ball_candidates = []   
         player_boxes = []   
@@ -143,7 +147,23 @@ def run_yolo(model: YOLO, frames_window):
         ball_boxes = []
         if ball_candidates:
             best_ball = max(ball_candidates, key=lambda x: x[0])
-            ball_boxes = [best_ball[1]]
+            xyxy = best_ball[1]
+            if last_ball != -1:
+                last_cx = (last_ball[0] + last_ball[2]) / 2.0
+                last_cy = (last_ball[1] + last_ball[3]) / 2.0
+
+                cx = (xyxy[0] + xyxy[2]) / 2.0
+                cy = (xyxy[1] + xyxy[3]) / 2.0
+                dist = ((cx - last_cx) ** 2 + (cy - last_cy) ** 2) ** 0.5
+
+                if dist > MAX_CHANGE and held_frames <= MAX_HOLD:
+                    xyxy = last_ball
+                    held_frames += 1
+                else:
+                    held_frames = 0
+
+            ball_boxes = [xyxy]
+            last_ball = xyxy
 
         player_boxes.sort(key=lambda x: x[0], reverse=True)
         # Apply your MAX_PLAYERS cap
@@ -207,9 +227,9 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                     shot_offset: float = SHOT_OFFSET[0],
                     fallback_offset: float = FALLBACK_OFFSET[1],
                     verbose=False):
-    CONTAINMENT_MIN = (0.45,0.35,0.30)[shot_type]
-    CONTAINMENT_MAX = (0.95,0.85,0.80)[shot_type]
-    MIN_NEEDED = 1
+    CONTAINMENT_MIN = (0.10,0.25,0.25)[shot_type]
+    CONTAINMENT_MAX = (0.90,0.85,0.85)[shot_type]
+    MAX_GAP = 5
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
     start_sec   = max(0.0, shot_sec - pre_roll)
@@ -253,7 +273,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                 if score > 0 and verbose:
                     print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  Overlap = {score:.4f}")
 
-        if verbose:
+        if False:
             temp = annotate_frame(raw_frames[fn].copy(), ball_boxes, player_boxes_conf, hoop_boxes, iou_scores, fn)
             cv2.namedWindow("Frame Testing", cv2.WINDOW_NORMAL)
             cv2.resizeWindow("Frame Testing", 960, 540)
@@ -281,24 +301,41 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
             continue
         for p_idx, b_idx, score in scores:
             if CONTAINMENT_MIN < score < CONTAINMENT_MAX:
+                #print(f"Frame Number {fn-start_frame}: {score}")
                 num_frames += 1
                 frame_nums.append(fn)
-                if verbose:
+                if False:
                     d = frame_data[fn]
                     temp = annotate_frame(d["frame"].copy(),d["ball_boxes"],d["player_boxes"],d["hoop_boxes"],d["containment_scores"],fn)
                     cv2.namedWindow("Testing", cv2.WINDOW_NORMAL)
                     cv2.resizeWindow("Testing", 960, 540)
                     show_frame_and_wait(temp,"Testing")
 
+    # Because the list is descending, this cluster starts at index 0.
+    if len(frame_nums) > 0:
+        last_cluster = [frame_nums[0]]
+        for i in range(1, len(frame_nums)):
+            # Calculate the gap (since it's descending, we do previous - current)
+            gap = last_cluster[-1] - frame_nums[i]
+            
+            if gap <= MAX_GAP:
+                if frame_nums[i] not in last_cluster:
+                    last_cluster.append(frame_nums[i])
+                    if verbose:
+                        d = frame_data[frame_nums[i]]
+                        temp = annotate_frame(d["frame"].copy(),d["ball_boxes"],d["player_boxes"],d["hoop_boxes"],d["containment_scores"],fn)
+                        cv2.namedWindow("Testing", cv2.WINDOW_NORMAL)
+                        cv2.resizeWindow("Testing", 960, 540)
+                        show_frame_and_wait(temp,"Testing")
+            else:
+                break
+            
+        idx = len(last_cluster)//3
+        confirmed_window_start = last_cluster[idx]
 
-    if verbose:
-        print(f"Frames passing containment thresholds: {frame_nums}")
-
-    if len(frame_nums) >= MIN_NEEDED:
-        if shot_type == 0 or shot_type == 1:
-            confirmed_window_start = frame_nums[len(frame_nums)//5]
-        else:
-            confirmed_window_start = frame_nums[len(frame_nums)//4]
+        if verbose:
+            print(f"Frames in cluster: {last_cluster}")
+            print(f"Frame Selected: IDX {idx}")   
 
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:
@@ -508,10 +545,10 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
             annotated_frame[0:th, 0:tw] = tactical_frame
 
         shot_coordinates = last_player_points[p_idx]
-        shot_coordinates[0] = max(shot_coordinates[0],23)
-        shot_coordinates[0] = min(shot_coordinates[0],812)
-        shot_coordinates[1] = max(shot_coordinates[1],19)
-        shot_coordinates[1] = min(shot_coordinates[1],481)
+        shot_coordinates[0] = max(shot_coordinates[0],48)
+        shot_coordinates[0] = min(shot_coordinates[0],783)
+        shot_coordinates[1] = max(shot_coordinates[1],22)
+        shot_coordinates[1] = min(shot_coordinates[1],478)
 
         side, shot_type, dist = getShotInfo(shot_coordinates)
 

@@ -7,9 +7,9 @@ from getShots import is_field_goal, show_frame_and_wait, parse_timestamp
 
 #Config
 video_file = "SFHS VCHS Testing.mp4"
-stats_file = "game_20260519_valley_christian.json"
+stats_file = "game_20260706_valley_christian.json"
 board_file = "2D_HS_Court.jpg"
-name       = "valley_sfhs_first_points"
+name       = "valley_sfhs_points_full"
 
 def marking(event, x, y, flags, img_param):
     global clicked_points
