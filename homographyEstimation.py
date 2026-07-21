@@ -26,18 +26,17 @@ class TacticalViewConverter:
 
     def _generate_reference_kps(self):
         points_pixels = [
-            (17, 13)  , (17, 51)  , (17, 183) , (17, 309) , (17, 441) , (17, 483) ,
+            (11, 11)  , (11, 49)  , (11, 185) , (11, 311) , (11, 447) , (11, 489) ,
             (198, 185), (198, 311),
             (417, 11) , (417, 489),
-            (817, 13) , (817, 51) , (817, 183), (817, 309), (817, 441), (817, 483),
+            (823, 11) , (823, 49) , (823, 185), (823, 311), (823, 447), (823, 489),
             (635, 185), (635, 311),
         ]
         return points_pixels
 
     def compute_homography(self, broadcast_results):
-        CONF_THRESHOLD = 0.5
-        keypoints = broadcast_results[0].keypoints.data.cpu().numpy()
-        keypoint_list = keypoints[0].tolist()
+        CONF_THRESHOLD = 0.50
+        keypoint_list = broadcast_results[0].keypoints.data[0].cpu().numpy().tolist()
 
         good_indices = [i for i, (x, y, conf) in enumerate(keypoint_list) if conf >= CONF_THRESHOLD]
         if len(good_indices) < 5:
@@ -51,14 +50,19 @@ class TacticalViewConverter:
             raise RuntimeError("ERROR: Homography failed.")
         return H, good_indices, keypoint_list
 
-    def map_centers_from_boxes(self, boxes_xyxy, H):
+    def map_centers_from_boxes(self, boxes_xyxy, H, shot_type):
         if boxes_xyxy.size == 0:
             return np.empty((0, 2), dtype=np.float32)
 
         x1, y1, x2, y2 = boxes_xyxy[:, 0], boxes_xyxy[:, 1], boxes_xyxy[:, 2], boxes_xyxy[:, 3]
-        centers = np.stack(((x1 + x2) / 2.0, y2 + (0.00000031*((y2)**2)) * (y1-y2)), axis=1).astype(np.float32)
+        if shot_type == 2:
+            centers = np.stack(((x1 + x2) / 2.0, y2 + (0.000000265 *((y2)**2)) * (y1-y2)), axis=1).astype(np.float32)
+        else:
+            centers = np.stack(((x1 + x2) / 2.0, y2 + 0 * (y1-y2)), axis=1).astype(np.float32)
         mapped = cv2.perspectiveTransform(centers.reshape(-1, 1, 2), H).reshape(-1, 2).astype(np.float32)
 
+        #(0.00025 *(y2))
+        #(0.000000265 *((y2)**2))
         return mapped
 
     # -------------------------------------------------------

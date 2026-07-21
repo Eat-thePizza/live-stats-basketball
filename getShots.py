@@ -14,7 +14,7 @@ from homographyEstimation import TacticalViewConverter, filter_tracked_objects
 jsoninfo        = "game_20260706_valley_christian.json"
 film            = "SFHS VCHS Testing.mp4"
 model_path      = "pmodel 0710-1205p_openvino_model"
-court_keypoints = "court_keypoint_detector_openvino_model"
+court_keypoints = "kmodel 0719-0548p_openvino_model"
 court_image     = "2D_HS_Court.jpg"
 shot_chart_name = "shotChartTesting.jpg"
 
@@ -102,10 +102,10 @@ def run_yolo(model: YOLO, frames_window):
       Player — confidence >= PLAYER_CONF_THRESHOLD, capped at MAX_PLAYERS
     """
     PLAYER_CONF_THRESHOLD = 0.20
-    MAX_PLAYERS           = 10
+    MAX_PLAYERS           = 100
     BATCH_SIZE = 8
-    MAX_CHANGE = 100
-    MAX_HOLD = 4
+    MAX_CHANGE = 200
+    MAX_HOLD = 2
 
     results = []
     for i in range(0, len(frames_window), BATCH_SIZE):
@@ -156,7 +156,7 @@ def run_yolo(model: YOLO, frames_window):
                 cy = (xyxy[1] + xyxy[3]) / 2.0
                 dist = ((cx - last_cx) ** 2 + (cy - last_cy) ** 2) ** 0.5
 
-                if dist > MAX_CHANGE and held_frames <= MAX_HOLD:
+                if dist > MAX_CHANGE * (held_frames+1) and held_frames <= MAX_HOLD:
                     xyxy = last_ball
                     held_frames += 1
                 else:
@@ -227,9 +227,12 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                     shot_offset: float = SHOT_OFFSET[0],
                     fallback_offset: float = FALLBACK_OFFSET[1],
                     verbose=False):
-    CONTAINMENT_MIN = (0.10,0.25,0.25)[shot_type]
+    
+    CONTAINMENT_MIN = (0.05,0.10,0.10)[shot_type]
     CONTAINMENT_MAX = (0.90,0.85,0.85)[shot_type]
-    MAX_GAP = 5
+    Y2_PIXEL_THRESHOLD = 40
+    MAX_GAP = 4
+    MAX_RANGE = (20,25,25)[shot_type]
 
     fps         = cap.get(cv2.CAP_PROP_FPS) or 30.0
     start_sec   = max(0.0, shot_sec - pre_roll)
@@ -273,13 +276,6 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
                 if score > 0 and verbose:
                     print(f"  Frame {fn:6d}: player[{p_idx}] ↔ ball[{b_idx}]  Overlap = {score:.4f}")
 
-        if False:
-            temp = annotate_frame(raw_frames[fn].copy(), ball_boxes, player_boxes_conf, hoop_boxes, iou_scores, fn)
-            cv2.namedWindow("Frame Testing", cv2.WINDOW_NORMAL)
-            cv2.resizeWindow("Frame Testing", 960, 540)
-            show_frame_and_wait(temp, "Frame Testing", delay=50)
-
-
         frame_data[fn] = {
             "frame":              raw_frames[fn],
             "ball_boxes":         ball_boxes,
@@ -301,41 +297,113 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
             continue
         for p_idx, b_idx, score in scores:
             if CONTAINMENT_MIN < score < CONTAINMENT_MAX:
-                #print(f"Frame Number {fn-start_frame}: {score}")
                 num_frames += 1
                 frame_nums.append(fn)
-                if False:
-                    d = frame_data[fn]
-                    temp = annotate_frame(d["frame"].copy(),d["ball_boxes"],d["player_boxes"],d["hoop_boxes"],d["containment_scores"],fn)
-                    cv2.namedWindow("Testing", cv2.WINDOW_NORMAL)
-                    cv2.resizeWindow("Testing", 960, 540)
-                    show_frame_and_wait(temp,"Testing")
 
     # Because the list is descending, this cluster starts at index 0.
+    last_cluster = []
     if len(frame_nums) > 0:
         last_cluster = [frame_nums[0]]
         for i in range(1, len(frame_nums)):
             # Calculate the gap (since it's descending, we do previous - current)
             gap = last_cluster[-1] - frame_nums[i]
+            total_gap = last_cluster[0] - frame_nums[i]
             
-            if gap <= MAX_GAP:
+            if gap <= MAX_GAP and total_gap <= MAX_RANGE:
                 if frame_nums[i] not in last_cluster:
                     last_cluster.append(frame_nums[i])
-                    if verbose:
-                        d = frame_data[frame_nums[i]]
-                        temp = annotate_frame(d["frame"].copy(),d["ball_boxes"],d["player_boxes"],d["hoop_boxes"],d["containment_scores"],fn)
-                        cv2.namedWindow("Testing", cv2.WINDOW_NORMAL)
-                        cv2.resizeWindow("Testing", 960, 540)
-                        show_frame_and_wait(temp,"Testing")
             else:
                 break
             
-        idx = len(last_cluster)//3
-        confirmed_window_start = last_cluster[idx]
-
         if verbose:
-            print(f"Frames in cluster: {last_cluster}")
-            print(f"Frame Selected: IDX {idx}")   
+            print(f"Frames in raw cluster: {last_cluster}")
+
+    # ── Pass 3: Spatial Filtering (y2 Outlier Rejection) ──────────────────────
+    frames_to_visualize = []
+    is_clean_cluster = False
+
+    if last_cluster:
+        extracted_frames = []
+        for fn in last_cluster:
+            d_frame = frame_data[fn]
+            valid_scores = [
+                (p, b, s) for p, b, s in d_frame["containment_scores"]
+                if CONTAINMENT_MIN <= s <= CONTAINMENT_MAX
+            ]
+            if not valid_scores:
+                continue
+            
+            # Find the assigned shooter for this specific frame
+            best_match = max(valid_scores, key=lambda x: x[2])
+            best_p_idx = best_match[0]
+            
+            # Extract y2 from player_boxes [conf, [x1, y1, x2, y2]]
+            y2_val = d_frame["player_boxes"][best_p_idx][1][3]
+            
+            extracted_frames.append({
+                "frame_num": fn,
+                "y2": y2_val
+            })
+            
+        if extracted_frames:
+            # Sort y2 values to find the median (the true shooter's track)
+            sorted_y2 = sorted([info["y2"] for info in extracted_frames])
+            median_y2 = sorted_y2[len(sorted_y2) // 2]
+            
+            # Filter out frames that deviate too far from the median track
+            clean_cluster = [
+                info for info in extracted_frames 
+                if abs(info["y2"] - median_y2) <= Y2_PIXEL_THRESHOLD
+            ]
+            
+            if clean_cluster:
+                # Route 1: Clean cluster success
+                if shot_type == 0:
+                    chosen_idx = len(clean_cluster) // 3
+                else:
+                    chosen_idx = len(clean_cluster) // 2
+                confirmed_window_start = clean_cluster[chosen_idx]["frame_num"]
+                frames_to_visualize = [info["frame_num"] for info in clean_cluster]
+                is_clean_cluster = True
+                if verbose:
+                    print(f"  [Filter] Success! Clean cluster size: {len(clean_cluster)}. Selected frame {confirmed_window_start}")
+                    print(f"  [Filter] Following Cluster Frames: {clean_cluster}")
+            else:
+                # Route 2: Spatial filter rejected everything -> fallback
+                chosen_idx = len(last_cluster) // 2
+                confirmed_window_start = last_cluster[chosen_idx]
+                frames_to_visualize = last_cluster
+                if verbose:
+                    print(f"  [Filter] All frames rejected! Falling back to raw cluster (Frame {confirmed_window_start})")
+        else:
+            # Route 3: No valid frames found during extraction -> fallback
+            chosen_idx = len(last_cluster) // 2
+            confirmed_window_start = last_cluster[chosen_idx]
+            frames_to_visualize = last_cluster
+
+    # ── Visualize the Final Chosen Cluster (Clean or Raw) ─────────────────────
+    if verbose and frames_to_visualize:
+        print(f"  [Visualizing] Displaying {len(frames_to_visualize)} frames from the evaluated sequence...")
+        for vis_fn in frames_to_visualize:
+            d_vis = frame_data[vis_fn]
+            vis_label = "CLEAN CLUSTER" if is_clean_cluster else "RAW CLUSTER (Fallback)"
+            
+            # Add an indicator if this is the exact frame the algorithm chose
+            if vis_fn == confirmed_window_start:
+                vis_label += " - SELECTED TARGET"
+
+            temp = annotate_frame(
+                d_vis["frame"].copy(),
+                d_vis["ball_boxes"],
+                d_vis["player_boxes"],
+                d_vis["hoop_boxes"],
+                d_vis["containment_scores"],
+                vis_fn,
+                label=vis_label
+            )
+            cv2.namedWindow("Cluster Debugging", cv2.WINDOW_NORMAL)
+            cv2.resizeWindow("Cluster Debugging", 960, 540)
+            show_frame_and_wait(temp, "Cluster Debugging")
 
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:
@@ -474,7 +542,6 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
     if show_frames:
         window_name = "Shot Clip"
         cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
-
     TESTING_FRAME_SET = []
 
     mapper = TacticalViewConverter(court_image)
@@ -501,7 +568,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
                                                                                     shot_offset=SHOT_OFFSET[shot_idx],
                                                                                     fallback_offset=FALLBACK_OFFSET[shot_idx],
                                                                                     verbose=show_frames)
-        frame = frame_data["frame"]
+        frame = frame_data["frame"].copy()
 
         frame_end_time = time.perf_counter()
         frame_time.append(round(frame_end_time-frame_start_time,3))
@@ -514,7 +581,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
             print(f"  Displaying frame {frame_num} [{status}]  — SPACE to continue, Q to quit")
 
         homography_start_time = time.perf_counter()
-        kps_results = model2(frame, batch=1, device="intel:gpu", verbose=True)
+        kps_results = model2(frame, batch=1, device="intel:gpu", verbose=True, imgsz=1280, conf=0.00)
         #ply_results = model(frame, verbose=True)
 
         last_H, last_good_indices, last_keypoint_list = mapper.compute_homography(kps_results)
@@ -532,13 +599,13 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
         else:
             player_boxes = np.empty((0, 4), dtype=np.float32)
 
-        last_player_points = mapper.map_centers_from_boxes(player_boxes, last_H)
+        last_player_points = mapper.map_centers_from_boxes(player_boxes, last_H, shot_idx)
         #last_ball_points  = mapper.map_centers_from_boxes(last_ball_boxes,   last_H)
 
         if show_frames:
             team_assignments = mapper.assign_teams(frame, player_boxes)
             tactical_frame = mapper.draw_tactical(last_player_points, [],
-                                        last_good_indices, team_assignments)
+                                        good_indices=last_good_indices, team_assignments=team_assignments)
             
             tactical_frame = cv2.resize(tactical_frame, (501,300))
             th, tw = tactical_frame.shape[:2]
@@ -566,6 +633,22 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
         homography_time.append(round(homography_end_time-homography_start_time,3))
 
         if show_frames:
+            for r in kps_results:
+                # Added structural check to ensure keypoints exist AND contain data elements
+                if r.keypoints is not None and r.keypoints.data.numel() > 0:
+                    kpts = r.keypoints.data[0].cpu().numpy()  # shape: (num_keypoints, 3)
+                    for idx, (x, y, conf) in enumerate(kpts):
+                        if conf > 0.55:
+                            x, y = int(x), int(y)
+                                # Draw the keypoint
+                            cv2.circle(annotated_frame, (x, y), 4, (0, 255, 0), -1)
+
+                                # Label with keypoint index
+                            cv2.putText(annotated_frame, f"{idx}", (x + 5, y - 5),
+                                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+
+                                # Display confidence next to keypoint (rounded to 2 decimals)
+                            cv2.putText(annotated_frame, f"{conf:.2f}", (x + 5, y + 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
             keep_going = show_frame_and_wait(annotated_frame, window_name)
             if not keep_going:
                 print("Quit by user.")
@@ -594,9 +677,15 @@ def getShotInfo(shot_coordinates): # Output: Shot Location Text; Distance From H
                 shot_type = "Right Wing"
         elif 182 <= y <= 314: #Rim Shots, Paint, or Top
             if 11 <= x <= 104:
-                shot_type = "Rim"
+                if 182 <= y <= 248:
+                    shot_type = "Right Rim"
+                elif 248 < y <= 314:
+                    shot_type = "Left Rim"
             elif 104 < x <= 147:
-                shot_type = "Paint"
+                if 182 <= y <= 248:
+                    shot_type = "Right Paint"
+                elif 248 < y <= 314:
+                    shot_type = "Left Paint"
             elif 147 < x <= 417:
                 shot_type = "Top"
         elif 314 < y <= 489: #Left Corner or Left Wing
@@ -616,9 +705,15 @@ def getShotInfo(shot_coordinates): # Output: Shot Location Text; Distance From H
                 shot_type = "Left Wing"
         elif 182 <= y <= 314: #Rim Shots, Paint, or Top
             if 731 <= x <= 824: 
-                shot_type = "Rim"
+                if 182 <= y <= 248:
+                    shot_type = "Left Rim"
+                elif 248 < y <= 314:
+                    shot_type = "Right Rim"
             elif 688 <= x < 731:
-                shot_type = "Paint"
+                if 182 <= y <= 248:
+                    shot_type = "Left Paint"
+                elif 248 < y <= 314:
+                    shot_type = "Right Paint"
             elif 417 <= x < 688:
                 shot_type = "Top"
         elif 314 < y <= 489: #Right Corner or Right Wing

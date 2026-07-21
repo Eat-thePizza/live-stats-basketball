@@ -112,7 +112,7 @@ if __name__ == "__main__":
             ap += 1
             results1.append("ap")
             showed = "AP"
-        elif distance <= 50 or (shot_type1 == shot_type2):
+        elif distance <= 50 or (shot_type1 == shot_type2 and side1 == side2):
             me += 1
             results1.append("me")
             showed = "ME"
