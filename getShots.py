@@ -404,7 +404,7 @@ def find_best_frame(cap: cv2.VideoCapture, model: YOLO, shot_sec: float, shot_ty
             cv2.namedWindow("Cluster Debugging", cv2.WINDOW_NORMAL)
             cv2.resizeWindow("Cluster Debugging", 960, 540)
             show_frame_and_wait(temp, "Cluster Debugging")
-
+    
     # ── Pick the return frame ─────────────────────────────────────────────────
     if confirmed_window_start is not None:
         target_fn       = confirmed_window_start
@@ -545,6 +545,7 @@ def getShots(json_path: str, film_path: str, tipoff_seconds: float, show_frames:
     TESTING_FRAME_SET = []
 
     mapper = TacticalViewConverter(court_image)
+    #mapper.show_reference()
     for idx, (shot_time, shot_type, make_miss) in enumerate(shots, start=1):
         #print(f"Shot {idx}: XPU memory allocated: {torch.xpu.memory_allocated() / 1024**2:.1f} MB")
         total_start_time = time.perf_counter()

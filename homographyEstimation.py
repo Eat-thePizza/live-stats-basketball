@@ -33,6 +33,53 @@ class TacticalViewConverter:
             (635, 185), (635, 311),
         ]
         return points_pixels
+    
+    def show_reference(self):
+        """
+        Draws the reference keypoints and their index labels onto a copy of 
+        the court image and displays it in an OpenCV window.
+        """
+        # Copy the reference image to avoid drawing directly on the cached template
+        vis_img = self.reference_court_image.copy()
+
+        # Loop through each keypoint and draw the marker + index label
+        for idx, pt in enumerate(self.reference_kps):
+            x, y = int(pt[0]), int(pt[1])
+            
+            # Draw keypoint circle (bright green dot)
+            cv2.circle(vis_img, (x, y), radius=5, color=(0, 255, 0), thickness=-1)
+            
+            if idx <= 9 or idx >= 16:
+                # Label keypoint index (red text offset slightly above the point)
+                cv2.putText(
+                    vis_img, 
+                    str(idx), 
+                    (x + 10, y - 1), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 
+                    0.4, 
+                    (0, 20, 255), 
+                    1, 
+                    cv2.LINE_AA
+                )
+            elif idx <= 15:
+                # Label keypoint index (red text offset slightly above the point)
+                cv2.putText(
+                    vis_img, 
+                    str(idx), 
+                    (x - 23, y - 1), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 
+                    0.4, 
+                    (0, 20, 255), 
+                    1, 
+                    cv2.LINE_AA
+                )
+
+        # Render the image in a pop-up window
+        cv2.imshow("Reference Court Keypoints", vis_img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        return vis_img
 
     def compute_homography(self, broadcast_results):
         CONF_THRESHOLD = 0.50
